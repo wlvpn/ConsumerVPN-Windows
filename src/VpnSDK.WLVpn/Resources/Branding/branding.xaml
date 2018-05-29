@@ -1,0 +1,167 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    x:Name="AccentColor"
+                    mc:Ignorable="options">
+
+    <system:String x:Key="BRAND_NAME">Consumer VPN</system:String>
+    <system:String x:Key="BRAND_LOGFILE_NAME">ConsumerVPN.log</system:String>
+    <system:String x:Key="BRAND_MAIN_URL">https://wlvpn.com/#contact</system:String>
+    <system:String x:Key="BRAND_FORGOT_PASSWORD_URL">https://wlvpn.com/#contact</system:String>
+
+    <BitmapImage x:Key="BRAND_LOGO" UriSource="pack://application:,,,/WLVpn;component/Resources/Branding/Assets/logo.png" />
+    <BitmapImage x:Key="BRAND_BANNER" UriSource="pack://application:,,,/WLVpn;component/Resources/Branding/Assets/imageBanner.png" />
+    <BitmapImage x:Key="BRAND_MAP" UriSource="pack://application:,,,/WLVpn;component/Resources/Branding/Assets/dotmap.png" />
+    <system:Int32 x:Key="STARTUP_CONNECT_DELAY">5</system:Int32>
+    <system:Int32 x:Key="RECONNECT_DELAY">3</system:Int32>
+
+    <ImageSource x:Key="CountryFlag_UNKNOWN">pack://application:,,,/WLVpn;component/Resources/Branding/Assets/logo.png</ImageSource>
+
+    <!--  basic colors  -->
+    <Color x:Key="Gray1"
+           options:Freeze="true">#202020</Color>
+    <Color x:Key="Gray4"
+           options:Freeze="true">#545454</Color>
+    <Color x:Key="Gray7" options:Freeze="true">#FFD8D8D9</Color>
+    <Color x:Key="Gray11" options:Freeze="true">#FF717171</Color>
+    <Color x:Key="HighlightColor" options:Freeze="true">Gray</Color>
+    <Color x:Key="AccentColor" options:Freeze="true">#202020</Color>
+
+
+    <Color x:Key="BlackColor" options:Freeze="true">Black</Color>
+    <Color x:Key="WhiteColor" options:Freeze="true">White</Color>
+
+
+
+    <Color x:Key="BRAND_TITLE_TEXT_COLOR" options:Freeze="true">White</Color>
+    <Color x:Key="BRAND_NORMAL_TEXT_COLOR" options:Freeze="true">White</Color>
+    <SolidColorBrush x:Key="BRAND_LOGIN_LOGO_BACKGROUND"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray1}" />
+    <SolidColorBrush x:Key="BRAND_LOGIN_PANEL_BACKGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource Gray4}" />
+    <SolidColorBrush x:Key="BRAND_LOCATION_LIST_BACKGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource Gray4}" />
+    <SolidColorBrush x:Key="BRAND_LOCATION_SERVERS_LIST_BACKGROUND"
+                     options:Freeze="true"
+                     Color="#2a2a2a" />
+    <SolidColorBrush x:Key="BRAND_CONNECTIVITY_PANEL_BACKGROUND"
+                     options:Freeze="true"
+                     Color="#545454" />
+    <SolidColorBrush x:Key="BRAND_ACTION_PANEL_BRUSH"
+                     options:Freeze="true"
+                     Color="{StaticResource Gray4}" />
+
+    <SolidColorBrush x:Key="BRAND_TITLE_TEXT_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_TITLE_TEXT_COLOR}" />
+    <SolidColorBrush x:Key="BRAND_NORMAL_TEXT_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_NORMAL_TEXT_COLOR}" />
+
+    <SolidColorBrush x:Key="BRAND_LOGIN_ICON_ACCENT" Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="BRAND_LOGIN_ERROR_ACCENT"
+                     options:Freeze="true"
+                     Color="#E10000" />
+    <SolidColorBrush x:Key="BRAND_LOGIN_ACCENT"
+                     options:Freeze="true"
+                     Color="{StaticResource WhiteColor}" />
+
+    <SolidColorBrush x:Key="BRAND_CONTRAST_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="BRAND_GRID_TEXT_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_NORMAL_TEXT_COLOR}" />
+
+    <SolidColorBrush x:Key="BRANDING_CONNECT_BUTTON_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="BRAND_LOCATION_LIST_HEADER_BORDER"
+                     options:Freeze="true"
+                     Color="{StaticResource BlackColor}" />
+
+    <SolidColorBrush x:Key="BRAND_SEARCH_BACKGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource Gray11}" />
+    <SolidColorBrush x:Key="BRAND_SEARCH_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_TITLE_TEXT_COLOR}" />
+
+    <SolidColorBrush x:Key="BRAND_SETTINGS_TAB_FOREGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="BRAND_SETTINGS_TAB_BOTTOM_BORDER_HIGHLIGHT"
+                     options:Freeze="true"
+                     Color="{StaticResource Gray7}" />
+    <SolidColorBrush x:Key="BRAND_SETTINGS_TAB_BOTTOM_BORDER"
+                     options:Freeze="true"
+                     Color="#0c0c0c" />
+
+    <!--
+        used for background in the tab control style, make transparent so that the BRAND_SETTINGS_PANEL_BACKGROUND
+        color is visible
+    -->
+    <Color x:Key="ContentAreaColorLight">Transparent</Color>
+    <Color x:Key="ContentAreaColorDark">Transparent</Color>
+
+    <SolidColorBrush x:Key="BRAND_SETTINGS_PANEL_BACKGROUND"
+                     options:Freeze="true"
+                     Color="{StaticResource Gray1}" />
+    <SolidColorBrush x:Key="BRAND_SETTINGS_CONTROLS_COLOR"
+                     options:Freeze="true"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="BRAND_COMBOBOX_BACKGROUND"
+                     options:Freeze="true"
+                     Color="#2a2a2a" />
+
+    <!--  Context Menu colors  -->
+    <Color x:Key="BRAND_MENU_TEXT_HIGHLIGHT" options:Freeze="true">Black</Color>
+    <Color x:Key="BRAND_CONTEXT_MENU_BACKGROUND_COLOR" options:Freeze="true">Black</Color>
+
+    <SolidColorBrush x:Key="BRAND_CONTEXT_MENU_FOREGROUND_BRUSH"
+                     options:Freeze="true"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="ContextMenuBackgroundBrush"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_CONTEXT_MENU_BACKGROUND_COLOR}" />
+    <SolidColorBrush x:Key="SubMenuBackgroundBrush"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_CONTEXT_MENU_BACKGROUND_COLOR}" />
+    <SolidColorBrush x:Key="MenuItemBackgroundBrush"
+                     options:Freeze="true"
+                     Color="{StaticResource BRAND_CONTEXT_MENU_BACKGROUND_COLOR}" />
+
+    <LinearGradientBrush x:Key="ProgressBrush" options:Freeze="True" StartPoint="1.002,0.5" EndPoint="0.001,0.5">
+        <GradientStop options:Freeze="true" Offset="0" Color="{StaticResource WhiteColor}" />
+        <GradientStop options:Freeze="true" Offset="1" Color="{StaticResource FlyoutColor}" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="WindowTitleColorBrush"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray2}" />
+
+    <SolidColorBrush x:Key="NonActiveWindowTitleColorBrush"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray2}" />
+
+    <SolidColorBrush x:Key="AccentColorBrush"
+                     options:Freeze="True"
+                     Color="{StaticResource AccentColor}" />
+
+    <SolidColorBrush x:Key="BRAND_CONNECT_BUTTON_BACKGROUND_NORMAL" options:Freeze="true">#5FB006</SolidColorBrush>
+    <SolidColorBrush x:Key="BRAND_CONNECT_BUTTON_BACKGROUND_DISABLED" options:Freeze="true">#929292</SolidColorBrush>
+    <SolidColorBrush x:Key="BRAND_CONNECT_BUTTON_BACKGROUND_MOUSEOVER" options:Freeze="true">#417C0A</SolidColorBrush>
+
+    <SolidColorBrush x:Key="HighlightBrush"
+                     options:Freeze="True"
+                     Color="{StaticResource HighlightColor}" />
+    <Color x:Key="DisabledTabBorderColor">#FFAAAAAA</Color>
+
+
+
+</ResourceDictionary>

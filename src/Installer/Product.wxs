@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <?include Settings.wxi ?>  
+  <?define ProductVersion = "!(bind.FileVersion.ApplicationFile)" ?>
+  <?define ProductFullVersion = "!(bind.FileVersion.ApplicationFile)" ?>
+
+  
+  <Product Id="*"
+           Name="$(var.ProductDisplayName) (v$(var.ProductVersion))"
+           Language="1033"
+           Manufacturer="$(var.ProductAuthor)"
+           Version="$(var.ProductFullVersion)"
+           UpgradeCode="$(var.UpgradeCode)">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."
+                  AllowSameVersionUpgrades="yes" />
+    <MediaTemplate EmbedCab="yes" />
+    
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" />
+
+    <Condition
+      Message="This application requires .NET Framework 4.6.1. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED]]>
+    </Condition>
+
+    <Condition Message="This application is only supported on Windows 7 or higher.">
+      <![CDATA[Installed OR (VersionNT >= 601)]]>
+    </Condition>
+
+    <Icon Id="ApplicationIcon.ico"
+          SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)\Resources\Branding\Assets\brandIcon.ico " />
+    <Property Id="ARPPRODUCTICON" Value="ApplicationIcon.ico" />
+
+    <Feature Id="ProductFeature" Title="Installer" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="InstallComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="DesktopFolder" Name="Desktop" />
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="ApplicationDirectory" Name="$(var.ProductAppFolder)">          
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="$(var.ProductDisplayName)" />
+      </Directory>
+      <Directory Id="StartupFolder">
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="ApplicationDirectory">           
+     
+      <!--App's EXE-->
+      <Component Id="ApplicationExecutable">
+        <File Id="ApplicationFile"
+              Name="$(var.VpnSDK.WLVpn.TargetFileName)"
+              Source="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)"
+              DiskId="1"
+              KeyPath="yes" />
+
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Directory="ApplicationProgramsFolder"
+                  Advertise="yes"
+                  Name="$(var.ProductName)"
+                  Description="$(var.ProductDisplayName)"
+                  Icon="AppIcon.exe"
+                  WorkingDirectory="ApplicationDirectory">
+          <Icon Id="AppIcon.exe"
+                SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
+        </Shortcut>
+
+        <Shortcut Id="DesktopShortcut"
+                  Directory="DesktopFolder"
+                  Advertise="yes"
+                  Name="$(var.ProductName)"
+                  Description="$(var.ProductDisplayName)"
+                  Icon="DesktopAppIcon.exe"
+                  WorkingDirectory="ApplicationDirectory">
+          <Icon Id="DesktopAppIcon.exe"
+                SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
+        </Shortcut>
+
+        <Shortcut Id="StartupMenuShortcut"
+                  Directory="StartupFolder"
+                  Advertise="yes"
+                  Name="$(var.ProductName)"
+                  Description="$(var.ProductDisplayName)"
+                  Icon="StartAppIcon.exe"
+                  WorkingDirectory="ApplicationDirectory">
+          <Icon Id="StartAppIcon.exe"
+                SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
+        </Shortcut>
+
+        <RemoveFolder Id="ApplicationProgramsFolder"
+                      Directory="ApplicationProgramsFolder"
+                      On="uninstall" />
+
+      </Component>
+    
+    </ComponentGroup>
+  </Fragment>
+</Wix>

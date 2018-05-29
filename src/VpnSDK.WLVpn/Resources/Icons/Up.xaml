@@ -1,0 +1,111 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="UpIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,30,29" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-53,-407">
+                            <DrawingGroup Transform="1,0,0,1,54,408">
+                                <DrawingGroup>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Flat"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Flat"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <EllipseGeometry Center="14,13.641"
+                                                             RadiusX="14"
+                                                             RadiusY="13.641" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Flat"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Flat"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M11.6564829,0.152417334C8.19812165,2.87389909 5.89473684,7.73645754 5.89473684,13.2820513 5.89473684,19.4897338 8.78095658,24.8415498 12.9425995,27.292401L12.9425995,27.292401" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Flat"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Flat"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M20.8320617,0.331594849C17.5991208,3.10574974 15.4736842,7.80255818 15.4736842,13.1296339 15.4736842,19.3373165 18.359904,24.6891325 22.5215469,27.1399836"
+                                                          FillRule="EvenOdd"
+                                                          Transform="-1,0,0,1,37.995232,0" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Flat"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Flat"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M3.01698705,4.95132212C3.01698705,4.95132212 7.33244243,8.34054487 14.0836503,8.28375401 20.8348581,8.22696314 24.9713199,4.99251302 24.9713199,4.99251302" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Flat"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Flat"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M3.01698705,18.5923478C3.01698705,18.5923478 7.33244243,21.9815705 14.0836503,21.9247796 20.8348581,21.8679888 24.9713199,18.6335387 24.9713199,18.6335387"
+                                                          FillRule="EvenOdd"
+                                                          Transform="1,0,0,-1,0,40.517834" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Square"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Square"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M0.368421053,13.6410256L27.6415349,13.6410256" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="#FFFFFFFF"
+                                                 EndLineCap="Square"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Square"
+                                                 Thickness="1.45454545" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M14,0L14,26.5738032" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

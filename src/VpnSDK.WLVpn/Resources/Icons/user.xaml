@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="UserIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,22,22" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-40,-313">
+                            <DrawingGroup Transform="1,0,0,1,25,313">
+                                <DrawingGroup Transform="1,0,0,1,15,0">
+                                    <GeometryDrawing Brush="#FFFFFFFF">
+                                        <GeometryDrawing.Geometry>
+                                            <EllipseGeometry Center="10.5926,5.7037"
+                                                             RadiusX="5.7037"
+                                                             RadiusY="5.7037" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing Brush="#FFFFFFFF">
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M21.1851852,21.9750472C21.1851852,17.4887303 16.4427199,13.8518519 10.5925926,13.8518519 4.74246524,13.8518519 0,17.4887303 0,21.9750472 0.0883246528,21.9895129 21.1995081,22.0231107 21.1851852,21.9750472z" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

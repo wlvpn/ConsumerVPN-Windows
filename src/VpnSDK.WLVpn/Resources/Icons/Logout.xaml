@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="LogoutIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,612,612" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="#FFFFFFFF">
+                                <GeometryDrawing.Geometry>
+                                    <PathGeometry Figures="M222.545,333.818L222.545,333.818 542.454,333.818 472.909,445.091 528.546,445.091 612,306 528.546,166.909 472.909,166.909 542.454,278.182 222.545,278.182z" FillRule="Nonzero" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                            <GeometryDrawing Brush="#FFFFFFFF">
+                                <GeometryDrawing.Geometry>
+                                    <PathGeometry Figures="M0,612L0,612 445.091,612 445.091,431.182 389.454,431.182 389.454,556.363 55.636,556.363 55.636,55.636 389.454,55.636 389.454,180.818 445.091,180.818 445.091,0 0,0z" FillRule="Nonzero" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

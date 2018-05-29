@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="EncryptionIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,27,27" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-55,-463">
+                            <DrawingGroup Transform="1,0,0,1,55,462">
+                                <GeometryDrawing Brush="#FFFFFFFF">
+                                    <GeometryDrawing.Geometry>
+                                        <PathGeometry Figures="M16.5084681,12.7084774L26.8860785,23.3969184 27,28 22.2888772,28 22.2888772,25.0787813 19.4251487,25.0787813 19.4251487,22.0535526 16.0396866,22.0535526 11.9583969,17.7590046C10.902325,18.2436198 9.73262706,18.5129853 8.50184502,18.5129853 3.80640567,18.5129853 0,14.59257 0,9.75649263 0,4.92041529 3.80640567,1 8.50184502,1 13.1972844,1 17.00369,4.92041529 17.00369,9.75649263 17.00369,10.7923384 16.82906,11.7861756 16.5084681,12.7084774z M6.4775962,9.33951679C7.8191503,9.33951679 8.90669478,8.21939813 8.90669478,6.83766175 8.90669478,5.45592537 7.8191503,4.33580671 6.4775962,4.33580671 5.1360421,4.33580671 4.04849763,5.45592537 4.04849763,6.83766175 4.04849763,8.21939813 5.1360421,9.33951679 6.4775962,9.33951679z" FillRule="EvenOdd" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

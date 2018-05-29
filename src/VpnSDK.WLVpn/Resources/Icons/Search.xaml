@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="SearchIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,16,16" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-604,-50">
+                            <DrawingGroup Transform="1,0,0,1,0,39">
+                                <GeometryDrawing Brush="#FFFFFFFF">
+                                    <GeometryDrawing.Geometry>
+                                        <PathGeometry Figures="M615.062578,17.8033987C615.09103,15.4382772 613.172945,13.482872 610.798893,13.4568836 608.415789,13.4307106 606.474549,15.3214529 606.438522,17.7036947 606.402311,20.0973294 608.303584,22.0520572 610.699313,22.084327 613.083956,22.1164121 615.033696,20.2034997 615.062578,17.8033987 M614.648859,23.3349685C611.130275,25.7034155 606.953793,24.2443133 605.169467,21.6226957 603.338091,18.9321045 603.682344,15.1386725 606.028744,12.912607 608.529781,10.5397876 612.21267,10.3509104 614.975684,12.4796737 617.437122,14.3760202 618.528878,18.3439187 616.346352,21.605206 616.416065,21.6802765 616.488056,21.7628602 616.565343,21.8401477 617.544524,22.8201289 618.525799,23.7980163 619.503747,24.7791676 619.979913,25.2568722 620.102957,25.7476326 619.883165,26.2500323 619.524563,27.0698344 618.530356,27.2575415 617.87061,26.6134993 617.07033,25.832187 616.283721,25.0367721 615.49699,24.2417267 615.202189,23.9438464 614.923769,23.6298312 614.648859,23.3349685" FillRule="EvenOdd" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

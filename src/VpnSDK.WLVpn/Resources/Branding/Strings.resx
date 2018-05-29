@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SETTINGS_TAB_CONNECTION" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="SETTINGS_TAB_GENERAL" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="SETTINGS_TAB_ABOUT" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="SETTINGS_TAB_LICENSES" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="SETTINGS_TAB_LOGS" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CHANGE_LOCATION_BUTTON" xml:space="preserve">
+    <value>Change Location</value>
+  </data>
+  <data name="CLOSE" xml:space="preserve">
+    <value>CLOSE</value>
+  </data>
+  <data name="CONNECTED_ENCRYPTION" xml:space="preserve">
+    <value>Cipher:</value>
+  </data>
+  <data name="CONNECTED_PUBLIC_IP_HEADER" xml:space="preserve">
+    <value>Public IP:</value>
+  </data>
+  <data name="CONNECTED_VISIBLE_LOCATION_HEADER" xml:space="preserve">
+    <value>Visible Location:</value>
+  </data>
+  <data name="IP_UPDATING_TEXT" xml:space="preserve">
+    <value>Updating...</value>
+  </data>
+  <data name="LOGIN_FORGOT_USERNAME_PASSWORD" xml:space="preserve">
+    <value>Forgot Username/Password?</value>
+  </data>
+  <data name="LOGIN_PASSWORDBOX_HINT" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LOGIN_SIGNIN_BUTTON" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="LOGIN_SIGNUP_BUTTON" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="LOGIN_USERNAMEBOX_HINT" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="REINSTALL_TAP_DRIVER" xml:space="preserve">
+    <value>Reinstall TAP Driver</value>
+  </data>
+  <data name="SAVE" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SETTINGS_APPLICATION_STARTUP_OPTION1" xml:space="preserve">
+    <value>Do not automatically connect</value>
+  </data>
+  <data name="SETTINGS_APPLICATION_STARTUP_OPTION2" xml:space="preserve">
+    <value>Connect to last connected server</value>
+  </data>
+  <data name="SETTINGS_AUTO_RECONNECT" xml:space="preserve">
+    <value>Auto Reconnect if a VPN is disconnected unexpectedly.</value>
+  </data>
+  <data name="SETTINGS_CLOSING_OPTION3" xml:space="preserve">
+    <value>Show dialog and ask</value>
+  </data>
+  <data name="SETTINGS_DIAGNOSTICS" xml:space="preserve">
+    <value>Diagnostics</value>
+  </data>
+  <data name="SETTINGS_GENERAL_KILLSWITCH_DESCRIPTION" xml:space="preserve">
+    <value>Kill Switch cuts your connection on the Internet when your VPN connection fails.</value>
+  </data>
+  <data name="SETTINGS_GENERAL_NOTIFICATIONS" xml:space="preserve">
+    <value>Show notifications in taskbar</value>
+  </data>
+  <data name="SETTINGS_KILL_SWITCH" xml:space="preserve">
+    <value>Kill Switch</value>
+  </data>
+  <data name="SETTINGS_PROTOCOL_IKEV2" xml:space="preserve">
+    <value>IKEv2</value>
+  </data>
+  <data name="SETTINGS_PROTOCOL_IKEV2_DESC" xml:space="preserve">
+    <value>Offers highly stable security, especially when switching networks or 
+reconnecting. </value>
+  </data>
+  <data name="SETTINGS_PROTOCOL_OPENVPN" xml:space="preserve">
+    <value>OpenVPN</value>
+  </data>
+  <data name="SETTINGS_PROTOCOL_OPENVPN_DESC" xml:space="preserve">
+    <value>Provides the best security. It may be slower than other protocols due 
+to its stronger security. OpenVPN is also good choice when other 
+protocols are not available due to firewall restrictions.</value>
+  </data>
+  <data name="SETTINGS_PROTOCOL_OPENVPN_SCRAMBLE" xml:space="preserve">
+    <value>Scramble</value>
+  </data>
+  <data name="SETTINGS_PROTOCOL_OPENVPN_SCRAMBLE_INFO" xml:space="preserve">
+    <value>Scramble adds obfuscation capability to OpenVPN, allowing it to bypass 
+network traffic sensors which aim to detect usage of a VPN and block it.</value>
+  </data>
+  <data name="SETTINGS_SYSTEM_STARTUP_OPTION1" xml:space="preserve">
+    <value>Start application when User logs in</value>
+  </data>
+  <data name="SETTINGS_UPDATES" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="VERSION" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="VPN_BUTTON_CONNECT" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="VPN_BUTTON_DISCONNECT" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="WINDOW_BUTTON_SETTINGS" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="WINDOW_BUTTON_SIGNOUT" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="CITY" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="COUNTRY" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="LOAD" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="NOTIFICATION_CONNECTED_TEXT" xml:space="preserve">
+    <value>You are now connected to {0}, {1}.</value>
+  </data>
+  <data name="NOTIFICATION_DISCONNECTED_TEXT" xml:space="preserve">
+    <value>You have been disconnected from {0}, {1}.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SETTINGS_APPLICATION_STARTUP" xml:space="preserve">
+    <value>Application Startup</value>
+  </data>
+  <data name="SETTINGS_CLOSING_OPTION2" xml:space="preserve">
+    <value>Close button hides the application to tray</value>
+  </data>
+  <data name="SETTINGS_SYSTEM_STARTUP_OPTION2" xml:space="preserve">
+    <value>Hide application on startup</value>
+  </data>
+  <data name="TASKBAR_CONNECTED" xml:space="preserve">
+    <value>Status: Connected</value>
+  </data>
+  <data name="TASKBAR_CURRENT_IP" xml:space="preserve">
+    <value>Current IP: {0}</value>
+  </data>
+  <data name="TASKBAR_DISCONNECTED" xml:space="preserve">
+    <value>Status: Disconnected</value>
+  </data>
+  <data name="TASKBAR_SHOW_WINDOW" xml:space="preserve">
+    <value>Show Window</value>
+  </data>
+  <data name="CLOSE_DIALOG_QUIT_BUTTON" xml:space="preserve">
+    <value>Quit Application</value>
+  </data>
+  <data name="PING" xml:space="preserve">
+    <value>Ping</value>
+  </data>
+  <data name="TASKBAR_HIDE_WINDOW" xml:space="preserve">
+    <value>Hide Window</value>
+  </data>
+  <data name="DIALOG_ACTION_CANCEL" xml:space="preserve">
+    <value>Dont log me out!</value>
+  </data>
+  <data name="DIALOG_ACTION_DESCRIPTION" xml:space="preserve">
+    <value>This action will force you to log in again.  Do you want to continue?</value>
+  </data>
+  <data name="DIALOG_ACTION_OK_LOGOUT" xml:space="preserve">
+    <value>Continue and log me out!</value>
+  </data>
+  <data name="DIALOG_ACTION_TITLE" xml:space="preserve">
+    <value>You are about to log out of your account!</value>
+  </data>
+  <data name="ERROR_OCCURED" xml:space="preserve">
+    <value>An error occured </value>
+  </data>
+  <data name="CONNECTED_VISIBLE_LOCATION_HEADER_CHANGED" xml:space="preserve">
+    <value>Visible Location Changed</value>
+  </data>
+  <data name="CURRENT_VISIBLE_LOCATION" xml:space="preserve">
+    <value>You are now shown as {0}.</value>
+  </data>
+  <data name="DIALOG_ACTION_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="BEST_AVAILABLE" xml:space="preserve">
+    <value>Best Available</value>
+  </data>
+  <data name="CIPHER_LEVEL" xml:space="preserve">
+    <value>Cipher Level:</value>
+  </data>
+  <data name="SETTINGS_CLOSING" xml:space="preserve">
+    <value>Closing</value>
+  </data>
+  <data name="SETTINGS_OTHER" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="SETTINGS_SYSTEM_STARTUP" xml:space="preserve">
+    <value>System Startup</value>
+  </data>
+  <data name="AUTHENTICATING" xml:space="preserve">
+    <value>Authenticating</value>
+  </data>
+  <data name="CONNECTING" xml:space="preserve">
+    <value>Connecting</value>
+  </data>
+  <data name="DISCONNECTING" xml:space="preserve">
+    <value>Disconnecting</value>
+  </data>
+  <data name="RECONNECTING" xml:space="preserve">
+    <value>Reconnecting</value>
+  </data>
+</root>

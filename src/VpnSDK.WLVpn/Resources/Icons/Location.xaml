@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="LocationIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,19,29" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-59,-350">
+                            <DrawingGroup Transform="1,0,0,1,59,350">
+                                <GeometryDrawing Brush="#FFFFFFFF">
+                                    <GeometryDrawing.Geometry>
+                                        <PathGeometry Figures="M9.5,0C4.25230511,0 0,4.05546875 0,9.0625 0,17.7171875 9.5,29 9.5,29 9.5,29 19,17.7171875 19,9.0625 19,4.05546875 14.7476949,0 9.5,0L9.5,0z M9.5,13.4578125C7.01550712,13.4578125 5.00880134,11.5395833 5.00880134,9.17578125 5.00880134,6.81197917 7.02347024,4.88619792 9.5,4.88619792 11.9844929,4.88619792 13.9911987,6.80442708 13.9911987,9.17578125 13.9911987,11.5395833 11.9844929,13.4578125 9.5,13.4578125L9.5,13.4578125z" FillRule="EvenOdd" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

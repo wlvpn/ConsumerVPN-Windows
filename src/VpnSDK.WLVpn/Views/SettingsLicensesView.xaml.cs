@@ -22,14 +22,15 @@ namespace VpnSDK.WLVpn.Views
         {
             InitializeComponent();
 
-            // this resource location should come from the branding xaml.
-            StreamResourceInfo streamResourceInfo =
-               Application.GetResourceStream(new Uri("pack://application:,,,/WLVpn;component/Resources/Branding/Assets/licenses.rtf", UriKind.RelativeOrAbsolute));
+            string licenseUri = Helpers.Resource.Get<string>("BRAND_LICENSE", "pack://application:,,,/WLVpn;component/Resources/Branding/Assets/licenses.rtf");
+            StreamResourceInfo streamResourceInfo = Application.GetResourceStream(new Uri(licenseUri, UriKind.RelativeOrAbsolute));
+
             if (streamResourceInfo != null)
             {
                 using (var stream = streamResourceInfo.Stream)
                 {
                     TextRange textRange = new TextRange(LicenseRichBoxFlowDocument.ContentStart, LicenseRichBoxFlowDocument.ContentEnd);
+                    textRange.Load(stream, System.Windows.DataFormats.Rtf);
                     textRange.Load(stream, System.Windows.DataFormats.Rtf);
                 }
             }

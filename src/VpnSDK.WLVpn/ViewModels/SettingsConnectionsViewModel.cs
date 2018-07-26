@@ -58,16 +58,13 @@ namespace VpnSDK.WLVpn.ViewModels
             set
             {
                 SetProperty(ref _networkConnectionType, value);
-                if (value == NetworkConnectionType.IKEv2)
+                if (value == NetworkConnectionType.OpenVPN)
                 {
-                    OpenVpnScramble = false;
-                    Cipher = OpenVpnCipherType.AES_256_CBC;
-                    SelectedOpenVpnProtocol = NetworkProtocolType.UDP;
-                    IsCipherEnabled = false;
+                    IsCipherEnabled = true;
                 }
                 else
                 {
-                    IsCipherEnabled = true;
+                    IsCipherEnabled = false;
                 }
             }
         }
@@ -176,8 +173,8 @@ namespace VpnSDK.WLVpn.ViewModels
         /// <returns>true or false.  At the moment always true.  If validation is needed, this would be used to denote a failed validation</returns>
         public bool Cancel()
         {
-            ConnectionProtocol = SdkMonitor.ConnectionProtocol;
             OpenVpnScramble = SdkMonitor.OpenVpnScramble;
+            ConnectionProtocol = SdkMonitor.ConnectionProtocol;
             SelectedOpenVpnProtocol = SdkMonitor.SelectedOpenVpnProtocol;
             Cipher = SdkMonitor.CipherType;
             return true;

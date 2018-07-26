@@ -11,7 +11,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <ControlTemplate.Resources>
                         <DataTemplate DataType="{x:Type system:String}">
-                            <TextBlock Foreground="{StaticResource BRANDING_CONNECT_BUTTON_FOREGROUND}" Text="{Binding}" />
+                            <TextBlock Foreground="{StaticResource BRAND_CONNECT_BUTTON_FOREGROUND}" Text="{Binding}" />
                         </DataTemplate>
                     </ControlTemplate.Resources>
                     <Border Background="{TemplateBinding Background}">

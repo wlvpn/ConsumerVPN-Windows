@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="VpnSDK.WLVpn.Views.ConnectedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:branding="clr-namespace:VpnSDK.WLVpn.Resources.Branding"
              xmlns:converters="clr-namespace:VpnSDK.WLVpn.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:VpnSDK.WLVpn.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:VpnSDK.WLVpn.Resources"
              xmlns:sdk="clr-namespace:VpnSDK.Public.Enums;assembly=VpnSDK.Whitelabel"
              d:DesignHeight="450"
              d:DesignWidth="490"
@@ -54,7 +54,7 @@
                            Source="{DynamicResource LocationIcon}" />
                     <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource BRAND_CONTRAST_FOREGROUND}">
                         <TextBlock.Inlines>
-                            <Run Text="{x:Static branding:Strings.CONNECTED_VISIBLE_LOCATION_HEADER}" />
+                            <Run Text="{x:Static res:Strings.CONNECTED_VISIBLE_LOCATION_HEADER}" />
                             <Run FontWeight="Bold" Text="{Binding Path=SDKMonitor.CurrentLocationName, Mode=OneWay}" />
                         </TextBlock.Inlines>
                     </TextBlock>
@@ -71,8 +71,8 @@
                            Source="{DynamicResource UpIcon}" />
                     <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource BRAND_CONTRAST_FOREGROUND}">
                         <TextBlock.Inlines>
-                            <Run Text="{x:Static branding:Strings.CONNECTED_PUBLIC_IP_HEADER}" />
-                            <Run FontWeight="Bold" Text="{Binding Path=SDKMonitor.ExternalIPAddress, TargetNullValue={x:Static branding:Strings.IP_UPDATING_TEXT}, FallbackValue={x:Static branding:Strings.IP_UPDATING_TEXT}}" />
+                            <Run Text="{x:Static res:Strings.CONNECTED_PUBLIC_IP_HEADER}" />
+                            <Run FontWeight="Bold" Text="{Binding Path=SDKMonitor.ExternalIPAddress, TargetNullValue={x:Static res:Strings.IP_UPDATING_TEXT}, FallbackValue={x:Static res:Strings.IP_UPDATING_TEXT}}" />
                         </TextBlock.Inlines>
                     </TextBlock>
                 </DockPanel>
@@ -89,7 +89,7 @@
                            Source="{DynamicResource EncryptionIcon}" />
                     <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource BRAND_CONTRAST_FOREGROUND}">
                         <TextBlock.Inlines>
-                            <Run Text="{x:Static branding:Strings.CONNECTED_ENCRYPTION}" />
+                            <Run Text="{x:Static res:Strings.CONNECTED_ENCRYPTION}" />
                             <Run FontWeight="Bold" Text="{Binding Path=SDKMonitor.CipherType, Converter={StaticResource DescriptionConverter}}" />
                             <!--  this will get bound and replaced once we have encryption types.  -->
                         </TextBlock.Inlines>
@@ -102,7 +102,7 @@
                         VerticalAlignment="Bottom"
                         Command="{Binding DisconnectCmd}"
                         Style="{DynamicResource DisconnectButton}">
-                    <TextBlock Text="{x:Static branding:Strings.VPN_BUTTON_DISCONNECT}" />
+                    <TextBlock Text="{x:Static res:Strings.VPN_BUTTON_DISCONNECT}" />
                 </Button>
             </StackPanel>
         </Grid>

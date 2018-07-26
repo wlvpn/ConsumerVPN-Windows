@@ -15,7 +15,7 @@ namespace VpnSDK.WLVpn.ViewModels
     /// <seealso cref="BindableBase" />
     public class IsBusyViewModel : BindableBase
     {
-        private string _busyText = Resources.Branding.Strings.AUTHENTICATING;
+        private string _busyText = Resources.Strings.AUTHENTICATING;
         private RelayCommand _cancelCommand;
 
         /// <summary>

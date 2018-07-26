@@ -16,8 +16,8 @@ namespace VpnSDK.WLVpn.Events
         /// </summary>
         public DialogAction()
         {
-            OKString = Resources.Branding.Strings.OK;
-            CancelString = Resources.Branding.Strings.CANCEL;
+            OKString = Resources.Strings.OK;
+            CancelString = Resources.Strings.CANCEL;
         }
 
         /// <summary>

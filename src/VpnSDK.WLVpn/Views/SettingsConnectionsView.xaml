@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="VpnSDK.WLVpn.Views.SettingsConnectionsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:branding="clr-namespace:VpnSDK.WLVpn.Resources.Branding"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:VpnSDK.WLVpn.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:VpnSDK.WLVpn.Resources"
              xmlns:sdk="clr-namespace:VpnSDK.Public.Enums;assembly=VpnSDK.Whitelabel"
              d:DesignHeight="450"
              d:DesignWidth="800"
@@ -26,21 +26,19 @@
                 <Style x:Key="SectionTitles"
                        BasedOn="{StaticResource {x:Type TextBlock}}"
                        TargetType="{x:Type TextBlock}">
-                    <Setter Property="Foreground" Value="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}" />
                     <Setter Property="FontWeight" Value="Bold" />
                     <Setter Property="Margin" Value="0,0,0,0" />
                 </Style>
 
-                <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                    <Setter Property="Foreground" Value="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}" />
-                </Style>
 
             </ScrollViewer.Resources>
             <StackPanel Height="Auto"
                         Margin="20,10,0,0"
                         Orientation="Vertical">
                 <StackPanel Margin="0,0,0,0">
-                    <RadioButton GroupName="Protocol" IsChecked="{Binding Path=ConnectionProtocol, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sdk:NetworkConnectionType.IKEv2}}">
+                    <RadioButton GroupName="Protocol"
+                                 IsChecked="{Binding Path=ConnectionProtocol, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sdk:NetworkConnectionType.IKEv2}}"
+                                 Style="{StaticResource SettingsRadioButton}">
                         <TextBlock Style="{StaticResource SectionTitles}" Text="IKEv2" />
                     </RadioButton>
                     <TextBlock Padding="24,0,0,0"
@@ -53,7 +51,8 @@
                         <RadioButton Name="OpenVPNProtocolBtn"
                                      GroupName="Protocol"
                                      IsChecked="{Binding Path=ConnectionProtocol, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sdk:NetworkConnectionType.OpenVPN}}"
-                                     IsEnabled="{Binding SdkMonitor.IsOpenVpnAvailable}">
+                                     IsEnabled="{Binding SdkMonitor.IsOpenVpnAvailable}"
+                                     Style="{StaticResource SettingsRadioButton}">
                             <TextBlock Style="{StaticResource SectionTitles}" Text="OpenVPN" />
                         </RadioButton>
 
@@ -61,7 +60,8 @@
                                   Margin="20,0,0,0"
                                   IsEnabled="{Binding ElementName=OpenVPNProtocolBtn, Path=IsChecked}"
                                   ItemsSource="{Binding AvailableOpenVpnProtocols}"
-                                  SelectedItem="{Binding SelectedOpenVpnProtocol}" />
+                                  SelectedItem="{Binding SelectedOpenVpnProtocol}"
+                                  Style="{StaticResource SettingsComboBox}" />
                     </StackPanel>
                     <TextBlock Padding="24,10,0,0"
                                Text="Provides the best security. It may be slower than other protocols due  to its stronger security. OpenVPN is also good choice when other  protocols are not available due to firewall restrictions."
@@ -79,7 +79,7 @@
 
                     <TextBlock Padding="24,10,0,0"
                                FontWeight="Bold"
-                               Text="{x:Static branding:Strings.CIPHER_LEVEL}"
+                               Text="{x:Static res:Strings.CIPHER_LEVEL}"
                                TextWrapping="Wrap" />
                     <ComboBox x:Name="CipherComboBox"
                               Width="300"
@@ -91,22 +91,17 @@
                               IsReadOnly="True"
                               IsTabStop="True"
                               ItemsSource="{Binding CipherComboBox}"
-                              SelectedValue="{Binding Path=Cipher}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Foreground="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}" Text="{Binding Path=., Converter={StaticResource DescriptionConverter}}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                              SelectedValue="{Binding Path=Cipher}"
+                              Style="{StaticResource SettingsComboBox}" />
 
                     <Button Grid.Row="1"
+                            Width="160"
                             Margin="24,20,0,0"
                             Padding="10,2"
                             HorizontalAlignment="Left"
                             Command="{Binding InstallTapDriverCmd}"
-                            Foreground="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}"
                             IsEnabled="{Binding ElementName=OpenVPNProtocolBtn, Path=IsChecked}"
-                            Style="{StaticResource LocationButton}">
+                            Style="{DynamicResource AccentedButton}">
                         <TextBlock Text="Install/Reinstall TAP Driver" />
                     </Button>
                 </StackPanel>

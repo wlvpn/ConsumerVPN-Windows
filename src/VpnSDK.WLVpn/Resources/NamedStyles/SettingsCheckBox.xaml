@@ -5,6 +5,7 @@
     <Style x:Key="SettingsCheckBox"
            BasedOn="{StaticResource {x:Type CheckBox}}"
            TargetType="{x:Type CheckBox}">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource BRAND_SETTINGS_CONTROLS_COLOR}" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="controls:ControlsHelper.MouseOverBorderBrush" Value="{DynamicResource AccentColorBrush}" />

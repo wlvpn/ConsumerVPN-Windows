@@ -5,10 +5,11 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-
+using Microsoft.HockeyApp;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
@@ -16,6 +17,8 @@ using NLog.Targets;
 
 using SimpleInjector;
 using VpnSDK.WLVpn.Events;
+using VpnSDK.WLVpn.Helpers;
+using VpnSDK.WLVpn.Interfaces;
 using VpnSDK.WLVpn.Properties;
 using VpnSDK.WLVpn.ViewModels;
 
@@ -76,13 +79,28 @@ namespace VpnSDK.WLVpn
         /// Raises and handles the <see cref="E:System.Windows.Application.Startup" /> event.
         /// </summary>
         /// <param name="e">A <see cref="T:System.Windows.StartupEventArgs" /> that contains the event data.</param>
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             ConfigureLogger();
             ConfigureContainer();
             _logger.Info("++++++++++  Starting Application ");
+            _logger.Info($"Version: {Assembly.GetExecutingAssembly().GetName().Version}");
 
             base.OnStartup(e);
+
+            // Configure HockeySDK client
+#if !DEBUG
+            try
+            {
+                HockeyClient.Current.Configure(Helpers.Resource.Get<string>("HOCKEYAPP_APP_ID", string.Empty));
+                await HockeyClient.Current.SendCrashesAsync(true);
+            }
+            catch
+            {
+                // Ignore
+            }
+#endif
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             var mainWindows = ContainerInstance.GetInstance<MainWindow>();
 
@@ -110,8 +128,8 @@ namespace VpnSDK.WLVpn
                         {
                             aggregator.Publish<ShowNotificationEvent>(new ShowNotificationEvent
                             {
-                                Title = WLVpn.Resources.Branding.Strings.SETTINGS_APPLICATION_STARTUP,
-                                Text = WLVpn.Resources.Branding.Strings.SETTINGS_SYSTEM_STARTUP_OPTION2
+                                Title = WLVpn.Resources.Strings.SETTINGS_APPLICATION_STARTUP,
+                                Text = WLVpn.Resources.Strings.SETTINGS_SYSTEM_STARTUP_OPTION2
                             });
                             Settings.Default.ShowHideNotification = false;
                             Settings.Default.Save();
@@ -142,7 +160,7 @@ namespace VpnSDK.WLVpn
             fileTarget.FileName = logLocation;
             fileTarget.LineEnding = LineEndingMode.CRLF;
             fileTarget.ArchiveEvery = FileArchivePeriod.Day;
-            fileTarget.Header = $"================= {((AssemblyTitleAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyTitleAttribute), false)).Title} {Assembly.GetExecutingAssembly().GetName().Version} =================";
+            fileTarget.Header = $"================= {((AssemblyTitleAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyTitleAttribute), false)).Title} =================";
             fileTarget.MaxArchiveFiles = 2;
             var jsonLayout = new JsonLayout
             {
@@ -161,11 +179,11 @@ namespace VpnSDK.WLVpn
             loggingConfiguration.AddTarget(brandID + "_filelog", fileTarget);
             loggingConfiguration.AddRule(LogLevel.Info, LogLevel.Fatal, fileTarget, "WL::*");
 
-            ConsoleTarget consoleTarget = new ConsoleTarget();
-            consoleTarget.Layout = @"${date:format=HH\:mm\:ss\.fff} - [${logger:shortName=True}] - ${message}";
+            DebuggerTarget debugTarget = new DebuggerTarget();
+            debugTarget.Layout = @"${date:format=HH\:mm\:ss\.fff} - [${logger:shortName=True}] - ${message}";
 
-            loggingConfiguration.AddTarget("consolelog", consoleTarget);
-            loggingConfiguration.AddRule(LogLevel.Debug, LogLevel.Fatal, consoleTarget);
+            loggingConfiguration.AddTarget(brandID + "_debuglog", debugTarget);
+            loggingConfiguration.AddRule(LogLevel.Debug, LogLevel.Fatal, debugTarget, "WL::*");
 
             LogManager.Configuration = loggingConfiguration;
         }
@@ -178,6 +196,8 @@ namespace VpnSDK.WLVpn
         private void ConfigureContainer()
         {
             ContainerInstance.Register<EventAggregator>(Lifestyle.Singleton);
+            /* If you wish to have custom pre-authentication, register a custom authenticator here. */
+            ContainerInstance.Register<ICustomAuthenticator, DebugCustomAuthenticator>(Lifestyle.Singleton);
             ContainerInstance.Register<SDKMonitor>(Lifestyle.Singleton);
             ContainerInstance.Verify();
         }

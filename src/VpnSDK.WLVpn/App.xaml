@@ -9,14 +9,12 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/mahapp.theme.base.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-                <ResourceDictionary Source="/Resources/Branding/Branding.xaml" />
-
+                <ResourceDictionary Source="/Resources/Branding/apiaccess.xaml" />
+                <ResourceDictionary Source="/Resources/Branding/branding.xaml" />
+                <ResourceDictionary Source="/Resources/Branding/MahApps.CustomAccent.xaml" />
                 <ResourceDictionary Source="/Resources/ResourceLibrary.xaml" />
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
                 <ResourceDictionary Source="/Resources/Flags/Flags.xaml" />
@@ -24,8 +22,7 @@
 
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
             <converters:CountryCodeToFlagConverter x:Key="CountryCodeToFlagConverter" />
-            <views:ViewModelLocator x:Key="ViewModelLocator" />
-            <converters:CountryCodeToFlagConverter x:Key="InverseBooleanConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
             <converters:DescriptionAttributeConverter x:Key="DescriptionConverter" />
             <converters:ConfigurableBooleanToVisibilityConverter x:Key="FalseToCollapsed"
@@ -34,6 +31,8 @@
             <converters:ConfigurableBooleanToVisibilityConverter x:Key="TrueToCollapsed"
                                                                  WhenFalse="Visible"
                                                                  WhenTrue="Collapsed" />
+
+            <views:ViewModelLocator x:Key="ViewModelLocator" />
 
         </ResourceDictionary>
     </Application.Resources>

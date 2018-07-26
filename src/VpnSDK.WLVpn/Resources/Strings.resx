@@ -340,4 +340,34 @@ network traffic sensors which aim to detect usage of a VPN and block it.</value>
   <data name="RECONNECTING" xml:space="preserve">
     <value>Reconnecting</value>
   </data>
+  <data name="LOGIN_EMAILBOX_HINT" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LOGIN_FORGOT_EMAIL_PASSWORD" xml:space="preserve">
+    <value>Forgot Email/Password?</value>
+  </data>
+  <data name="LOGGING_OUT" xml:space="preserve">
+    <value>Logging out</value>
+  </data>
+  <data name="UPDATE_DIALOG_DESCRIPTION" xml:space="preserve">
+    <value>{0} {1} is now available (you have {2}).</value>
+  </data>
+  <data name="UPDATE_DIALOG_HEADER" xml:space="preserve">
+    <value>A new version of {0} is available!</value>
+  </data>
+  <data name="UPDATE_DIALOG_INSTALL" xml:space="preserve">
+    <value>Install update</value>
+  </data>
+  <data name="UPDATE_DIALOG_RELEASE_NOTES" xml:space="preserve">
+    <value>Release Notes:</value>
+  </data>
+  <data name="UPDATE_DIALOG_REMIND" xml:space="preserve">
+    <value>Remind me later</value>
+  </data>
+  <data name="UPDATE_DIALOG_SKIP" xml:space="preserve">
+    <value>Skip this version</value>
+  </data>
+  <data name="UPDATE_DIALOG_TITLE" xml:space="preserve">
+    <value>Update available!</value>
+  </data>
 </root>

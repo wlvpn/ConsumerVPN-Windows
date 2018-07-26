@@ -39,7 +39,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="NetworkConnectionType" Type="VpnSDK.Public.Enums.NetworkConnectionType" Scope="User">
-      <Value Profile="(Default)">L2TP</Value>
+      <Value Profile="(Default)">IKEv2</Value>
     </Setting>
     <Setting Name="NetworkProtocolType" Type="VpnSDK.Public.Enums.NetworkProtocolType" Scope="User">
       <Value Profile="(Default)">TCP</Value>
@@ -53,14 +53,8 @@
     <Setting Name="ShowCloseNotification" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="AUTHORIZATION_TOKEN" Type="System.String" Scope="User">
-      <Value Profile="(Default)"></Value>
-    </Setting>
-    <Setting Name="API_KEY" Type="System.String" Scope="User">
-      <Value Profile="(Default)"></Value>
-    </Setting>
-    <Setting Name="APPLICATION_NAME" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ConsumerVPN</Value>
+    <Setting Name="ReconnectDelay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
 </SettingsFile>

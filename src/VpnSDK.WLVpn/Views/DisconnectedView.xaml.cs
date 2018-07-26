@@ -2,7 +2,9 @@
 // Copyright (c) StackPath, LLC. All Rights Reserved.
 // </copyright>
 
+using System.ComponentModel;
 using System.Windows.Controls;
+using VpnSDK.WLVpn.ViewModels;
 
 namespace VpnSDK.WLVpn.Views
 {
@@ -17,6 +19,16 @@ namespace VpnSDK.WLVpn.Views
         public DisconnectedView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Loaded -= UserControl_Loaded;
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                DisconnectedViewModel context = DataContext as DisconnectedViewModel;
+                context?.Init();
+            }
         }
     }
 }

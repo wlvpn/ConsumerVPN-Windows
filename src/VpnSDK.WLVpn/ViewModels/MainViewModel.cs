@@ -53,7 +53,6 @@ namespace VpnSDK.WLVpn.ViewModels
                 return;
             }
 
-            SDKMonitor = sdkMonitor;
             _eventAggregator = eventAggregator;
 
             _registerViewSubscription = _eventAggregator.GetEvent<RegisterViewEvent>().Subscribe((evt) =>
@@ -81,13 +80,24 @@ namespace VpnSDK.WLVpn.ViewModels
             });
 
             InitViews();
+
+            SDKMonitor = sdkMonitor;
+
+            if (!SDKMonitor.IsLoggedIn)
+            {
+                _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = ViewList.Views.Login });
+            }
+            else if (!SDKMonitor.ConnectOnStartup)
+            {
+                _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.Disconnected });
+            }
         }
 
         /// <summary>
         /// Gets or sets the taskbar icon source.
         /// </summary>
         /// <value>The taskbar icon source.</value>
-        public string TaskbarIconSource { get; set; } = "pack://application:,,,/WLVpn;component/Resources/Branding/Assets/brandIcon.ico";
+        public string TaskbarIconSource { get; set; } = Helpers.Resource.Get<string>("BRAND_ICON", @"pack://application:,,,/WLVpn;component/Resources/Branding/Assets/brandIcon.ico");
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is shutting down.
@@ -179,11 +189,11 @@ namespace VpnSDK.WLVpn.ViewModels
                         {
                             DialogAction da = new DialogAction();
                             da.OKAction = () => LogOut();
-                            da.OKString = Resources.Branding.Strings.DIALOG_ACTION_OK;
-                            da.CancelString = Resources.Branding.Strings.DIALOG_ACTION_CANCEL;
+                            da.OKString = Resources.Strings.DIALOG_ACTION_OK;
+                            da.CancelString = Resources.Strings.DIALOG_ACTION_CANCEL;
                             da.CancelAction = () => { };
-                            da.Title = Resources.Branding.Strings.DIALOG_ACTION_TITLE;
-                            da.Description = Resources.Branding.Strings.DIALOG_ACTION_DESCRIPTION;
+                            da.Title = Resources.Strings.DIALOG_ACTION_TITLE;
+                            da.Description = Resources.Strings.DIALOG_ACTION_DESCRIPTION;
                             _eventAggregator.Publish<ShowDialogEvent>(new ShowDialogEvent { DialogAction = da, Show = true });
                         },
                         (parm) => SDKMonitor != null && SDKMonitor.IsLoggedIn);

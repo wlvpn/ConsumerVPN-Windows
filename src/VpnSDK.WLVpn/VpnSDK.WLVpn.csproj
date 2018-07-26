@@ -58,7 +58,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>brandIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Branding\Assets\brandIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>VpnSDK.WLVpn.App</StartupObject>
@@ -79,11 +79,23 @@
     <Reference Include="MahApps.Metro, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MahApps.Metro.1.6.2\lib\net46\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.HockeyApp.Core45, Version=4.1.6.1005, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HockeySDK.WPF.4.1.6\lib\net45\Microsoft.HockeyApp.Core45.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.HockeyApp.Kit, Version=4.1.6.1005, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HockeySDK.WPF.4.1.6\lib\net45\Microsoft.HockeyApp.Kit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=2.8.1.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL">
       <HintPath>..\..\packages\TaskScheduler.2.8.1\lib\net452\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="NetSparkle, Version=0.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NetSparkle.New.0.15.0\lib\net45\NetSparkle.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.5.3\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.4.5.7\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="SimpleInjector, Version=4.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SimpleInjector.4.2.2\lib\net45\SimpleInjector.dll</HintPath>
@@ -126,8 +138,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="VpnSDK.Whitelabel, Version=0.5.6.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\VpnSDK.Whitelabel.0.5.6\lib\net461\VpnSDK.Whitelabel.dll</HintPath>
+    <Reference Include="VpnSDK.Whitelabel, Version=0.7.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\VpnSDK.Whitelabel.0.7.4\lib\net461\VpnSDK.Whitelabel.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -163,14 +175,18 @@
     <Compile Include="Events\ViewDefinition.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
+    <Compile Include="Helpers\CallerHelper.cs" />
+    <Compile Include="Helpers\DebugCustomAuthenticator.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\Resource.cs" />
     <Compile Include="Helpers\SmartCollection.cs" />
-    <Compile Include="Resources\Branding\Strings.Designer.cs">
+    <Compile Include="Interfaces\ICustomAuthenticator.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\SparkleUIFactory.cs" />
     <Compile Include="ViewModels\BasicDialogViewModel.cs" />
     <Compile Include="ViewModels\ConnectedViewModel.cs" />
     <Compile Include="ViewModels\DisconnectedViewModel.cs" />
@@ -210,6 +226,9 @@
     </Compile>
     <Compile Include="Views\LocationListView.xaml.cs">
       <DependentUpon>LocationListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NetSparkleUpdateDialog.xaml.cs">
+      <DependentUpon>NetSparkleUpdateDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsAboutView.xaml.cs">
       <DependentUpon>SettingsAboutView.xaml</DependentUpon>
@@ -262,9 +281,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Branding\apiaccess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Branding\branding.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Branding\MahApps.CustomAccent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Flags\Flags.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -315,10 +342,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Icons\user.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\mahapp.theme.base.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -410,6 +433,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NetSparkleUpdateDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SettingsAboutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -453,7 +480,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Branding\Strings.resx">
+    <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -718,9 +745,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Flags\brandIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="brandIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />

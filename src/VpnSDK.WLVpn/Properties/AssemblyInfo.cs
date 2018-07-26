@@ -14,7 +14,7 @@ using System.Windows;
 [assembly: AssemblyTitle("WLVpn")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("WLVPN Company")]
 [assembly: AssemblyProduct("WLVpn")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

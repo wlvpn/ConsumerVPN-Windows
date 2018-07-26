@@ -2,8 +2,12 @@
 // Copyright (c) StackPath, LLC. All Rights Reserved.
 // </copyright>
 
+using MahApps.Metro.Controls;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using VpnSDK.WLVpn.Helpers;
+using VpnSDK.WLVpn.Resources;
 using VpnSDK.WLVpn.ViewModels;
 
 namespace VpnSDK.WLVpn.Views
@@ -25,6 +29,12 @@ namespace VpnSDK.WLVpn.Views
             lvm.PropertyChanged += Lvm_PropertyChanged;
 
             _clearPropertyName = nameof(lvm.Clear);
+
+            if (Resource.Get<bool>("BRAND_USES_EMAIL", false))
+            {
+                TextBoxHelper.SetWatermark(Username, Strings.LOGIN_EMAILBOX_HINT);
+                ForgotButton.Content = Strings.LOGIN_FORGOT_EMAIL_PASSWORD;
+            }
         }
 
         private void Lvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -39,6 +49,16 @@ namespace VpnSDK.WLVpn.Views
         {
             LoginViewModel lvm = (LoginViewModel)DataContext;
             lvm.Password = Password.Password;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= UserControl_Loaded;
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                LoginViewModel context = DataContext as LoginViewModel;
+                context?.Init();
+            }
         }
     }
 }

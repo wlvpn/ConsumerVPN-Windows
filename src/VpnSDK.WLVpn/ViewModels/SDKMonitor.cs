@@ -3,6 +3,7 @@
 // </copyright>
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,23 +11,28 @@ using System.Net;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
 
 using DynamicData;
 using DynamicData.Binding;
-
+using Microsoft.Win32.TaskScheduler;
 using NLog;
 
 using VpnSDK.Public;
 using VpnSDK.Public.Enums;
 using VpnSDK.Public.Exceptions;
 using VpnSDK.Public.Interfaces;
+using VpnSDK.Public.Messages;
 using VpnSDK.WLVpn.Common;
 using VpnSDK.WLVpn.Events;
 using VpnSDK.WLVpn.Extensions;
 using VpnSDK.WLVpn.Helpers;
+using VpnSDK.WLVpn.Interfaces;
+using Action = System.Action;
+using Task = System.Threading.Tasks.Task;
 
 namespace VpnSDK.WLVpn.ViewModels
 {
@@ -59,6 +65,8 @@ namespace VpnSDK.WLVpn.ViewModels
         private IDisposable _serverListRefresh;
         private string _connectionState = string.Empty;
         private bool _wasConnected = false;
+        private string _username;
+        private string _password;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SDKMonitor"/> class.
@@ -83,56 +91,6 @@ namespace VpnSDK.WLVpn.ViewModels
             ReadStoredSettings();
 
             IsBusy = false;
-
-            // TODO: Check and see if we should reconnect the VPN at this point based on stored settings.
-            // TODO: figure out how to best log in at startup
-
-            // TODO: && Properties.Settings.Default.AccessExpiry >= DateTime.Now)
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.Username) && !string.IsNullOrEmpty(Properties.Settings.Default.Password))
-            {
-                _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Branding.Strings.AUTHENTICATING });
-
-                LogIn(
-                    Properties.Settings.Default.Username.Unprotect(),
-                    Properties.Settings.Default.Password.Unprotect(),
-                    () =>
-                    {
-                        if (CanConnect && ConnectOnStartup)
-                        {
-                            Task.Factory.StartNew(async () =>
-                            {
-                                _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Branding.Strings.CONNECTING });
-                                await Task.Delay(TimeSpan.FromSeconds(Resource.Get<int>("STARTUP_CONNECT_DELAY", 3)));
-                                RunOnDisplayThread(() =>
-                                {
-                                    Connect();
-                                });
-                            });
-                        }
-                    });
-            }
-
-            if (!IsLoggedIn)
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    // the main thread needs to start.
-                    RunOnDisplayThread(() =>
-                    {
-                        _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = ViewList.Views.Login });
-                    });
-                });
-            }
-            else if (!ConnectOnStartup)
-            {
-                Task.Factory.StartNew(() =>
-                {
-                    RunOnDisplayThread(() =>
-                    {
-                        _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.Disconnected });
-                    });
-                });
-            }
         }
 
         /// <summary>
@@ -187,24 +145,12 @@ namespace VpnSDK.WLVpn.ViewModels
                 if (value && _isLoggedIn != true)
                 {
                     _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.Disconnected });
-
-                    // Subscribing to the observable that is responsible for broadcasting server list refresh events.
-                    // This tells to SDK to start refreshing server list periodically.
-                    _serverListRefresh = _manager.LocationListRefreshObservable
-                        .Retry()
-                        .SubscribeOn(ThreadPoolScheduler.Instance)
-                        .Subscribe(
-                            t =>
-                            {
-                                Debug.WriteLine($"Server List: {t}");
-                            },
-                        OnServerListRefreshErrorHandler);
                 }
                 else if (!value && _isLoggedIn)
                 {
                     // Unsubscribing from the observable that is responsible for broadcasting server list refresh events.
                     // That stops the server list refresh on the SDK side
-                    _serverListRefresh.Dispose();
+                    _serverListRefresh?.Dispose();
                     _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.Login });
                 }
 
@@ -230,7 +176,7 @@ namespace VpnSDK.WLVpn.ViewModels
             set
             {
                 Properties.Settings.Default.NetworkConnectionType = value;
-                if (value == NetworkConnectionType.IKEv2)
+                if (value != NetworkConnectionType.OpenVPN)
                 {
                     OpenVpnScramble = false;
                 }
@@ -325,6 +271,7 @@ namespace VpnSDK.WLVpn.ViewModels
             set
             {
                 SetProperty(ref _isBusy, value);
+
                 _logger.Debug("IsBusy == " + value);
             }
         }
@@ -437,14 +384,9 @@ namespace VpnSDK.WLVpn.ViewModels
                 if (value != null)
                 {
                     Properties.Settings.Default.LastSelectedServer = value.Id;
+                    Properties.Settings.Default.Save();
+                    OnPropertyChanged("SelectedLocation");
                 }
-                else
-                {
-                    Properties.Settings.Default.LastSelectedServer = string.Empty;
-                }
-
-                Properties.Settings.Default.Save();
-                OnPropertyChanged("SelectedLocation");
             }
         }
 
@@ -667,12 +609,26 @@ namespace VpnSDK.WLVpn.ViewModels
         }
 
         /// <summary>
-        /// OnServerListRefreshErrorHandler, indicates an error occurred refreshing the list of destinations/locations
+        /// OnLocationListRefresh, indicates an error occurred refreshing the list of destinations/locations
         /// </summary>
-        /// <param name="e">the exception that occurred</param>
-        public void OnServerListRefreshErrorHandler(Exception e)
+        /// <param name="message"><see cref="RefreshLocationListMessage"/></param>
+        public void OnLocationListRefresh(RefreshLocationListMessage message)
         {
-            ShowErrorDialog(Resources.Branding.Strings.ERROR_OCCURED, e.Message);
+            if (message.Status == RefreshLocationListStatus.Refreshed && IsBusy == true && IsLoggedIn == false)
+            {
+                SelectedLocation = FindTheLocationByID(Properties.Settings.Default.LastSelectedServer);
+                IsLoggedIn = true;
+                IsBusy = false;
+            }
+
+            if (message.Status == RefreshLocationListStatus.Error)
+            {
+                if (message.Exception is VpnSDKOAuthException || message.Exception is VpnSDKNotAuthorizedException)
+                {
+                    ShowErrorDialog(Resources.Strings.ERROR_OCCURED, message.Exception.Message);
+                    LogOut();
+                }
+            }
         }
 
         /// <summary>
@@ -680,36 +636,39 @@ namespace VpnSDK.WLVpn.ViewModels
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
-        /// <param name="postLoginAction">An action to run if the login completes successfully</param>
         /// <returns><c>true</c> always.</returns>
-        public bool LogIn(string username, string password, Action postLoginAction = null)
+        public async Task<bool> LogIn(string username, string password)
         {
             _logger.Debug("LogIn Called");
             IsBusy = true;
-            _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Branding.Strings.AUTHENTICATING });
+            _username = username;
+            _password = password;
+
+            _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.AUTHENTICATING });
 
             _manager.Login(username, password)
                 .Do(e => Debug.WriteLine($"Authentication process: {e}"))
                 .StartWith(AuthenticationStatus.Authenticating)
-                .Finally(() => IsBusy = false)
                 .SubscribeOn(ThreadPoolScheduler.Instance)
                 .Subscribe(
                     o =>
                     {
                         if (o == AuthenticationStatus.Authenticated)
                         {
-                            IsLoggedIn = true;
-
-                            // how do we save and restore the last selected location?
                             SelectedLocation = FindTheLocationByID(Properties.Settings.Default.LastSelectedServer);
 
-                            postLoginAction?.Invoke();
+                            // Subscribing to the observable that is responsible for broadcasting server list refresh events.
+                            // This tells to SDK to start refreshing server list periodically.
+                            _serverListRefresh = _manager.WhenLocationListChanged
+                                .SubscribeOn(ThreadPoolScheduler.Instance)
+                                .Subscribe(OnLocationListRefresh);
                         }
                     },
                     exception =>
                     {
+                        IsBusy = false;
                         IsLoggedIn = false;
-                        ShowErrorDialog(Resources.Branding.Strings.ERROR_OCCURED, exception.Message);
+                        ShowErrorDialog(Resources.Strings.ERROR_OCCURED, exception.Message);
                     });
 
             return true;
@@ -718,33 +677,30 @@ namespace VpnSDK.WLVpn.ViewModels
         /// <summary>
         /// Logs the user out of the API using VpnSDK.
         /// </summary>
-        /// <returns><c>true</c> always.</returns>
-        public bool LogOut()
+        public void LogOut()
         {
             _logger.Debug("LogOut Called");
-            IsLoggedIn = false;
-            IsConnected = false;
-            CurrentLocationName = string.Empty;
-            SelectedLocation = null;
+            _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.LOGGING_OUT });
+
             IsBusy = true;
 
-            // we probably want to null out everything else too.
-            Properties.Settings.Default.Username = null;
-            Properties.Settings.Default.Password = null;
-            Properties.Settings.Default.AccessExpiry = DateTime.MinValue;   // TODO: Research correct initial value.
-            Properties.Settings.Default.Save();
-            _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.Login });
-
             _manager.Logout()
-                .SubscribeOn(Scheduler.Default)
-                .ObserveOnDispatcher()
-                .Finally(() => IsBusy = false)
+                .SubscribeOn(ThreadPoolScheduler.Instance)
                 .Subscribe(o =>
                 {
-                    IsLoggedIn = o != AuthenticationStatus.NotAuthenticated;
-                });
+                    CurrentLocationName = string.Empty;
+                    SelectedLocation = null;
 
-            return true;
+                    // we probably want to null out everything else too.
+                    Properties.Settings.Default.Username = null;
+                    Properties.Settings.Default.Password = null;
+                    Properties.Settings.Default.AccessExpiry = DateTime.MinValue;   // TODO: Research correct initial value.
+                    Properties.Settings.Default.Save();
+
+                    IsBusy = false;
+                    IsConnected = false;
+                    IsLoggedIn = false;
+                });
         }
 
         /// <summary>
@@ -767,7 +723,7 @@ namespace VpnSDK.WLVpn.ViewModels
             }
 
             IsConnecting = true;
-            IsConnected = true;
+            IsConnected = false;
 
             IConnectionConfiguration configuration = null;
 
@@ -786,66 +742,69 @@ namespace VpnSDK.WLVpn.ViewModels
                                     .Build();
             }
 
-            _manager.Connect(SelectedLocation, configuration)?
-                .Do(e => Debug.WriteLine($"Connection Process: {e}"))
-                .Subscribe(
-                    status =>
-                    {
-                        switch (status)
+            if (SelectedLocation != null)
+            {
+                _manager.Connect(SelectedLocation, configuration)?
+                    .Do(e => Debug.WriteLine($"Connection Process: {e}"))
+                    .Subscribe(
+                        status =>
                         {
-                            case ConnectionStatus.Connecting:
-                                IsConnecting = true;
-                                IsConnected = false;
-                                IsBusy = true;
-                                _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Branding.Strings.CONNECTING });
-                                break;
+                            switch (status)
+                            {
+                                case ConnectionStatus.Connecting:
+                                    IsConnecting = true;
+                                    IsConnected = false;
+                                    IsBusy = true;
+                                    _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.CONNECTING });
+                                    break;
 
-                            case ConnectionStatus.Connected:
-                                StartTiming();
-                                IsConnecting = false;
-                                IsConnected = true;
-                                IsBusy = false;
-                                _wasConnected = true;
-                                break;
+                                case ConnectionStatus.Connected:
+                                    StartTiming();
+                                    IsConnecting = false;
+                                    IsConnected = true;
+                                    IsBusy = false;
+                                    _wasConnected = true;
+                                    break;
 
-                            default:
-                                IsConnecting = false;
-                                IsConnected = false;
-                                IsBusy = false;
-                                break;
-                        }
-                    },
-                    exception =>
-                    {
-                        // exceptions will show up here.
-                        IsConnecting = false;
-                        IsConnected = false;
-                        ConnectionState = ConnectionStatus.Failed.ToString();
-                        IsBusy = false;
-
-                        if (AutoReconnect && _wasConnected)
+                                default:
+                                    IsConnecting = false;
+                                    IsConnected = false;
+                                    IsBusy = false;
+                                    break;
+                            }
+                        },
+                        exception =>
                         {
-                            RunOnDisplayThread(() =>
-                            {
-                                IsConnecting = true;
-                                _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Branding.Strings.CONNECTING });
-                            });
+                            // exceptions will show up here.
+                            IsConnecting = false;
+                            IsConnected = false;
+                            ConnectionState = ConnectionStatus.Failed.ToString();
+                            IsBusy = false;
 
-                            Task.Factory.StartNew(async () =>
+                            if (AutoReconnect && _wasConnected)
                             {
-                                await Task.Delay(TimeSpan.FromSeconds(Resource.Get<int>("RECONNECT_DELAY", 3)));
-
                                 RunOnDisplayThread(() =>
                                 {
-                                    Connect();
+                                    IsConnecting = true;
+                                    _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.CONNECTING });
                                 });
-                            });
-                        }
-                        else
-                        {
-                            ShowErrorDialog(Resources.Branding.Strings.ERROR_OCCURED, exception.Message);
-                        }
-                    });
+
+                                Task.Factory.StartNew(async () =>
+                                {
+                                    await Task.Delay(TimeSpan.FromSeconds(Properties.Settings.Default.ReconnectDelay));
+
+                                    RunOnDisplayThread(() =>
+                                    {
+                                        Connect();
+                                    });
+                                });
+                            }
+                            else
+                            {
+                                ShowErrorDialog(Resources.Strings.ERROR_OCCURED, exception.Message);
+                            }
+                        });
+            }
 
             return true;
         }
@@ -895,7 +854,7 @@ namespace VpnSDK.WLVpn.ViewModels
                     switch (status)
                     {
                         case ConnectionStatus.Disconnecting:
-                            _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Branding.Strings.DISCONNECTING });
+                            _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.DISCONNECTING });
                             IsBusy = true;
                             break;
 
@@ -979,8 +938,6 @@ namespace VpnSDK.WLVpn.ViewModels
                             Delay = TimeSpan.FromSeconds(10)
                         };
 
-                        var executable = Process.GetCurrentProcess().MainModule.FileName;
-
                         task.Principal.RunLevel = Microsoft.Win32.TaskScheduler.TaskRunLevel.Highest;
                         task.Settings.DisallowStartIfOnBatteries = false;
                         task.Settings.StopIfGoingOnBatteries = false;
@@ -988,7 +945,8 @@ namespace VpnSDK.WLVpn.ViewModels
                         task.Settings.RunOnlyIfIdle = false;
                         task.Settings.ExecutionTimeLimit = TimeSpan.Zero;
                         task.Triggers.Add(trigger);
-                        task.Actions.Add(new Microsoft.Win32.TaskScheduler.ExecAction(executable, $"\"{Assembly.GetExecutingAssembly().Location}\"", null));
+                        task.Actions.Add(
+                            new ExecAction($"\"{Assembly.GetExecutingAssembly().Location}\"", null, $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}"));
                         task.RegistrationInfo.Description = $"{BrandName} automatic startup.";
                         tastService.RootFolder.RegisterTaskDefinition(BrandName, task);
                     }
@@ -1029,7 +987,7 @@ namespace VpnSDK.WLVpn.ViewModels
         {
             DialogAction da = new DialogAction();
             da.OKAction = () => { };
-            da.OKString = Resources.Branding.Strings.DIALOG_ACTION_OK;
+            da.OKString = Resources.Strings.DIALOG_ACTION_OK;
             da.Title = title;
             da.Description = errorDescription;
             _eventAggregator.Publish<ShowDialogEvent>(new ShowDialogEvent { DialogAction = da, Show = true });
@@ -1073,22 +1031,22 @@ namespace VpnSDK.WLVpn.ViewModels
                                     "Logs",
                                     "SDK.log");
 
-            if (string.IsNullOrEmpty(Properties.Settings.Default.API_KEY) ||
-                string.IsNullOrEmpty(Properties.Settings.Default.AUTHORIZATION_TOKEN))
+            if (string.IsNullOrEmpty(Helpers.Resource.Get<string>("API_KEY")) ||
+                string.IsNullOrEmpty(Helpers.Resource.Get<string>("AUTHORIZATION_TOKEN")))
             {
                 throw new VpnSDKInvalidConfigurationException("API key or Authorization token was not set.");
             }
 
             /*
-             The values for the API_KEY and AUTHORIZATION_TOKEN for this example app are stored in Properties.Settings.
+             The values for the API_KEY and AUTHORIZATION_TOKEN for this example app are stored in Resources\Branding\apiaccess.xaml.
              You must replace those placeholder values with a real key and authorization token
              To obtain these values you need to be a registered WLVPN reseller.
              If you have not done so already, please visit https://wlvpn.com/#contact to get started.
              */
             _manager = new SDKBuilder()
-                            .SetApiKey(Properties.Settings.Default.API_KEY)
-                            .SetApplicationName(Properties.Settings.Default.APPLICATION_NAME)
-                            .SetAuthenticationToken(Properties.Settings.Default.AUTHORIZATION_TOKEN)
+                            .SetApiKey(Helpers.Resource.Get<string>("API_KEY"))
+                            .SetApplicationName(Helpers.Resource.Get<string>("BRAND_NAME"))
+                            .SetAuthenticationToken(Helpers.Resource.Get<string>("AUTHORIZATION_TOKEN"))
                             .SetLogFilesPath(logFilesPath)
                             .SetServerListCache(TimeSpan.FromDays(1))
                             .SetOpenVpnConfiguration(new OpenVpnConfiguration
@@ -1104,7 +1062,7 @@ namespace VpnSDK.WLVpn.ViewModels
                             })
                             .SetRasConfiguration(new RasConfiguration
                             {
-                                RasDeviceDescription = "VPNSDK RAS"
+                                RasDeviceDescription = Resource.Get<string>("BRAND_NAME")
                             })
                             .Create();
 
@@ -1119,9 +1077,9 @@ namespace VpnSDK.WLVpn.ViewModels
                 .Bind(Locations)
                 .Subscribe();
 
-            _manager.CurrentPositionInfoObservable.Subscribe(info =>
+            _manager.WhenUserLocationChanged.Subscribe(info =>
             {
-                switch (info.EventArgs.Status)
+                switch (info.Status)
                 {
                     case PositionInfoStatus.Updating:
                         CurrentLocationName = "Retrieving...";
@@ -1131,13 +1089,16 @@ namespace VpnSDK.WLVpn.ViewModels
                     case PositionInfoStatus.Updated:
                         RunOnDisplayThread(() =>
                         {
-                            CurrentLocationName = $"{info.EventArgs.City}, {info.EventArgs.Country}";
-                            ExternalIPAddress = info.EventArgs.IPAddress.ToString();
-                            _eventAggregator.Publish<ShowNotificationEvent>(new ShowNotificationEvent
+                            CurrentLocationName = $"{info.City}, {info.Country}";
+                            ExternalIPAddress = info.IPAddress.ToString();
+                            if (IsConnected)
                             {
-                                Title = Resources.Branding.Strings.CONNECTED_VISIBLE_LOCATION_HEADER_CHANGED,
-                                Text = string.Format(Resources.Branding.Strings.CURRENT_VISIBLE_LOCATION, CurrentLocationName, string.Empty),
-                            });
+                                _eventAggregator.Publish<ShowNotificationEvent>(new ShowNotificationEvent
+                                {
+                                    Title = Resources.Strings.CONNECTED_VISIBLE_LOCATION_HEADER_CHANGED,
+                                    Text = string.Format(Resources.Strings.CURRENT_VISIBLE_LOCATION, CurrentLocationName, string.Empty),
+                                });
+                            }
                         });
 
                         break;

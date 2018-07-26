@@ -13,7 +13,6 @@
         <Style x:Key="TextBoxStyle"
                BasedOn="{StaticResource {x:Type TextBox}}"
                TargetType="{x:Type TextBox}">
-            <Setter Property="Foreground" Value="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}" />
             <Setter Property="Margin" Value="5" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="AcceptsReturn" Value="True" />
@@ -78,11 +77,22 @@
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               CanContentScroll="False"
-                              HorizontalScrollBarVisibility="Auto">
+                              HorizontalScrollBarVisibility="Hidden">
                     <ScrollViewer.Resources>
-                        <Style BasedOn="{StaticResource MetroScrollViewer}" TargetType="ScrollViewer" />
+                        <Style TargetType="ScrollBar">
+                            <Setter Property="Template" Value="{DynamicResource FlatVerticalScrollBar}" />
+                            <Setter Property="Background" Value="{DynamicResource HighlightBrush}" />
+                        </Style>
                     </ScrollViewer.Resources>
-                    <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding LogFileLines}" />
+                    <TextBox MaxWidth="{Binding ElementName=LogsScrollViewer, Path=ActualWidth}"
+                             AcceptsReturn="True"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             IsReadOnly="True"
+                             MaxLines="1000"
+                             Style="{StaticResource TextBoxStyle}"
+                             Text="{Binding LogFileLines}"
+                             TextWrapping="Wrap" />
                 </ScrollViewer>
             </TabItem>
             <TabItem>

@@ -168,7 +168,7 @@ namespace VpnSDK.WLVpn.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("L2TP")]
+        [global::System.Configuration.DefaultSettingValueAttribute("IKEv2")]
         public global::VpnSDK.Public.Enums.NetworkConnectionType NetworkConnectionType {
             get {
                 return ((global::VpnSDK.Public.Enums.NetworkConnectionType)(this["NetworkConnectionType"]));
@@ -228,37 +228,13 @@ namespace VpnSDK.WLVpn.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string AUTHORIZATION_TOKEN {
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int ReconnectDelay {
             get {
-                return ((string)(this["AUTHORIZATION_TOKEN"]));
+                return ((int)(this["ReconnectDelay"]));
             }
             set {
-                this["AUTHORIZATION_TOKEN"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string API_KEY {
-            get {
-                return ((string)(this["API_KEY"]));
-            }
-            set {
-                this["API_KEY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ConsumerVPN")]
-        public string APPLICATION_NAME {
-            get {
-                return ((string)(this["APPLICATION_NAME"]));
-            }
-            set {
-                this["APPLICATION_NAME"] = value;
+                this["ReconnectDelay"] = value;
             }
         }
     }

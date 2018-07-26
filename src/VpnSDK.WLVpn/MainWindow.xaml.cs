@@ -5,10 +5,13 @@
 using System;
 using System.ComponentModel;
 using System.Reactive.Linq;
+using System.Reflection;
 using System.Windows;
-
 using MahApps.Metro.Controls;
+using NetSparkle;
+using NetSparkle.Enums;
 using VpnSDK.WLVpn.Events;
+using VpnSDK.WLVpn.Utilities;
 using VpnSDK.WLVpn.ViewModels;
 
 namespace VpnSDK.WLVpn
@@ -20,6 +23,7 @@ namespace VpnSDK.WLVpn
     {
         private IDisposable _notificationSubscription = null;
         private IDisposable _showMainViewSubscription = null;
+        private Sparkle _sparkleUpdater;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -71,6 +75,24 @@ namespace VpnSDK.WLVpn
                     });
                 }
             });
+
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _sparkleUpdater = new Sparkle(
+                Helpers.Resource.Get<string>("BRAND_SPARKLE_URL"),
+                System.Drawing.Icon.ExtractAssociatedIcon(Assembly.GetEntryAssembly().Location),
+                SecurityMode.Unsafe)
+            {
+                ShowsUIOnMainThread = true,
+                RelaunchAfterUpdate = true,
+                UIFactory = new SparkleUIFactory()
+            };
+
+            _sparkleUpdater.StartLoop(true, true, TimeSpan.FromHours(2));
+            Loaded -= OnLoaded;
         }
 
         /// <summary>
@@ -94,7 +116,7 @@ namespace VpnSDK.WLVpn
                 WindowState = WindowState.Normal;
                 if (SdkMonitor.ShowCloseNotification)
                 {
-                    Aggregator.Publish<ShowNotificationEvent>(new ShowNotificationEvent { Title = WLVpn.Resources.Branding.Strings.SETTINGS_CLOSING_OPTION2, Text = WLVpn.Resources.Branding.Strings.SETTINGS_SYSTEM_STARTUP_OPTION2 });
+                    Aggregator.Publish<ShowNotificationEvent>(new ShowNotificationEvent { Title = WLVpn.Resources.Strings.SETTINGS_CLOSING_OPTION2, Text = WLVpn.Resources.Strings.SETTINGS_SYSTEM_STARTUP_OPTION2 });
                     SdkMonitor.ShowCloseNotification = false;
                 }
             }

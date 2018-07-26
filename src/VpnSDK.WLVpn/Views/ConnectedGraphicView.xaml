@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <Grid>
         <Canvas Width="67" Height="67">
-            <Path Stroke="Green"
+            <Path Stroke="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}"
                   StrokeDashArray="309"
                   StrokeDashOffset="-153"
                   StrokeThickness="2">

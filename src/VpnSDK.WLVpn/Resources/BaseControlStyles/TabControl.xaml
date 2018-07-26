@@ -57,7 +57,7 @@
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledTabBorderColor}" />
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource BRAND_TAB_DISABLED_BORDER_COLOR}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

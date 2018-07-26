@@ -27,7 +27,6 @@ namespace VpnSDK.WLVpn.ViewModels
         {
             if (IsInDesignMode())
             {
-                Init();
                 return;
             }
 
@@ -90,8 +89,13 @@ namespace VpnSDK.WLVpn.ViewModels
             SDKMonitor.Connect();
         }
 
-        private void Init()
+        public void Init()
         {
+            // If connect on startup, now is the time.
+            if (SDKMonitor.ConnectOnStartup)
+            {
+                Connect();
+            }
         }
     }
 }

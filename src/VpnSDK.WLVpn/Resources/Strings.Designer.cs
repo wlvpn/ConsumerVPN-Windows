@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VpnSDK.WLVpn.Resources.Branding {
+namespace VpnSDK.WLVpn.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace VpnSDK.WLVpn.Resources.Branding {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VpnSDK.WLVpn.Resources.Branding.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VpnSDK.WLVpn.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -273,6 +273,33 @@ namespace VpnSDK.WLVpn.Resources.Branding {
         public static string LOAD {
             get {
                 return ResourceManager.GetString("LOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logging out.
+        /// </summary>
+        public static string LOGGING_OUT {
+            get {
+                return ResourceManager.GetString("LOGGING_OUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string LOGIN_EMAILBOX_HINT {
+            get {
+                return ResourceManager.GetString("LOGIN_EMAILBOX_HINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot Email/Password?.
+        /// </summary>
+        public static string LOGIN_FORGOT_EMAIL_PASSWORD {
+            get {
+                return ResourceManager.GetString("LOGIN_FORGOT_EMAIL_PASSWORD", resourceCulture);
             }
         }
         
@@ -673,6 +700,69 @@ namespace VpnSDK.WLVpn.Resources.Branding {
         public static string TASKBAR_SHOW_WINDOW {
             get {
                 return ResourceManager.GetString("TASKBAR_SHOW_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} is now available (you have {2})..
+        /// </summary>
+        public static string UPDATE_DIALOG_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version of {0} is available!.
+        /// </summary>
+        public static string UPDATE_DIALOG_HEADER {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install update.
+        /// </summary>
+        public static string UPDATE_DIALOG_INSTALL {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_INSTALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release Notes:.
+        /// </summary>
+        public static string UPDATE_DIALOG_RELEASE_NOTES {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_RELEASE_NOTES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind me later.
+        /// </summary>
+        public static string UPDATE_DIALOG_REMIND {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_REMIND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip this version.
+        /// </summary>
+        public static string UPDATE_DIALOG_SKIP {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_SKIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update available!.
+        /// </summary>
+        public static string UPDATE_DIALOG_TITLE {
+            get {
+                return ResourceManager.GetString("UPDATE_DIALOG_TITLE", resourceCulture);
             }
         }
         

@@ -186,11 +186,11 @@ namespace VpnSDK.WLVpn.ViewModels
         private void InitViews()
         {
             Container ioc = App.ContainerInstance;
-            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Branding.Strings.SETTINGS_TAB_GENERAL, View = ioc.GetInstance<SettingsGeneralView>() });
-            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Branding.Strings.SETTINGS_TAB_CONNECTION, View = ioc.GetInstance<SettingsConnectionsView>() });
-            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Branding.Strings.SETTINGS_TAB_LOGS, View = ioc.GetInstance<SettingsLogView>() });
-            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Branding.Strings.SETTINGS_TAB_LICENSES, View = ioc.GetInstance<SettingsLicensesView>() });
-            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Branding.Strings.SETTINGS_TAB_ABOUT, View = ioc.GetInstance<SettingsAboutView>() });
+            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Strings.SETTINGS_TAB_GENERAL, View = ioc.GetInstance<SettingsGeneralView>() });
+            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Strings.SETTINGS_TAB_CONNECTION, View = ioc.GetInstance<SettingsConnectionsView>() });
+            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Strings.SETTINGS_TAB_LOGS, View = ioc.GetInstance<SettingsLogView>() });
+            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Strings.SETTINGS_TAB_LICENSES, View = ioc.GetInstance<SettingsLicensesView>() });
+            TabViews.Add(new ViewDefinition { ID = Common.ViewList.Views.Settings, Title = Resources.Strings.SETTINGS_TAB_ABOUT, View = ioc.GetInstance<SettingsAboutView>() });
         }
 
         /// <summary>

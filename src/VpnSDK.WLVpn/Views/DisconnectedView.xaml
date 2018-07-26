@@ -1,17 +1,17 @@
 ﻿<UserControl x:Class="VpnSDK.WLVpn.Views.DisconnectedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:branding="clr-namespace:VpnSDK.WLVpn.Resources.Branding"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:VpnSDK.WLVpn.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:VpnSDK.WLVpn.Resources"
              xmlns:viewModels="clr-namespace:VpnSDK.WLVpn.ViewModels"
              d:DesignHeight="450"
              d:DesignWidth="490"
              Background="{DynamicResource BRAND_CONNECTIVITY_PANEL_BACKGROUND}"
              DataContext="{Binding Path=DisconnectedView, Source={StaticResource ViewModelLocator}}"
-             mc:Ignorable="d">
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=".6*" />
@@ -21,8 +21,7 @@
         <Border Grid.Row="0"
                 Margin="50,10,50,0"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                >
+                VerticalAlignment="Top">
             <Grid>
                 <Image Margin="0,5" Source="{StaticResource BRAND_MAP}" />
                 <local:DisconnectedGraphicView />
@@ -46,9 +45,9 @@
                         <DataTemplate x:Key="Region">
                             <TextBlock>
                                 <TextBlock.Text>
-                                    <MultiBinding FallbackValue="{x:Static branding:Strings.CHANGE_LOCATION_BUTTON}"
+                                    <MultiBinding FallbackValue="{x:Static res:Strings.CHANGE_LOCATION_BUTTON}"
                                                   StringFormat="{}{0}, {1}"
-                                                  TargetNullValue="{x:Static branding:Strings.CHANGE_LOCATION_BUTTON}">
+                                                  TargetNullValue="{x:Static res:Strings.CHANGE_LOCATION_BUTTON}">
                                         <Binding Path="City" />
                                         <Binding Path="Country" />
                                     </MultiBinding>
@@ -61,17 +60,15 @@
                         </DataTemplate>
 
                         <DataTemplate x:Key="NullValue">
-                            <TextBlock Text="{x:Static branding:Strings.CHANGE_LOCATION_BUTTON}" />
+                            <TextBlock Text="{x:Static res:Strings.CHANGE_LOCATION_BUTTON}" />
                         </DataTemplate>
 
                         <viewModels:LocationTemplateSelector x:Key="LocationTemplateSelector"
                                                              BestAvailableTemplate="{StaticResource BestAvailable}"
                                                              NullTemplate="{StaticResource NullValue}"
                                                              RegionTemplate="{StaticResource Region}" />
-
                     </Button.Resources>
                     <ContentControl Content="{Binding Path=SDKMonitor.SelectedLocation}" ContentTemplateSelector="{StaticResource ResourceKey=LocationTemplateSelector}" />
-
                 </Button>
 
                 <Button Margin="10"
@@ -79,9 +76,8 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Bottom"
                         Command="{Binding ConnectCmd}"
-                        Content="{x:Static branding:Strings.VPN_BUTTON_CONNECT}"
+                        Content="{x:Static res:Strings.VPN_BUTTON_CONNECT}"
                         Style="{StaticResource ConnectButton}" />
-
             </StackPanel>
         </Grid>
     </Grid>

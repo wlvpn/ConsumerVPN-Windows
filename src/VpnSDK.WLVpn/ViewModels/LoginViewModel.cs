@@ -36,7 +36,6 @@ namespace VpnSDK.WLVpn.ViewModels
         {
             if (IsInDesignMode())
             {
-                Init();
                 return;
             }
 
@@ -90,7 +89,7 @@ namespace VpnSDK.WLVpn.ViewModels
                     _signUpCmd = new RelayCommand(
                         (parm) =>
                         {
-                            LinkTo(Resource.Get<string>("BRAND_MAIN_URL", "Stackpath.com"));
+                            LinkTo(Resource.Get<string>("BRAND_REGISTER_URL", "https://wlvpn.com/#contact"));
                         },
                         (parm) => true);
                 }
@@ -167,8 +166,21 @@ namespace VpnSDK.WLVpn.ViewModels
             Clear = true;
         }
 
-        private void Init()
+        public void Init()
         {
+            try
+            {
+                Username = Properties.Settings.Default.Username.Unprotect();
+                Password = Properties.Settings.Default.Password.Unprotect();
+                if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
+                {
+                    Login();
+                }
+            }
+            catch
+            {
+                // Probably no user/pass. Move on.
+            }
         }
 
         private Process LinkTo(string uri)

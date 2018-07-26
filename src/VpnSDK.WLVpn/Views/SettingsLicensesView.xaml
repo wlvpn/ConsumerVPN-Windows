@@ -14,13 +14,14 @@
                           CanContentScroll="True"
                           HorizontalScrollBarVisibility="Hidden">
                 <ScrollViewer.Resources>
-                    <Style BasedOn="{StaticResource MetroScrollViewer}" TargetType="ScrollViewer">
+                    <Style TargetType="ScrollBar">
+                        <Setter Property="Template" Value="{DynamicResource FlatVerticalScrollBar}" />
+                        <Setter Property="Background" Value="{DynamicResource HighlightBrush}" />
                     </Style>
                 </ScrollViewer.Resources>
                 <RichTextBox x:Name="LicenseRichBox"
                              Background="Transparent"
                              BorderThickness="0"
-                             Foreground="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}"
                              IsReadOnly="True">
                     <FlowDocument Name="LicenseRichBoxFlowDocument" PageWidth="{Binding ElementName=LicenseRichBox, Path=ActualWidth}" />
                 </RichTextBox>

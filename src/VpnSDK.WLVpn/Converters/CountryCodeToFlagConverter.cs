@@ -30,11 +30,11 @@ namespace VpnSDK.WLVpn.Converters
             {
                 string upCase = value.ToString().ToUpper();
                 ImageSource flag = (ImageSource)Application.Current.Resources[$"CountryFlag_{upCase}"];
-                return flag ?? (ImageSource)Application.Current.Resources[$"CountryFlag_UNKNOWN"];
+                return flag ?? (ImageSource)Application.Current.Resources[$"BRANDING_UNKNOWN_COUNTRY_LOGO"];
             }
             catch
             {
-                return (ImageSource)Application.Current.Resources[$"CountryFlag_UNKNOWN"];
+                return (ImageSource)Application.Current.Resources[$"BRANDING_UNKNOWN_COUNTRY_LOGO"];
             }
         }
 

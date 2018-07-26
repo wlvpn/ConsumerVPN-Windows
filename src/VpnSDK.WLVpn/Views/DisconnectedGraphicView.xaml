@@ -12,7 +12,7 @@
         <Canvas Width="67"
                 Height="67"
                 Background="Transparent">
-            <Path Stroke="White"
+            <Path Stroke="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}"
                   StrokeDashArray="309"
                   StrokeDashOffset="309"
                   StrokeThickness="2">
@@ -50,11 +50,10 @@
                 </Path.Triggers>
             </Path>
         </Canvas>
-        <StackPanel VerticalAlignment="Center"
-                    Background="Transparent">
+        <StackPanel VerticalAlignment="Center" Background="Transparent">
             <TextBlock Padding="0,100,0,0"
-                       Background="Transparent"
                        HorizontalAlignment="Center"
+                       Background="Transparent"
                        Foreground="{StaticResource BRAND_NORMAL_TEXT_FOREGROUND}"
                        Text="Disconnected" />
         </StackPanel>

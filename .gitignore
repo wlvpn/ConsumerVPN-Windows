@@ -172,7 +172,6 @@ AppPackages/
 # Others
 Build/Installers/AdvancedInstaller/*-cache
 ClientBin/
-[Ss]tyle[Cc]op.*
 ~$*
 *~
 *.dbmdl

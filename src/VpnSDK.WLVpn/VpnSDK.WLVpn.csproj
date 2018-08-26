@@ -779,14 +779,21 @@ if not exist "$(TargetDir)OpenVPN" (
 
 xcopy  /Y /S "$(SolutionDir)Resources\Binaries\OpenVPN" "$(TargetDir)OpenVPN"
 
-if $(ConfigurationName) == Release (
-
+if $(ConfigurationName) == Release  (
+   IF EXIST $(SolutionDir)Resources\Signing\cert.pfx (
     REM Code signing
     if not "%25CERTIFICATE_PASSWORD%25" == "" (
+       if %25USE_EV_CERT%25 == "True" (
+        "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p %25CERTIFICATE_PASSWORD%25 /tr http://timestamp.digicert.com /td sha256 /fd sha256 /a $(TargetFileName)
+       ) ELSE (
         "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p %25CERTIFICATE_PASSWORD%25 /t http://timestamp.verisign.com/scripts/timstamp.dll /v $(TargetFileName)
-     ) ELSE (
+     )
+         ) ELSE (
          "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /t http://timestamp.verisign.com/scripts/timstamp.dll /v $(TargetFileName)
      )
+  ) ELSE (
+   echo Warning: No signing certificate found. Do not distribute this version externally.
+ )
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

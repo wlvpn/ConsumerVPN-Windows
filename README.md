@@ -6,7 +6,7 @@
 
 ConsumerVPN is a VPN client application that implements the WLVPN SDK as a usable application for customers. This is based upon WPF and uses standard MVVM practices.
 
-For further details on how to work with modifying the ConsumerVPN code to be branded and work with your requirements, please view the reseller documentation for the "Branding - How To Make ConsumerVPN Yours" under Guides & Articles.
+For further details on how to work with modifying the ConsumerVPN code to be branded and work with your requirements, please view the reseller documentation for the "Branding - How To Make ConsumerVPN Yours" article under Guides & Articles.
 
 
 ## Requirements

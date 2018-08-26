@@ -35,8 +35,8 @@ Edit the file `<Repository Root>/build.cmd` to set the codesign certificate key 
 ```bash
 .\tools\Cake\Cake.exe build.cake -Configuration="Release" -CertPassword="CODE SIGNING CERTIFICATE PASSWORD HERE" -MyGetApiKey="MYGET API KEY HERE" -ApplicationName="MyApplication.exe" -UsesEVCert=false -verbosity=diagnostic
 ```
-**CAVEAT**
-If you are using an EV based certificate, ensure the physical EV key (this may be a smart card or USB key) provided by your certificate authority is plugged in. There may be software that is required from your provider to be installed so please read through the instructions provided by your certificate authority on how to use the key.
+CAVEAT
+If you are using an EV based certificate, ensure the physical EV key (this may be a smart card or USB key) provided by your certificate authority is plugged in. There may be software that is required from your provider to be installed so please read through the instructions provided by your certificate authority on how to use the key. During building of the application, your EV certificate may require you to use a PIN number that shows on the physical device or is printed on the device itself. For more information on this, please check with your certificate provider.
 
 
 ### Building the application

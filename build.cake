@@ -15,8 +15,7 @@ var configuration = Argument("Configuration", "Release");
 var certificatePassword = Argument("CertPassword", "");
 var mygetApiKey = Argument("MyGetApiKey", "");
 var ApplicationName = Argument("ApplicationName","ConsumerVPN");
-var UsesEVCert = Argument("EVCert", false);
-UsesEVCert = bool.Parse(UsesEVCert);
+var UsesEVCert = Argument<bool>("EVCert", false);
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
 //////////////////////////////////////////////////////////////////////
@@ -32,7 +31,8 @@ var signToolSettings = new SignToolSignSettings
     TimeStampUri = new Uri("http://timestamp.digicert.com"),
     CertPath = "./Resources/Signing/cert.pfx",
     Password = certificatePassword,
-    DigestAlgorithm = UsesEVCert ? SignToolDigestAlgorithm.Sha1 : SignToolDigestAlgorithm,Sha256
+    DigestAlgorithm = UsesEVCert ? SignToolDigestAlgorithm.Sha256 : SignToolDigestAlgorithm.Sha1,
+    TimeStampDigestAlgorithm = UsesEVCert ? SignToolDigestAlgorithm.Sha256 : SignToolDigestAlgorithm.Sha1
 };
 
 // Helper functions

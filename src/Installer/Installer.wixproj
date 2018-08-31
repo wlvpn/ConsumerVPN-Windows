@@ -74,11 +74,15 @@
     <HeatDirectory RunAsSeparateProcess="true" OutputFile="$(ProjectDir)FilesFragment.wxs" Directory="$(SolutionDir)\src\VpnSDK.WLVpn\bin\$(Configuration)\" DirectoryRefId="ApplicationDirectory" ComponentGroupName="InstallComponents" ToolPath="$(WixToolPath)" PreprocessorVariable="var.TARGET_FOLDER" SuppressRootDirectory="true" AutogenerateGuids="true" Transforms="$(ProjectDir)Filters.xslt" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release (
-    if not "%25CERTIFICATE_PASSWORD%25" == "" (
-        "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p %25CERTIFICATE_PASSWORD%25 /t http://timestamp.verisign.com/scripts/timstamp.dll /v $(TargetFileName)
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
+    if "$(UsesEVCert)" == "True" (
+            "$(SolutionDir)Prerequisites\signtool" sign /td sha256 /fd sha256 /tr http://timestamp.digicert.com /v /a $(TargetFileName)
     ) ELSE (
-        "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /t http://timestamp.verisign.com/scripts/timstamp.dll /v $(TargetFileName)
+        if "$(CertificatePassword)" == "" (
+            "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /t http://timestamp.digicert.com /v $(TargetFileName)
+        ) ELSE (
+            "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p $(CertificatePassword) /t http://timestamp.digicert.com /v $(TargetFileName)
+        )
     )
 )</PostBuildEvent>
   </PropertyGroup>

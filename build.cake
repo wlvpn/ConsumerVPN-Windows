@@ -26,13 +26,17 @@ var solutionDir = MakeAbsolute(Directory("."));
 
 
 // Codesign stuff.
-var signToolSettings = new SignToolSignSettings 
+var signToolSettings = UsesEVCert ? new SignToolSignSettings
+{
+    Password = certificatePassword,
+    DigestAlgorithm = SignToolDigestAlgorithm.Sha256,
+    TimeStampDigestAlgorithm = SignToolDigestAlgorithm.Sha256,
+	ArgumentCustomization = args => args.Append("/tr", "http://timestamp.digicert.com")
+} : new SignToolSignSettings 
 {
     TimeStampUri = new Uri("http://timestamp.digicert.com"),
     CertPath = "./Resources/Signing/cert.pfx",
     Password = certificatePassword,
-    DigestAlgorithm = UsesEVCert ? SignToolDigestAlgorithm.Sha256 : SignToolDigestAlgorithm.Sha1,
-    TimeStampDigestAlgorithm = UsesEVCert ? SignToolDigestAlgorithm.Sha256 : SignToolDigestAlgorithm.Sha1
 };
 
 // Helper functions
@@ -89,11 +93,11 @@ Task("Build")
     .Does(() =>
 {
     // Build installer and application. The bootstrapper automatically builds the application.
-    MSBuild("./src/Bootstrapper/Bootstrapper.wixproj", settings => settings.SetConfiguration(configuration).WithProperty("SolutionDir", solutionDir.FullPath + "\\").WithProperty("CertificatePassword", certificatePassword));
+    MSBuild("./src/Bootstrapper/Bootstrapper.wixproj", settings => settings.SetConfiguration(configuration).WithProperty("SolutionDir", solutionDir.FullPath + "\\").WithProperty("CertificatePassword", certificatePassword).WithProperty("UsesEVCert", UsesEVCert.ToString()));
     
     // Move installer to root of solution directory.
     var outputFile = Directory("./src/Bootstrapper/bin/") + Directory(configuration) + File("Bootstrapper.exe");
-    var clientFile = Directory("./src/VpnSDK.WLVpn/bin/") + Directory(configuration) + File(ApplicationName.ToString() + "exe");
+    var clientFile = Directory("./src/VpnSDK.WLVpn/bin/") + Directory(configuration) + File(ApplicationName.ToString() + ".exe");
     var versionNumber = GetFullVersionNumber(clientFile);
     var setupFilename = String.Format("Setup_{0}.exe", versionNumber);
     if(FileExists("./" + setupFilename))
@@ -103,7 +107,7 @@ Task("Build")
 
     MoveFile(outputFile, "./" + setupFilename);
 
-    if(FileExists("/Resources/Signing/cert.pfx"))
+    if(FileExists("/Resources/Signing/cert.pfx") && UsesEVCert)
     {
         // Sign the setup file.
         Sign("./" + setupFilename, signToolSettings);

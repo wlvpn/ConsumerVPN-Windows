@@ -138,8 +138,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="VpnSDK.Whitelabel, Version=0.7.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\VpnSDK.Whitelabel.0.7.12\lib\net461\VpnSDK.Whitelabel.dll</HintPath>
+    <Reference Include="VpnSDK.Whitelabel, Version=0.7.15.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\VpnSDK.Whitelabel.0.7.15\lib\net461\VpnSDK.Whitelabel.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

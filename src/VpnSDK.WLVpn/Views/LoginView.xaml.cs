@@ -50,15 +50,5 @@ namespace VpnSDK.WLVpn.Views
             LoginViewModel lvm = (LoginViewModel)DataContext;
             lvm.Password = Password.Password;
         }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            Loaded -= UserControl_Loaded;
-            if (!DesignerProperties.GetIsInDesignMode(this))
-            {
-                LoginViewModel context = DataContext as LoginViewModel;
-                context?.Init();
-            }
-        }
     }
 }

@@ -11,7 +11,6 @@
              d:DesignWidth="490"
              Background="{StaticResource BRAND_LOGIN_PANEL_BACKGROUND}"
              DataContext="{Binding Path=LoginView, Source={StaticResource ViewModelLocator}}"
-             Loaded="UserControl_Loaded"
              mc:Ignorable="d">
     <Grid>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

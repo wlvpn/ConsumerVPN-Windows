@@ -139,7 +139,7 @@
     <value>Change Location</value>
   </data>
   <data name="CLOSE" xml:space="preserve">
-    <value>CLOSE</value>
+    <value>Close</value>
   </data>
   <data name="CONNECTED_ENCRYPTION" xml:space="preserve">
     <value>Cipher:</value>
@@ -168,8 +168,8 @@
   <data name="LOGIN_USERNAMEBOX_HINT" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="REINSTALL_TAP_DRIVER" xml:space="preserve">
-    <value>Reinstall TAP Driver</value>
+  <data name="INSTALLING_TAP_DRIVER" xml:space="preserve">
+    <value>Installing TAP Driver</value>
   </data>
   <data name="SAVE" xml:space="preserve">
     <value>Save</value>

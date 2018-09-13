@@ -2,20 +2,19 @@
 // Copyright (c) StackPath, LLC. All Rights Reserved.
 // </copyright>
 
-using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows;
-using Microsoft.HockeyApp;
+using Microsoft.Shell;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-
 using SimpleInjector;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows;
 using VpnSDK.WLVpn.Events;
 using VpnSDK.WLVpn.Helpers;
 using VpnSDK.WLVpn.Interfaces;
@@ -27,7 +26,7 @@ namespace VpnSDK.WLVpn
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, ISingleInstanceApp
     {
         private static Logger _logger = LogManager.GetLogger("WL::App");
         private DependencyObject _dummy = new DependencyObject();
@@ -81,6 +80,12 @@ namespace VpnSDK.WLVpn
         /// <param name="e">A <see cref="T:System.Windows.StartupEventArgs" /> that contains the event data.</param>
         protected override async void OnStartup(StartupEventArgs e)
         {
+            if (!SingleInstance<App>.InitializeAsFirstInstance($"{Assembly.GetExecutingAssembly().GetName().Name.Replace(" ", "-").ToUpper()}"))
+            {
+                Environment.Exit(0);
+                return;
+            }
+
             ConfigureLogger();
             ConfigureContainer();
             _logger.Info("++++++++++  Starting Application ");
@@ -117,11 +122,10 @@ namespace VpnSDK.WLVpn
 
             if (sdkmonitor.HideApplicationOnStartup)
             {
-                Task.Factory.StartNew(() =>
+                await Task.Run(() =>
                 {
                     RunOnDisplayThread(() =>
                     {
-                        mainWindows.Visibility = Visibility.Hidden;
                         MainWindow = mainWindows;
                         aggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.MainWindow, Show = false });
                         if (Settings.Default.ShowHideNotification)
@@ -143,6 +147,18 @@ namespace VpnSDK.WLVpn
             }
         }
 
+        public bool SignalExternalCommandLineArgs(IList<string> args)
+        {
+            if (Current?.MainWindow != null)
+            {
+                Current.MainWindow.Activate();
+                Current.MainWindow.Visibility = Visibility.Visible;
+                Current.MainWindow.Show();
+                Current.MainWindow.WindowState = WindowState.Normal;
+            }
+            return true;
+        }
+
         private static void ConfigureLogger()
         {
             string appLogFile = Helpers.Resource.Get<string>("BRAND_LOGFILE_NAME", "application.log");
@@ -156,12 +172,14 @@ namespace VpnSDK.WLVpn
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create);
             string logLocation = Path.Combine(appdata, brandID, "Logs", appLogFile);
 
-            FileTarget fileTarget = new FileTarget();
-            fileTarget.FileName = logLocation;
-            fileTarget.LineEnding = LineEndingMode.CRLF;
-            fileTarget.ArchiveEvery = FileArchivePeriod.Day;
-            fileTarget.Header = $"================= {((AssemblyTitleAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyTitleAttribute), false)).Title} =================";
-            fileTarget.MaxArchiveFiles = 2;
+            FileTarget fileTarget = new FileTarget
+            {
+                FileName = logLocation,
+                LineEnding = LineEndingMode.CRLF,
+                ArchiveEvery = FileArchivePeriod.Day,
+                Header = $"================= {((AssemblyTitleAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyTitleAttribute), false)).Title} =================",
+                MaxArchiveFiles = 2
+            };
             var jsonLayout = new JsonLayout
             {
                 Attributes =
@@ -179,8 +197,10 @@ namespace VpnSDK.WLVpn
             loggingConfiguration.AddTarget(brandID + "_filelog", fileTarget);
             loggingConfiguration.AddRule(LogLevel.Info, LogLevel.Fatal, fileTarget, "WL::*");
 
-            DebuggerTarget debugTarget = new DebuggerTarget();
-            debugTarget.Layout = @"${date:format=HH\:mm\:ss\.fff} - [${logger:shortName=True}] - ${message}";
+            DebuggerTarget debugTarget = new DebuggerTarget
+            {
+                Layout = @"${date:format=HH\:mm\:ss\.fff} - [${logger:shortName=True}] - ${message}"
+            };
 
             loggingConfiguration.AddTarget(brandID + "_debuglog", debugTarget);
             loggingConfiguration.AddRule(LogLevel.Debug, LogLevel.Fatal, debugTarget, "WL::*");

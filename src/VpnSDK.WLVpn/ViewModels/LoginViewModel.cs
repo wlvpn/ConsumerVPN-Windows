@@ -52,6 +52,8 @@ namespace VpnSDK.WLVpn.ViewModels
                         Clear = true; // this is to trigger the password field to clear itself.});
                     });
                 });
+
+            Init();
         }
 
         /// <summary>

@@ -115,7 +115,7 @@ namespace VpnSDK.WLVpn.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CLOSE.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string CLOSE {
             get {
@@ -259,6 +259,15 @@ namespace VpnSDK.WLVpn.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Installing TAP Driver.
+        /// </summary>
+        public static string INSTALLING_TAP_DRIVER {
+            get {
+                return ResourceManager.GetString("INSTALLING_TAP_DRIVER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updating....
         /// </summary>
         public static string IP_UPDATING_TEXT {
@@ -390,15 +399,6 @@ namespace VpnSDK.WLVpn.Resources {
         public static string RECONNECTING {
             get {
                 return ResourceManager.GetString("RECONNECTING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Reinstall TAP Driver.
-        /// </summary>
-        public static string REINSTALL_TAP_DRIVER {
-            get {
-                return ResourceManager.GetString("REINSTALL_TAP_DRIVER", resourceCulture);
             }
         }
         

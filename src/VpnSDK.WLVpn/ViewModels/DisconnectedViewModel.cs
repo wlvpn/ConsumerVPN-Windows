@@ -32,6 +32,7 @@ namespace VpnSDK.WLVpn.ViewModels
 
             SDKMonitor = sdkMonitor;
             _eventAggregator = eventAggregator;
+            Init();
         }
 
         /// <summary>
@@ -91,11 +92,7 @@ namespace VpnSDK.WLVpn.ViewModels
 
         public void Init()
         {
-            // If connect on startup, now is the time.
-            if (SDKMonitor.ConnectOnStartup)
-            {
-                Connect();
-            }
+
         }
     }
 }

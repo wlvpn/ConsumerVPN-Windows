@@ -2,14 +2,12 @@
 // Copyright (c) StackPath, LLC. All Rights Reserved.
 // </copyright>
 
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-
-using SimpleInjector;
 using VpnSDK.WLVpn.Common;
 using VpnSDK.WLVpn.Events;
 using VpnSDK.WLVpn.Helpers;
@@ -24,9 +22,9 @@ namespace VpnSDK.WLVpn.ViewModels
     public class MainViewModel : BindableBase
     {
         private EventAggregator _eventAggregator;
-        private IDisposable _registerViewSubscription = null;
-        private IDisposable _showViewSubscription = null;
-        private IDisposable _showDialogSubscription = null;
+        private readonly IDisposable _registerViewSubscription = null;
+        private readonly IDisposable _showViewSubscription = null;
+        private readonly IDisposable _showDialogSubscription = null;
         private RelayCommand _exitCmd = null;
         private ViewDefinition _currentView = null;
         private BasicDialogView _basicDialog = null;
@@ -55,13 +53,7 @@ namespace VpnSDK.WLVpn.ViewModels
 
             _eventAggregator = eventAggregator;
 
-            _registerViewSubscription = _eventAggregator.GetEvent<RegisterViewEvent>().Subscribe((evt) =>
-            {
-                RunOnDisplayThread(() =>
-                {
-                    AvalableViews.Add(evt.View.ID, evt.View);
-                });
-            });
+            InitViews();
 
             _showViewSubscription = _eventAggregator.GetEvent<ShowViewEvent>().Subscribe((evt) =>
             {
@@ -78,8 +70,6 @@ namespace VpnSDK.WLVpn.ViewModels
                     ShowDialogLogic(evt);
                 });
             });
-
-            InitViews();
 
             SDKMonitor = sdkMonitor;
 
@@ -157,8 +147,6 @@ namespace VpnSDK.WLVpn.ViewModels
                             // if settings is currently shown, hide it.
                             if (CurrentView?.ID == ViewList.Views.Settings)
                             {
-                                var tmp = ((UserControl)CurrentView.View).DataContext as SettingsViewModel;
-                                tmp?.Save();
                                 _eventAggregator.Publish<ShowViewEvent>(new ShowViewEvent { ID = Common.ViewList.Views.Back });
                             }
                             else
@@ -187,13 +175,15 @@ namespace VpnSDK.WLVpn.ViewModels
                     _logOutCmd = new RelayCommand(
                         (parm) =>
                         {
-                            DialogAction da = new DialogAction();
-                            da.OKAction = () => LogOut();
-                            da.OKString = Resources.Strings.DIALOG_ACTION_OK;
-                            da.CancelString = Resources.Strings.DIALOG_ACTION_CANCEL;
-                            da.CancelAction = () => { };
-                            da.Title = Resources.Strings.DIALOG_ACTION_TITLE;
-                            da.Description = Resources.Strings.DIALOG_ACTION_DESCRIPTION;
+                            DialogAction da = new DialogAction
+                            {
+                                OKAction = () => LogOut(),
+                                OKString = Resources.Strings.DIALOG_ACTION_OK,
+                                CancelString = Resources.Strings.DIALOG_ACTION_CANCEL,
+                                CancelAction = () => { },
+                                Title = Resources.Strings.DIALOG_ACTION_TITLE,
+                                Description = Resources.Strings.DIALOG_ACTION_DESCRIPTION
+                            };
                             _eventAggregator.Publish<ShowDialogEvent>(new ShowDialogEvent { DialogAction = da, Show = true });
                         },
                         (parm) => SDKMonitor != null && SDKMonitor.IsLoggedIn);
@@ -352,12 +342,14 @@ namespace VpnSDK.WLVpn.ViewModels
         private void InitViews()
         {
             Container ioc = App.ContainerInstance;
-
-            _eventAggregator.Publish<RegisterViewEvent>(new RegisterViewEvent { View = new ViewDefinition { ID = ViewList.Views.Login, Title = "Login", View = ioc.GetInstance<LoginView>() } });
-            _eventAggregator.Publish<RegisterViewEvent>(new RegisterViewEvent { View = new ViewDefinition { ID = ViewList.Views.Connected, Title = "Connected", View = ioc.GetInstance<ConnectedView>() } });
-            _eventAggregator.Publish<RegisterViewEvent>(new RegisterViewEvent { View = new ViewDefinition { ID = ViewList.Views.Disconnected, Title = "Disconnected", View = ioc.GetInstance<DisconnectedView>() } });
-            _eventAggregator.Publish<RegisterViewEvent>(new RegisterViewEvent { View = new ViewDefinition { ID = ViewList.Views.ServerList, Title = "ServerList", View = ioc.GetInstance<LocationListView>(), IsOverLay = true } });
-            _eventAggregator.Publish<RegisterViewEvent>(new RegisterViewEvent { View = new ViewDefinition { ID = ViewList.Views.Settings, Title = "Settings", View = ioc.GetInstance<SettingsView>(), IsOverLay = true } });
+            RunOnDisplayThread(() =>
+            {
+                AvalableViews.Add(ViewList.Views.Disconnected, new ViewDefinition { ID = ViewList.Views.Disconnected, Title = "Disconnected", View = ioc.GetInstance<DisconnectedView>() });
+                AvalableViews.Add(ViewList.Views.Connected, new ViewDefinition { ID = ViewList.Views.Connected, Title = "Connected", View = ioc.GetInstance<ConnectedView>() });
+                AvalableViews.Add(ViewList.Views.Login, new ViewDefinition { ID = ViewList.Views.Login, Title = "Login", View = ioc.GetInstance<LoginView>() });
+                AvalableViews.Add(ViewList.Views.ServerList, new ViewDefinition { ID = ViewList.Views.ServerList, Title = "ServerList", View = ioc.GetInstance<LocationListView>(), IsOverLay = true });
+                AvalableViews.Add(ViewList.Views.Settings, new ViewDefinition { ID = ViewList.Views.Settings, Title = "Settings", View = ioc.GetInstance<SettingsView>(), IsOverLay = true });
+            });
         }
 
         private void NavigationLogic(ShowViewEvent evt)

@@ -20,15 +20,5 @@ namespace VpnSDK.WLVpn.Views
         {
             InitializeComponent();
         }
-
-        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Loaded -= UserControl_Loaded;
-            if (!DesignerProperties.GetIsInDesignMode(this))
-            {
-                DisconnectedViewModel context = DataContext as DisconnectedViewModel;
-                context?.Init();
-            }
-        }
     }
 }

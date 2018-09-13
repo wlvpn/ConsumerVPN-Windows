@@ -29,8 +29,6 @@
                     <Setter Property="FontWeight" Value="Bold" />
                     <Setter Property="Margin" Value="0,0,0,0" />
                 </Style>
-
-
             </ScrollViewer.Resources>
             <StackPanel Height="Auto"
                         Margin="20,10,0,0"
@@ -92,7 +90,13 @@
                               IsTabStop="True"
                               ItemsSource="{Binding CipherComboBox}"
                               SelectedValue="{Binding Path=Cipher}"
-                              Style="{StaticResource SettingsComboBox}" />
+                              Style="{StaticResource SettingsComboBox}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource Self}}" Text="{Binding Converter={StaticResource DescriptionConverter}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
                     <Button Grid.Row="1"
                             Width="160"

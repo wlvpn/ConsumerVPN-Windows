@@ -43,27 +43,6 @@ namespace VpnSDK.WLVpn.ViewModels
         }
 
         /// <summary>
-        /// Gets the command to execute when Save is pressed.
-        /// </summary>
-        public RelayCommand SaveCmd
-        {
-            get
-            {
-                if (_saveCmd == null)
-                {
-                    _saveCmd = new RelayCommand(
-                        (parm) =>
-                        {
-                            Save();
-                        },
-                        (parm) => true);
-                }
-
-                return _saveCmd;
-            }
-        }
-
-        /// <summary>
         /// Gets the command to execute when Cancel is pressed.
         /// </summary>
         public RelayCommand CancelCmd
@@ -128,55 +107,12 @@ namespace VpnSDK.WLVpn.ViewModels
 
         private SDKMonitor SDKMonitor { get; }
 
-        /// <summary>
-        /// Invokes <see cref="ISettingsViewModel.Save"/> on all child <see cref="ISettingsViewModel"/>.
-        /// </summary>
-        public void Save()
-        {
-            // go to each tab on the settings view and tell them to save.
-            foreach (ViewDefinition viewDef in TabViews)
-            {
-                UserControl uc = viewDef.View as UserControl;
-                if (uc == null)
-                {
-                    continue;
-                }
-
-                ISettingsViewModel vm = uc.DataContext as ISettingsViewModel;
-                if (vm == null)
-                {
-                    continue;
-                }
-
-                vm.Save();
-            }
-
-            Return();
-        }
 
         /// <summary>
         /// Invokes <see cref="ISettingsViewModel.Cancel"/> on all child <see cref="ISettingsViewModel"/>.
         /// </summary>
         public void Cancel()
         {
-            // go to each tab on the settings view and tell them to cancel.
-            foreach (ViewDefinition viewDef in TabViews)
-            {
-                UserControl uc = viewDef.View as UserControl;
-                if (uc == null)
-                {
-                    continue;
-                }
-
-                ISettingsViewModel vm = uc.DataContext as ISettingsViewModel;
-                if (vm == null)
-                {
-                    continue;
-                }
-
-                vm.Cancel();
-            }
-
             Return();
         }
 

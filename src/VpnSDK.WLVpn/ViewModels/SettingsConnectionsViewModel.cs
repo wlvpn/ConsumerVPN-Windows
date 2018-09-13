@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using VpnSDK.Public.Enums;
+using VpnSDK.WLVpn.Events;
 using VpnSDK.WLVpn.Helpers;
 
 namespace VpnSDK.WLVpn.ViewModels
@@ -20,6 +21,7 @@ namespace VpnSDK.WLVpn.ViewModels
         private NetworkProtocolType _selectedOpenVpnProtocol = NetworkProtocolType.UDP;
         private bool _openVpnScramble = false;
         private bool _cipherEnabled = false;
+        private EventAggregator _eventAggregator;
         private RelayCommand _installTapDriverCmd = null;
         private OpenVpnCipherType _cipherType = OpenVpnCipherType.AES_256_CBC;
 
@@ -27,7 +29,7 @@ namespace VpnSDK.WLVpn.ViewModels
         /// Initializes a new instance of the <see cref="SettingsConnectionsViewModel"/> class.
         /// </summary>
         /// <param name="sdk">SDKMonitor is a singleton that represents the layer above the VpnSDK</param>
-        public SettingsConnectionsViewModel(SDKMonitor sdk)
+        public SettingsConnectionsViewModel(SDKMonitor sdk, EventAggregator eventAggregator)
         {
             if (IsInDesignMode())
             {
@@ -36,13 +38,12 @@ namespace VpnSDK.WLVpn.ViewModels
             }
 
             SdkMonitor = sdk;
+            _eventAggregator = eventAggregator;
 
-            // get the right values for the fields below from the sdkMonitor class.
-            // we then set them if the user says "save"
-            // some of them may be things we do in the client instead of the sdk.
-            // those we will have to save and restore from local storage.
-            // since the Cancel method does this, we call it here.
-            Cancel();
+            OpenVpnScramble = SdkMonitor.OpenVpnScramble;
+            ConnectionProtocol = SdkMonitor.ConnectionProtocol;
+            SelectedOpenVpnProtocol = SdkMonitor.SelectedOpenVpnProtocol;
+            Cipher = SdkMonitor.CipherType;
         }
 
         /// <summary>
@@ -60,12 +61,17 @@ namespace VpnSDK.WLVpn.ViewModels
                 SetProperty(ref _networkConnectionType, value);
                 if (value == NetworkConnectionType.OpenVPN)
                 {
-                    IsCipherEnabled = true;
+                    if (!OpenVpnScramble)
+                    {
+                        IsCipherEnabled = true;
+                    }
                 }
                 else
                 {
                     IsCipherEnabled = false;
                 }
+
+                SdkMonitor.ConnectionProtocol = value;
             }
         }
 
@@ -75,7 +81,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public NetworkProtocolType SelectedOpenVpnProtocol
         {
             get { return _selectedOpenVpnProtocol; }
-            set { SetProperty(ref _selectedOpenVpnProtocol, value); }
+            set
+            {
+                SetProperty(ref _selectedOpenVpnProtocol, value);
+                SdkMonitor.SelectedOpenVpnProtocol = value;
+            }
         }
 
         /// <summary>
@@ -107,6 +117,8 @@ namespace VpnSDK.WLVpn.ViewModels
                     Cipher = OpenVpnCipherType.AES_256_CBC;
                     IsCipherEnabled = true;
                 }
+
+                SdkMonitor.OpenVpnScramble = value;
             }
         }
 
@@ -123,6 +135,7 @@ namespace VpnSDK.WLVpn.ViewModels
                     _installTapDriverCmd = new RelayCommand(
                     (parm) =>
                     {
+                        _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.INSTALLING_TAP_DRIVER });
                         SdkMonitor?.InstallTapDriver();
                     }, (parm) => !SdkMonitor.IsConnected && SdkMonitor.IsLoggedIn);
                 }
@@ -142,7 +155,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public OpenVpnCipherType Cipher
         {
             get { return _cipherType; }
-            set { SetProperty(ref _cipherType, value); }
+            set
+            {
+                SetProperty(ref _cipherType, value);
+                SdkMonitor.CipherType = value;
+            }
         }
 
         /// <summary>
@@ -166,32 +183,6 @@ namespace VpnSDK.WLVpn.ViewModels
         /// Gets the SDKMonitor singleton
         /// </summary>
         public SDKMonitor SdkMonitor { get; }
-
-        /// <summary>
-        /// This method implements the steps needed to restore the properties to the values they were when the view was entered.
-        /// </summary>
-        /// <returns>true or false.  At the moment always true.  If validation is needed, this would be used to denote a failed validation</returns>
-        public bool Cancel()
-        {
-            OpenVpnScramble = SdkMonitor.OpenVpnScramble;
-            ConnectionProtocol = SdkMonitor.ConnectionProtocol;
-            SelectedOpenVpnProtocol = SdkMonitor.SelectedOpenVpnProtocol;
-            Cipher = SdkMonitor.CipherType;
-            return true;
-        }
-
-        /// <summary>
-        /// This method implements the steps needed to save the properties to the new values
-        /// </summary>
-        /// <returns>true or false.  At the moment always true.  If validation is needed, this would be used to denote a failed validation</returns>
-        public bool Save()
-        {
-            SdkMonitor.ConnectionProtocol = ConnectionProtocol;
-            SdkMonitor.OpenVpnScramble = OpenVpnScramble;
-            SdkMonitor.SelectedOpenVpnProtocol = SelectedOpenVpnProtocol;
-            SdkMonitor.CipherType = Cipher;
-            return true;
-        }
 
         /// <summary>
         /// This method is used to initialize any data needed at design time to help the Visual Studio designer display data

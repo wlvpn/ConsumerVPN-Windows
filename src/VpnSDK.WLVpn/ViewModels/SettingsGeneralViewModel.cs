@@ -34,10 +34,12 @@ namespace VpnSDK.WLVpn.ViewModels
             SdkMonitor = sdk;
 
             // get the right values for the fields below from the sdkMonitor class.
-            // we then set them if the user says "save"
-            // some of them may be things we do in the client instead of the sdk.
-            // those we will have to save and restore from local storage.
-            Cancel();
+            HideApplicationOnStartup = SdkMonitor.HideApplicationOnStartup;
+            StartOnStartup = SdkMonitor.StartOnStartup;
+            AutoReconnect = SdkMonitor.AutoReconnect;
+            ConnectOnStartup = SdkMonitor.ConnectOnStartup;
+            KillSwitch = SdkMonitor.KillSwitch;
+            CloseIsHide = SdkMonitor.CloseButtonHidesApplication;
         }
 
         /// <summary>
@@ -46,7 +48,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public bool HideApplicationOnStartup
         {
             get { return _hideOnStartup; }
-            set { SetProperty(ref _hideOnStartup, value); }
+            set
+            {
+                SetProperty(ref _hideOnStartup, value);
+                SdkMonitor.HideApplicationOnStartup = value;
+            }
         }
 
         /// <summary>
@@ -55,7 +61,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public bool AutoReconnect
         {
             get { return _autoReconnect; }
-            set { SetProperty(ref _autoReconnect, value); }
+            set
+            {
+                SetProperty(ref _autoReconnect, value);
+                SdkMonitor.AutoReconnect = value;
+            }
         }
 
         /// <summary>
@@ -64,7 +74,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public bool ConnectOnStartup
         {
             get { return _connectOnStartup; }
-            set { SetProperty(ref _connectOnStartup, value); }
+            set
+            {
+                SetProperty(ref _connectOnStartup, value);
+                SdkMonitor.ConnectOnStartup = value;
+            }
         }
 
         /// <summary>
@@ -73,7 +87,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public bool KillSwitch
         {
             get { return _killSwitch; }
-            set { SetProperty(ref _killSwitch, value); }
+            set
+            {
+                SetProperty(ref _killSwitch, value);
+                SdkMonitor.KillSwitch = value;
+            }
         }
 
         /// <summary>
@@ -82,7 +100,11 @@ namespace VpnSDK.WLVpn.ViewModels
         public bool StartOnStartup
         {
             get { return _startOnStartup; }
-            set { SetProperty(ref _startOnStartup, value); }
+            set
+            {
+                SetProperty(ref _startOnStartup, value);
+                SdkMonitor.StartOnStartup = value;
+            }
         }
 
         /// <summary>
@@ -91,47 +113,16 @@ namespace VpnSDK.WLVpn.ViewModels
         public bool CloseIsHide
         {
             get { return _closeIsHide; }
-            set { SetProperty(ref _closeIsHide, value); }
+            set
+            {
+                SetProperty(ref _closeIsHide, value);
+                SdkMonitor.CloseButtonHidesApplication = value;
+            }
         }
 
         private SDKMonitor SdkMonitor { get; }
 
-        /// <inheritdoc/>
-        public bool Cancel()
-        {
-            HideApplicationOnStartup = SdkMonitor.HideApplicationOnStartup;
-            StartOnStartup = SdkMonitor.StartOnStartup;
-            AutoReconnect = SdkMonitor.AutoReconnect;
-            ConnectOnStartup = SdkMonitor.ConnectOnStartup;
-            KillSwitch = SdkMonitor.KillSwitch;
-            CloseIsHide = SdkMonitor.CloseButtonHidesApplication;
-            return true;
-        }
 
-        /// <inheritdoc/>
-        public bool Save()
-        {
-            // push all of the values below to the sdkMonitor
-            SdkMonitor.HideApplicationOnStartup = HideApplicationOnStartup;
-            SdkMonitor.StartOnStartup = StartOnStartup;
-            SdkMonitor.AutoReconnect = AutoReconnect;
-            SdkMonitor.ConnectOnStartup = ConnectOnStartup;
-            SdkMonitor.KillSwitch = KillSwitch;
-
-            // if the user is setting the Hide the application when the close button is hit
-            // for the first time this session, we make sure they get a notification.
-            // from then on, it will not be shown until the turn this off and back on
-            if (CloseIsHide != SdkMonitor.CloseButtonHidesApplication)
-            {
-                SdkMonitor.ShowCloseNotification = true;
-            }
-
-            SdkMonitor.CloseButtonHidesApplication = CloseIsHide;
-
-            Properties.Settings.Default.Save();
-
-            return true;
-        }
 
         /// <summary>
         /// This method is used to initialize any data needed at design time to help the Visual Studio designer display data

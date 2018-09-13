@@ -2,8 +2,11 @@
 // Copyright (c) StackPath, LLC. All Rights Reserved.
 // </copyright>
 
+using DynamicData;
+using DynamicData.Binding;
+using Microsoft.Win32.TaskScheduler;
+using NLog;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -11,27 +14,16 @@ using System.Net;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
-
-using DynamicData;
-using DynamicData.Binding;
-using Microsoft.Win32.TaskScheduler;
-using NLog;
-
 using VpnSDK.Public;
 using VpnSDK.Public.Enums;
 using VpnSDK.Public.Exceptions;
 using VpnSDK.Public.Interfaces;
 using VpnSDK.Public.Messages;
-using VpnSDK.WLVpn.Common;
 using VpnSDK.WLVpn.Events;
-using VpnSDK.WLVpn.Extensions;
 using VpnSDK.WLVpn.Helpers;
-using VpnSDK.WLVpn.Interfaces;
-using Action = System.Action;
 using Task = System.Threading.Tasks.Task;
 
 namespace VpnSDK.WLVpn.ViewModels
@@ -451,6 +443,13 @@ namespace VpnSDK.WLVpn.ViewModels
 
             set
             {
+                // if the user is setting the Hide the application we make sure they get a notification.
+                // From then on, it will not be shown until the turn this off and back on
+                if (Properties.Settings.Default.CloseButtonHidesApplication != value)
+                {
+                    ShowCloseNotification = value;
+                }
+
                 Properties.Settings.Default.CloseButtonHidesApplication = value;
                 Properties.Settings.Default.Save();
             }
@@ -619,6 +618,12 @@ namespace VpnSDK.WLVpn.ViewModels
                 SelectedLocation = FindTheLocationByID(Properties.Settings.Default.LastSelectedServer);
                 IsLoggedIn = true;
                 IsBusy = false;
+
+                // If connect on startup, now is the time.
+                if (ConnectOnStartup)
+                {
+                    Connect();
+                }
             }
 
             if (message.Status == RefreshLocationListStatus.Error)
@@ -707,7 +712,7 @@ namespace VpnSDK.WLVpn.ViewModels
         /// Connects the VPN connection using the parameters set within the instance.
         /// </summary>
         /// <returns><c>true</c> always.</returns>
-        public bool Connect()
+        public async Task<bool> Connect()
         {
             _wasConnected = false;
 
@@ -722,13 +727,23 @@ namespace VpnSDK.WLVpn.ViewModels
                 _logger.Info("Connect to " + bestAvailable.SearchName);
             }
 
-            IsConnecting = true;
-            IsConnected = false;
-
             IConnectionConfiguration configuration = null;
 
             if (ConnectionProtocol == NetworkConnectionType.OpenVPN)
             {
+                if (!_manager.TapDriverInstalled)
+                {
+                    IsBusy = true;
+                    _eventAggregator.Publish<BusyTextEvent>(new BusyTextEvent { Text = Resources.Strings.INSTALLING_TAP_DRIVER });
+                    if (!await _manager.InstallTapDriver().FirstAsync())
+                    {
+                        ShowErrorDialog("Tap Driver Installation", "Couldn't install TAP driver.");
+                    }
+
+                    IsBusy = false;
+                    return false;
+                }
+
                 configuration = new OpenVpnConnectionConfigurationBuilder()
                     .SetScramble(OpenVpnScramble)
                     .SetNetworkProtocol(SelectedOpenVpnProtocol)
@@ -741,6 +756,9 @@ namespace VpnSDK.WLVpn.ViewModels
                                     .SetConnectionType(NetworkConnectionType.IKEv2)
                                     .Build();
             }
+
+            IsConnecting = true;
+            IsConnected = false;
 
             if (SelectedLocation != null)
             {
@@ -985,11 +1003,13 @@ namespace VpnSDK.WLVpn.ViewModels
 
         private void ShowErrorDialog(string title, string errorDescription)
         {
-            DialogAction da = new DialogAction();
-            da.OKAction = () => { };
-            da.OKString = Resources.Strings.DIALOG_ACTION_OK;
-            da.Title = title;
-            da.Description = errorDescription;
+            DialogAction da = new DialogAction
+            {
+                OKAction = () => { },
+                OKString = Resources.Strings.DIALOG_ACTION_OK,
+                Title = title,
+                Description = errorDescription
+            };
             _eventAggregator.Publish<ShowDialogEvent>(new ShowDialogEvent { DialogAction = da, Show = true });
         }
 

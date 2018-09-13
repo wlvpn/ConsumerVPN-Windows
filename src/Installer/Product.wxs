@@ -89,17 +89,6 @@
                 SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
         </Shortcut>
 
-        <Shortcut Id="StartupMenuShortcut"
-                  Directory="StartupFolder"
-                  Advertise="yes"
-                  Name="$(var.ProductName)"
-                  Description="$(var.ProductDisplayName)"
-                  Icon="StartAppIcon.exe"
-                  WorkingDirectory="ApplicationDirectory">
-          <Icon Id="StartAppIcon.exe"
-                SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
-        </Shortcut>
-
         <RemoveFolder Id="ApplicationProgramsFolder"
                       Directory="ApplicationProgramsFolder"
                       On="uninstall" />

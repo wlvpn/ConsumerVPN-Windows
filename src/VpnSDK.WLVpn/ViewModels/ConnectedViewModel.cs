@@ -26,12 +26,12 @@ namespace VpnSDK.WLVpn.ViewModels
         {
             if (IsInDesignMode())
             {
-                Init();
                 return;
             }
 
             SDKMonitor = sdkMonitor;
             _eventAggregator = eventAggregator;
+            Init();
         }
 
         /// <summary>

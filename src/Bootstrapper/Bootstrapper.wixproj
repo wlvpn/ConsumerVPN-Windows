@@ -22,6 +22,10 @@
     <Compile Include="Bundle.wxs" />
   </ItemGroup>
   <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
     <WixExtension Include="WixNetFxExtension">
       <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
       <Name>WixNetFxExtension</Name>
@@ -41,32 +45,16 @@
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="net472.wxs" />
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
-    if "$(UsesEVCert)" == "True" (
-           "$(WIX)bin\insignia" -ib "$(TargetPath)" -o "engine.exe"
-            "$(SolutionDir)Prerequisites\signtool" sign /td sha256 /fd sha256 /tr http://timestamp.digicert.com /v /a "$(TargetDir)engine.exe"
-            "C:\Program Files (x86)\WiX Toolset v3.11\bin\insignia.exe" -ab "$(TargetDir)engine.exe" "$(TargetPath)" -o "$(TargetPath)"
-            "$(SolutionDir)Prerequisites\signtool" sign /td sha256 /fd sha256 /tr http://timestamp.digicert.com /v /a "$(TargetPath)"
-    ) ELSE (
-        if "$(CertificatePassword)"  == "" (
-             "$(WIX)bin\insignia" -ib "$(TargetPath)" -o "engine.exe"
-             "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /t http://timestamp.digicert.com "$(TargetDir)engine.exe"
-             "C:\Program Files (x86)\WiX Toolset v3.11\bin\insignia.exe" -ab "$(TargetDir)engine.exe" "$(TargetPath)" -o "$(TargetPath)"
-            signtool sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /t http://timestamp.comodoca.com "$(TargetPath)"
-         ) else ( 
-             "$(WIX)bin\insignia" -ib "$(TargetPath)" -o "engine.exe"
-             "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p $(CertificatePassword) /t http://timestamp.digicert.com "$(TargetDir)engine.exe"
-            "$(WIX)bin\insignia" -ab "$(TargetDir)engine.exe" "$(TargetPath)" -o "$(TargetPath)"
-             "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p $(CertificatePassword) /t http://timestamp.digicert.com "$(TargetPath)"
-        )
-    )
-)</PostBuildEvent>
+    <PostBuildEvent />
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="LockIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,17,23" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-432,-275">
+                            <DrawingGroup Transform="1,0,0,1,432,275">
+                                <GeometryDrawing Brush="{DynamicResource AccentBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <PathGeometry Figures="M8.5,0C5.23136325,0,2.55,2.79055948,2.55,6.19230769L2.55,8.84615385 0.85,8.84615385 0,8.84615385 0,9.73076923 0,22.1153846 0,23 0.85,23 16.15,23 17,23 17,22.1153846 17,9.73076923 17,8.84615385 16.15,8.84615385 14.45,8.84615385 14.45,6.19230769C14.45,2.79055948,11.7686368,0,8.5,0z M8.5,1.76923077C10.8413632,1.76923077,12.75,3.75559437,12.75,6.19230769L12.75,8.84615385 4.25,8.84615385 4.25,6.19230769C4.25,3.75559437,6.15863675,1.76923077,8.5,1.76923077z M1.7,10.6153846L15.3,10.6153846 15.3,21.2307692 1.7,21.2307692 1.7,10.6153846z" FillRule="Nonzero" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

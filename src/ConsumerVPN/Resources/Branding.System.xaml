@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--  Application Name  -->
+    <system:String x:Key="ApplicationName">ConsumerVPN</system:String>
+
+    <!--
+        WLVPN API Key.
+        
+        To obtain API Key you need to be a registered WLVPN reseller.
+        If you have not done so already, please visit https://wlvpn.com/#contact to get started.
+    -->
+    <system:String x:Key="ApiKey">YOURAPIKEY</system:String>
+
+    <!--
+        WLVPN API Authentication token
+        
+        To obtain API Key you need to be a registered WLVPN reseller.
+        If you have not done so already, please visit https://wlvpn.com/#contact to get started.
+    -->
+    <system:String x:Key="AuthenticationToken">YOURAUTHTOKEN</system:String>
+
+    <!--
+        NetSparkle Updater Appcast URLs for stable and beta channels.
+    -->
+    <system:String x:Key="AppcastUrl">https://example.com/stable.xml</system:String>
+    <system:String x:Key="BetaAppcastUrl">https://example.com/beta.xml</system:String>
+
+</ResourceDictionary>

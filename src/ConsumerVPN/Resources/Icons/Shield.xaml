@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utilities="clr-namespace:WLVPN.Utils">
+
+    <Viewbox x:Key="ShieldVB" Stretch="Uniform">
+        <Canvas Name="Shield"
+                Width="82"
+                Height="105">
+            <Canvas.Resources>
+                <LinearGradientBrush x:Key="ShieldBrush" MappingMode="RelativeToBoundingBox" StartPoint="1,1" EndPoint="1,0">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Offset="0" Color="{DynamicResource AccentColor4}" />
+                            <GradientStop Offset="1" Color="{DynamicResource AccentColor}" />
+                        </GradientStopCollection>
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Canvas.Resources>
+
+            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  Name="Fill1"
+                  Fill="{StaticResource ShieldBrush}"
+                  StrokeThickness="1">
+                <Path.Data>
+                    <PathGeometry Figures="m 76.894488 49.678901 c -0.0044 21.178284 -12.61224 40.286993 -31.989474 48.481749 l -0.01303 0.0064 -5.161846 2.24616 -4.485042 -1.97206 C 16.226364 90.062011 3.9282658 71.138828 3.9066391 50.221232 V 24.042104 L 39.874037 4.1767576 76.894488 24.056354 Z M 40.774317 0.23012038 c -0.578375 -0.31098104 -1.271538 -0.30651051 -1.845755 0.0108969 L 1.0333397 21.168393 C 0.41254291 21.512065 0.02714426 22.169232 0.02714426 22.883958 V 50.221232 C 0.04988001 72.692895 13.261013 93.023176 33.693241 102.02542 l 5.259166 2.31043 c 0.491869 0.21626 1.051667 0.21737 1.544645 0.002 l 5.926544 -2.57893 C 67.234568 92.951089 80.772874 72.424384 80.775092 49.678901 V 22.883958 c 0 -0.722549 -0.394272 -1.386981 -1.026714 -1.726462 z" FillRule="EvenOdd" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Viewbox>
+
+</ResourceDictionary>

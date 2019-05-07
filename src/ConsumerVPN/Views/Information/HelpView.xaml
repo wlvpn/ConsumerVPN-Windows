@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="WLVPN.Views.Information.HelpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cc="clr-namespace:CSharpControls.Wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="650"
+             d:DesignWidth="800"
+             Background="{StaticResource TabContentBackgroundBrush}"
+             mc:Ignorable="d">
+
+    <Grid Margin="53,20,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.Resources>
+            <Style BasedOn="{StaticResource BaseLabel}" TargetType="Label">
+                <Setter Property="Margin" Value="1,0,0,0" />
+            </Style>
+
+            <Style BasedOn="{StaticResource ReadOnlyTextBox}" TargetType="TextBox">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontWeight" Value="Normal" />
+                <Setter Property="Foreground" Value="{StaticResource IdealForegroundBrush}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="2,0,0,0" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+
+            <Style BasedOn="{StaticResource {x:Type cc:ToggleSwitch}}" TargetType="{x:Type cc:ToggleSwitch}">
+                <Setter Property="SwitchPadding" Value="0,0,10,0" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Foreground" Value="{DynamicResource IdealForegroundBrush}" />
+                <Setter Property="HeaderContentPlacement" Value="Top" />
+                <Setter Property="HeaderPadding" Value="0,0,0,10" />
+                <Setter Property="Padding" Value="0,0,0,0" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+                <Setter Property="SwitchContentPlacement" Value="Left" />
+                <Setter Property="SwitchPadding" Value="0,0,10,0" />
+            </Style>
+        </Grid.Resources>
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Margin="0,10,0,0"
+               AutomationProperties.Name="{lex:Loc ListOfShortcuts}"
+               Content="{lex:Loc ListOfShortcuts}"
+               Style="{StaticResource HeaderLabel}"
+               TabIndex="3"
+               ToolTip="{lex:Loc ListOfShortcuts}" />
+
+        <Border Grid.Row="3"
+                Grid.Column="0"
+                Width="42"
+                Height="42"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Left"
+                BorderBrush="{DynamicResource AccentBrush1}"
+                BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,0.9">
+                    <GradientStop Offset="0.9" Color="{DynamicResource AccentColor}" />
+                    <GradientStop Color="{DynamicResource AccentColor4}" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Label Padding="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="{lex:Loc ConnectShortcut}"
+                   FontSize="12"
+                   FontWeight="Bold" />
+        </Border>
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="2,22,0,22"
+                 AutomationProperties.Name="{lex:Loc ConnectShortcutDescription}"
+                 TabIndex="5"
+                 Text="{lex:Loc ConnectShortcutDescription}"
+                 ToolTip="{lex:Loc ConnectShortcut}" />
+
+        <Border Grid.Row="4"
+                Grid.Column="0"
+                Width="42"
+                Height="42"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Left"
+                BorderBrush="{DynamicResource AccentBrush1}"
+                BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,0.9">
+                    <GradientStop Offset="0.9" Color="{DynamicResource AccentColor}" />
+                    <GradientStop Color="{DynamicResource AccentColor4}" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Label Padding="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="{lex:Loc DisconnectShortcut}"
+                   FontSize="12"
+                   FontWeight="Bold" />
+        </Border>
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Margin="2,22,0,22"
+                 AutomationProperties.Name="{lex:Loc DisconnectShortcutDescription}"
+                 TabIndex="6"
+                 Text="{lex:Loc DisconnectShortcutDescription}"
+                 ToolTip="{lex:Loc DisconnectShortcut}"
+                 Visibility="Visible" />
+        <Border Grid.Row="5"
+                Grid.Column="0"
+                Width="42"
+                Height="42"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Left"
+                BorderBrush="{DynamicResource AccentBrush1}"
+                BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,0.9">
+                    <GradientStop Offset="0.9" Color="{DynamicResource AccentColor}" />
+                    <GradientStop Color="{DynamicResource AccentColor4}" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Label Padding="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="{lex:Loc HomeShortcut}"
+                   FontSize="12"
+                   FontWeight="Bold" />
+        </Border>
+        <TextBox Grid.Row="5"
+                 Grid.Column="1"
+                 Margin="2,22,0,22"
+                 AutomationProperties.Name="{lex:Loc HomeShortcutDescription}"
+                 TabIndex="6"
+                 Text="{lex:Loc HomeShortcutDescription}"
+                 ToolTip="{lex:Loc HomeShortcut}"
+                 Visibility="Visible" />
+
+        <Border Grid.Row="6"
+                Grid.Column="0"
+                Width="42"
+                Height="42"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Left"
+                BorderBrush="{DynamicResource AccentBrush1}"
+                BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,0.9">
+                    <GradientStop Offset="0.9" Color="{DynamicResource AccentColor}" />
+                    <GradientStop Color="{DynamicResource AccentColor4}" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Label Padding="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="{lex:Loc SettingsShortcut}"
+                   FontSize="12"
+                   FontWeight="Bold" />
+        </Border>
+        <TextBox Grid.Row="6"
+                 Grid.Column="1"
+                 Margin="2,22,0,22"
+                 AutomationProperties.Name="{lex:Loc SettingsShortcutDescription}"
+                 TabIndex="10"
+                 Text="{lex:Loc SettingsShortcutDescription}"
+                 ToolTip="{lex:Loc SettingsShortcut}"
+                 Visibility="Visible" />
+        <Border Grid.Row="7"
+                Grid.Column="0"
+                Width="42"
+                Height="42"
+                Margin="0,10,10,10"
+                HorizontalAlignment="Left"
+                BorderBrush="{DynamicResource AccentBrush1}"
+                BorderThickness="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,0.9">
+                    <GradientStop Offset="0.9" Color="{DynamicResource AccentColor}" />
+                    <GradientStop Color="{DynamicResource AccentColor4}" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Label Padding="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Content="{lex:Loc InformationShortcut}"
+                   FontSize="12"
+                   FontWeight="Bold" />
+        </Border>
+        <TextBox Grid.Row="7"
+                 Grid.Column="1"
+                 Margin="2,22,0,22"
+                 AutomationProperties.Name="{lex:Loc InformationShortcutDescription}"
+                 TabIndex="11"
+                 Text="{lex:Loc InformationShortcutDescription}"
+                 ToolTip="{lex:Loc InformationShortcut}"
+                 Visibility="Visible" />
+        <StackPanel Grid.Row="8"
+                    Grid.ColumnSpan="2"
+                    Margin="0"
+                    Orientation="Horizontal">
+            <TextBlock Margin="0,5,0,0"
+                       FontSize="14"
+                       Foreground="{DynamicResource IdealForegroundBrush}"
+                       Text="{lex:Loc ShortcutsEnableHelp}" />
+            <TextBlock Grid.Row="9"
+                       Margin="5,5,0,0"
+                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action GoToSettings()]"
+                       Cursor="Hand"
+                       FontSize="14"
+                       Foreground="{DynamicResource AccentBrush}"
+                       Text="{lex:Loc OpenSettings}"
+                       TextDecorations="Underline" />
+        </StackPanel>
+    </Grid>
+</UserControl>

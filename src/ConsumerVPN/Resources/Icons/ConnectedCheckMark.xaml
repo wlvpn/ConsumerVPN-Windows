@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="ConnectedCheckMarkIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,82,105" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-384,-153">
+                            <DrawingGroup Transform="1,0,0,1,384.851562,153">
+                                <GeometryDrawing Brush="{DynamicResource AccentBrush}">
+                                    <GeometryDrawing.Geometry>
+                                        <PathGeometry Figures="M25.3486618,49.2743294C24.6570128,48.4579442 23.4405697,48.3613437 22.6316267,49.0586438 21.8218578,49.7548336 21.7260402,50.9820484 22.4176891,51.7976009L32.595557,63.8129811C33.2753664,64.615487,34.4659278,64.7248565,35.2756968,64.0592014L58.9806435,44.6161315C59.8066574,43.9404832 59.9313855,42.7163218 59.2592855,41.8835589 58.5880116,41.0519064 57.3737711,40.9250488 56.5488586,41.6026402L34.3045798,59.8465316 25.3486618,49.2743294z" FillRule="EvenOdd" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

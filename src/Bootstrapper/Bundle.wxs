@@ -1,18 +1,15 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
-
-  <?define AboutUrl = "https://wlvpn.com" ?>
-  <?define ProductDisplayName = "!(bind.packageName.Installer)" ?>
+  <?include ../../Installer_Settings.wxi ?>
+  
   <?define ProductFullVersion = "!(bind.packageVersion.Installer)" ?>
-  <?define ProductAuthor = "!(bind.packageManufacturer.Installer)" ?>
-
-
+  
   <Bundle
     Name="$(var.ProductDisplayName)"
     Manufacturer="$(var.ProductAuthor)"
     Version="$(var.ProductFullVersion)"
     AboutUrl="$(var.AboutUrl)"
-    UpgradeCode="a8a8b550-273c-4058-b56b-063a55634eb0"
-    IconSourceFile="..\..\Resources\Assets\brandIcon.ico">
+    UpgradeCode="$(var.BundleUpgradeCode)"
+    IconSourceFile="..\..\Resources\Assets\AppIcon.ico">
 
     <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense">
       <bal:WixStandardBootstrapperApplication
@@ -29,7 +26,8 @@
     </BootstrapperApplicationRef>-->
 
     <Chain>
-      <PackageGroupRef Id="NetFx461Web"/>
+      <PackageGroupRef Id="NetFx462Web"/>
+      <!--PackageGroupRef Id="NetFx472Redist"/-->
       <MsiPackage Id="Installer" SourceFile="..\Installer\bin\$(var.Configuration)\$(var.Installer.TargetFileName)"/>
     </Chain>
 	</Bundle>

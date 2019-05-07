@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="MagnifyingGlassIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,18,17" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-88,-66">
+                            <DrawingGroup Transform="1,0,0,1,76,57">
+                                <DrawingGroup Transform="1,0,0,1,13,9">
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="{DynamicResource IdealForegroundBrush}"
+                                                 EndLineCap="Flat"
+                                                 LineJoin="Miter"
+                                                 StartLineCap="Flat"
+                                                 Thickness="2" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <EllipseGeometry Center="10.5316,6.2414"
+                                                             RadiusX="4.5"
+                                                             RadiusY="4.8667" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                    <GeometryDrawing>
+                                        <GeometryDrawing.Pen>
+                                            <Pen Brush="{DynamicResource IdealForegroundBrush}"
+                                                 EndLineCap="Round"
+                                                 LineJoin="Miter"
+                                                 MiterLimit="1"
+                                                 StartLineCap="Round"
+                                                 Thickness="2" />
+                                        </GeometryDrawing.Pen>
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M6.03163017,9.97477477L0.0316301703,15.3081081" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

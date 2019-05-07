@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Resources/Icons/Logo.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Home.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Settings.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Info.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/ConnectedCheckMark.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Logout.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Globe.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Location.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Shield.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/License.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/About.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Diagnostics.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/GeneralSettings.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Signal.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/MagnifyingGlass.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Help.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Tos.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Lock.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/User.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Speedometer.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

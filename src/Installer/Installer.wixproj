@@ -38,15 +38,13 @@
     <Compile Include="FilesFragment.wxs" />
     <Compile Include="Product.wxs" />
     <Content Include="Filters.xslt" />
-    <Content Include="Settings.wxi" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VpnSDK.WLVpn\VpnSDK.WLVpn.csproj">
-      <Name>VpnSDK.WLVpn</Name>
-      <Project>{3d2766a7-0d71-4f97-888e-be30623e68f0}</Project>
+    <ProjectReference Include="..\ConsumerVPN\ConsumerVPN.csproj">
+      <Name>ConsumerVPN</Name>
+      <Project>{ca2345c9-62e7-4660-94f0-88cbbc593b9e}</Project>
       <Private>True</Private>
-      <DoNotHarvest>
-      </DoNotHarvest>
+      <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
@@ -68,22 +66,12 @@
   <Target Name="BeforeBuild">
     <PropertyGroup>
       <DefineConstants>
-        TARGET_FOLDER=$(SolutionDir)src\VpnSDK.WLVpn\bin\$(Configuration)
+        TARGET_FOLDER=$(SolutionDir)src\ConsumerVPN\bin\$(Configuration)
       </DefineConstants>
     </PropertyGroup>
-    <HeatDirectory RunAsSeparateProcess="true" OutputFile="$(ProjectDir)FilesFragment.wxs" Directory="$(SolutionDir)\src\VpnSDK.WLVpn\bin\$(Configuration)\" DirectoryRefId="ApplicationDirectory" ComponentGroupName="InstallComponents" ToolPath="$(WixToolPath)" PreprocessorVariable="var.TARGET_FOLDER" SuppressRootDirectory="true" AutogenerateGuids="true" Transforms="$(ProjectDir)Filters.xslt" />
+    <HeatDirectory RunAsSeparateProcess="true" OutputFile="$(ProjectDir)FilesFragment.wxs" Directory="$(SolutionDir)\src\ConsumerVPN\bin\$(Configuration)\" DirectoryRefId="ApplicationDirectory" ComponentGroupName="InstallComponents" ToolPath="$(WixToolPath)" PreprocessorVariable="var.TARGET_FOLDER" SuppressRootDirectory="true" AutogenerateGuids="true" Transforms="$(ProjectDir)Filters.xslt" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
-    if "$(UsesEVCert)" == "True" (
-            "$(SolutionDir)Prerequisites\signtool" sign /td sha256 /fd sha256 /tr http://timestamp.digicert.com /v /a $(TargetFileName)
-    ) ELSE (
-        if "$(CertificatePassword)" == "" (
-            "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /t http://timestamp.digicert.com /v $(TargetFileName)
-        ) ELSE (
-            "$(SolutionDir)Prerequisites\signtool" sign /f "$(SolutionDir)Resources\Signing\cert.pfx" /p $(CertificatePassword) /t http://timestamp.digicert.com /v $(TargetFileName)
-        )
-    )
-)</PostBuildEvent>
+    <PostBuildEvent />
   </PropertyGroup>
 </Project>

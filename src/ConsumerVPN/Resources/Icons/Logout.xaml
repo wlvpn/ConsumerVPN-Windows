@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="LogoutIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,24,27" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,0.555556,0">
+                            <GeometryDrawing Brush="{DynamicResource IdealForegroundBrush}">
+                                <GeometryDrawing.Geometry>
+                                    <PathGeometry Figures="M0,0L0,1.0084177 0,25.2104425 0,26.2188602 0.982905983,26.2188602 16.7094017,26.2188602 17.6923077,26.2188602 17.6923077,25.2104425 17.6923077,22.1851894 17.6923077,21.2082847 17.6923077,20.3574323 16.6172543,19.2859885 15.7879274,18.403623 15.7264957,18.403623 15.7264957,21.2082847 15.7264957,22.1851894 15.7264957,24.2020248 1.96581197,24.2020248 1.96581197,2.0168354 15.7264957,2.0168354 15.7264957,5.07360155 15.7264957,7.87826327 16.6172543,6.93287168 17.6923077,5.86142788 17.6923077,3.90761858 17.6923077,1.0084177 17.6923077,0 16.7094017,0 0.982905983,0 0,0z M18.0301816,8.35095907L16.6172543,9.80055951 18.8595085,12.1010124 6.88034188,12.1010124 6.88034188,14.1178478 18.8595085,14.1178478 16.6172543,16.4183007 18.0301816,17.8679011 21.9618056,13.8342303 22.6375534,13.1094301 21.9618056,12.3846299 18.0301816,8.35095907z" FillRule="Nonzero" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

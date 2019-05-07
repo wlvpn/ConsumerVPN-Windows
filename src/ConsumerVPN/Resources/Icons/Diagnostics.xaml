@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utilities="clr-namespace:WLVPN.Utils">
+    <Style x:Key="DiagnosticsIcon" TargetType="{x:Type utilities:ExtendedImage}">
+        <Setter Property="Source">
+            <Setter.Value>
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup>
+                                <DrawingGroup.ClipGeometry>
+                                    <RectangleGeometry Rect="0,0,22,13" />
+                                </DrawingGroup.ClipGeometry>
+                                <DrawingGroup>
+                                    <DrawingGroup Transform="1,0,0,1,-486,-51">
+                                        <DrawingGroup Transform="1,0,0,1,49,32">
+                                            <DrawingGroup Transform="1,0,0,1,437,14">
+                                                <DrawingGroup Transform="1,0,0,1,0,5">
+                                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                                        <GeometryDrawing.Geometry>
+                                                            <PathGeometry Figures="M0,12.6993709L4.77846226,12.6993709 4.77846226,7.94334272 0,7.94334272 0,12.6993709z M1.50596226,11.2004789L3.2725,11.2004789 3.2725,9.44223474 1.50596226,9.44223474 1.50596226,11.2004789z" FillRule="EvenOdd" />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                                        <GeometryDrawing.Geometry>
+                                                            <PathGeometry Figures="M0,5.00339906L4.77846226,5.00339906 4.77846226,0.247370892 0,0.247370892 0,5.00339906z M1.50596226,3.50450704L3.2725,3.50450704 3.2725,1.74626291 1.50596226,1.74626291 1.50596226,3.50450704z" FillRule="EvenOdd" />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                                        <GeometryDrawing.Geometry>
+                                                            <PathGeometry Figures="M6.2843,9.578L6.2843,9.578 21.9516,9.578 21.9516,7.9433 6.2843,7.9433z" FillRule="EvenOdd" />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                                        <GeometryDrawing.Geometry>
+                                                            <PathGeometry Figures="M6.2843,12.6994L6.2843,12.6994 18.7372,12.6994 18.7372,11.0972 6.2843,11.0972z" FillRule="EvenOdd" />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                                        <GeometryDrawing.Geometry>
+                                                            <PathGeometry Figures="M6.2843,1.7378L6.2843,1.7378 21.9516,1.7378 21.9516,0.1032 6.2843,0.1032z" FillRule="EvenOdd" />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                                        <GeometryDrawing.Geometry>
+                                                            <PathGeometry Figures="M6.2843,4.8592L6.2843,4.8592 18.7372,4.8592 18.7372,3.257 6.2843,3.257z" FillRule="EvenOdd" />
+                                                        </GeometryDrawing.Geometry>
+                                                    </GeometryDrawing>
+                                                </DrawingGroup>
+                                            </DrawingGroup>
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

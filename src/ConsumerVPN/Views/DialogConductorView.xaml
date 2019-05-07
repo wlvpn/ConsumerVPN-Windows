@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WLVPN.Views.DialogConductorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:WLVPN.Controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             IsTabStop="False"
+             FocusManager.IsFocusScope="True"
+             KeyboardNavigation.DirectionalNavigation="Contained"
+             FocusManager.FocusedElement="{Binding ElementName=ActiveItem}"
+               Focusable="False"
+             KeyboardNavigation.ControlTabNavigation="Once"
+             KeyboardNavigation.TabNavigation="Cycle"
+             mc:Ignorable="d">
+    <Grid Margin="0"
+          Background="Transparent"
+          IsHitTestVisible="True"
+          Visibility="{Binding ActiveItem, Mode=TwoWay, Converter={StaticResource NullToCollapsedConverter}}">
+        <controls:TransitioningContentControl x:Name="ActiveItem"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:syscorlib="clr-namespace:System;assembly=mscorlib"
+                    xmlns:system="clr-namespace:System;assembly=System">
+
+    <!--  Application Icon  -->
+    <ImageSource x:Key="ApplicationIcon">Icons/AppIcon.ico</ImageSource>
+
+    <!--  Company's website URL  -->
+    <system:Uri x:Key="WebsiteUrl">https://example.com</system:Uri>
+
+    <!--  Forgot password URL  -->
+    <system:Uri x:Key="ForgotPasswordUrl">https://example.com</system:Uri>
+
+    <!--  Sign Up URL  -->
+    <system:Uri x:Key="SignUpUrl">https://example.com</system:Uri>
+
+    <!--  System Tray Icons  -->
+    <ImageSource x:Key="DisconnectedIcon">Icons/AppIcon.ico</ImageSource>
+    <ImageSource x:Key="ConnectedIcon">Icons/AppIconConnected.ico</ImageSource>
+
+    <!--  Login Screen Logo  -->
+    <BitmapImage x:Key="LoginLogoImage" UriSource="pack://application:,,,/Resources/Images/LoginViewLogo.png" />
+
+    <!--  Login Screen Background  -->
+    <ImageSource x:Key="LoginBackgroundImage">Images/LoginBackground.png</ImageSource>
+
+    <!--  Connected Screen Background Image  -->
+    <BitmapImage x:Key="ConnectedBackgroundImage" UriSource="pack://application:,,,/Resources/Images/DottedMap.png" />
+
+</ResourceDictionary>

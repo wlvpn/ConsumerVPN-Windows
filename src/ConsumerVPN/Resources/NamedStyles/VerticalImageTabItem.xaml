@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="VerticalImageTabItem"
+           BasedOn="{StaticResource {x:Type TabItem}}"
+           TargetType="TabItem">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource BaseFocus}" />
+        <Setter Property="AutomationProperties.Name" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header.Title}" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Continue" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+
+                    <ContentPresenter x:Name="ContentSite"
+                                      Width="50"
+                                      Height="53"
+                                      MaxWidth="50"
+                                      MaxHeight="53"
+                                      Margin="0"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      ContentSource="Header" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

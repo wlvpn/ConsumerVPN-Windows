@@ -3,7 +3,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
 
-  <?include Settings.wxi ?>  
+  <?include ../../Installer_Settings.wxi ?> 
   <?define ProductVersion = "!(bind.FileVersion.ApplicationFile)" ?>
   <?define ProductFullVersion = "!(bind.FileVersion.ApplicationFile)" ?>
 
@@ -20,11 +20,11 @@
                   AllowSameVersionUpgrades="yes" />
     <MediaTemplate EmbedCab="yes" />
     
-    <PropertyRef Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" />
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED" />
 
     <Condition
-      Message="This application requires .NET Framework 4.6.1. Please install the .NET Framework then run this installer again.">
-      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED]]>
+      Message="This application requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
     <Condition Message="This application is only supported on Windows 7 or higher.">
@@ -32,7 +32,7 @@
     </Condition>
 
     <Icon Id="ApplicationIcon.ico"
-          SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)\Resources\Branding\Assets\brandIcon.ico " />
+          SourceFile="$(var.ConsumerVPN.ProjectDir)\Resources\Icons\AppIcon.ico " />
     <Property Id="ARPPRODUCTICON" Value="ApplicationIcon.ico" />
 
     <Feature Id="ProductFeature" Title="Installer" Level="1">
@@ -62,8 +62,8 @@
       <!--App's EXE-->
       <Component Id="ApplicationExecutable">
         <File Id="ApplicationFile"
-              Name="$(var.VpnSDK.WLVpn.TargetFileName)"
-              Source="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)"
+              Name="$(var.ConsumerVPN.TargetFileName)"
+              Source="$(var.ConsumerVPN.ProjectDir)bin\$(var.Configuration)\$(var.ConsumerVPN.TargetFileName)"
               DiskId="1"
               KeyPath="yes" />
 
@@ -75,7 +75,7 @@
                   Icon="AppIcon.exe"
                   WorkingDirectory="ApplicationDirectory">
           <Icon Id="AppIcon.exe"
-                SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
+                SourceFile="$(var.ConsumerVPN.ProjectDir)bin\$(var.Configuration)\$(var.ConsumerVPN.TargetFileName)" />
         </Shortcut>
 
         <Shortcut Id="DesktopShortcut"
@@ -86,7 +86,7 @@
                   Icon="DesktopAppIcon.exe"
                   WorkingDirectory="ApplicationDirectory">
           <Icon Id="DesktopAppIcon.exe"
-                SourceFile="$(var.VpnSDK.WLVpn.ProjectDir)bin\$(var.Configuration)\$(var.VpnSDK.WLVpn.TargetFileName)" />
+                SourceFile="$(var.ConsumerVPN.ProjectDir)bin\$(var.Configuration)\$(var.ConsumerVPN.TargetFileName)" />
         </Shortcut>
 
         <RemoveFolder Id="ApplicationProgramsFolder"

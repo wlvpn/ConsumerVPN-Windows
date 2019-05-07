@@ -1,0 +1,48 @@
+﻿<Application x:Class="WLVPN.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WLVPN"
+             xmlns:valueConverters="clr-namespace:WLVPN.ValueConverters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <valueConverters:ExtendendBooleanToVisibilityConverter x:Key="CollapsedIfTrueConverter"
+                                                                   IsHidden="False"
+                                                                   TriggerValue="True" />
+            <valueConverters:ExtendendBooleanToVisibilityConverter x:Key="CollapsedIfFalseConverter"
+                                                                   IsHidden="False"
+                                                                   TriggerValue="False" />
+            <valueConverters:ExtendendBooleanToVisibilityConverter x:Key="HideIfTrueConverter"
+                                                                   IsHidden="True"
+                                                                   TriggerValue="True" />
+            <valueConverters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
+            <valueConverters:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+            <valueConverters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <valueConverters:NullToCollapsedConverter x:Key="NullToCollapsedConverter" />
+            <valueConverters:BooleanAndConverter x:Key="BooleanAndConverter" />
+            <valueConverters:BooleanToResizeModeConverter x:Key="BooleanToResizeModeConverter" />
+            <valueConverters:UppercaseConverter x:Key="UppercaseConverter" />
+            <valueConverters:CountryCodeToFlagConverter x:Key="CountryCodeToFlagConverter" />
+            <valueConverters:NullToBoolValueConverter x:Key="NullToBoolValueConverter" />
+            <valueConverters:IPAddressConverter x:Key="IPAddressConverter" />
+            <valueConverters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:AppBootstrapper x:Key="Bootstrapper" />
+                </ResourceDictionary>
+
+
+
+                <ResourceDictionary Source="/Resources/Branding.System.xaml" />
+                <ResourceDictionary Source="/Resources/Branding.General.xaml" />
+                <ResourceDictionary Source="/Resources/Branding.Colors.xaml" />
+
+                <ResourceDictionary Source="/Resources/Dictionary.Flags.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionary.NamedStyles.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionary.BaseStyles.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionary.Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

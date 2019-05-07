@@ -1,0 +1,94 @@
+﻿<Window x:Class="WLVPN.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:controls="clr-namespace:WLVPN.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:extensions="clr-namespace:WLVPN.Extensions"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:WLVPN.Properties"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:utils="clr-namespace:WLVPN.Utils"
+        xmlns:valueConverters="clr-namespace:WLVPN.ValueConverters"
+        Title="{StaticResource ApplicationName}"
+        Width="800"
+        Height="600"
+        MinWidth="800"
+        MinHeight="600"
+        cal:Message.Attach="[Gesture Alt+S] = [ShortcutKey('S')];[Gesture F1] = [ShortcutKey('F1')];[Gesture Alt+I] = [ShortcutKey('I')];[Gesture Alt+C] = [ShortcutKey('C')];[Gesture Alt+D] = [ShortcutKey('D')];[Gesture Alt+H] = [ShortcutKey('H')]"
+        utils:WindowStyleExtension.SecondTitle="{Binding Version}"
+        AllowsTransparency="False"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Icon="{StaticResource ApplicationIcon}"
+        Loaded="Window_Loaded"
+        ResizeMode="{Binding IsLoggedIn, Converter={StaticResource BooleanToResizeModeConverter}}"
+        Style="{DynamicResource AppWindow}"
+        Unloaded="Window_Unloaded"
+        Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=HideOnStartup, Converter={StaticResource HideIfTrueConverter}}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <valueConverters:BooleanToStringConverter x:Key="ConnectionStatusToStringConverter"
+                                                  FalseValue="{lex:Loc Disconnected}"
+                                                  TrueValue="{lex:Loc Connected}" />
+        <valueConverters:BooleanToConnectionIconConverter x:Key="ConnectionStatusToIconConverter"
+                                                          FalseValue="{StaticResource DisconnectedIcon}"
+                                                          TrueValue="{StaticResource ConnectedIcon}" />
+    </Window.Resources>
+
+    <Grid Name="GridLayout" Background="{StaticResource WindowBackgroundBrush}">
+        <controls:TransitioningContentControl x:Name="ActiveItem"
+                                              HorizontalContentAlignment="Stretch"
+                                              VerticalContentAlignment="Stretch"
+                                              Focusable="False"
+                                              Transition="Right" />
+
+        <tb:TaskbarIcon x:Name="TaskbarIconControl"
+                        cal:Message.Attach="[Event TrayLeftMouseDown] = [Action ShowWindow]"
+                        IconSource="{Binding SDK.IsConnected, Converter={StaticResource ConnectionStatusToIconConverter}}"
+                        ToolTipText="{StaticResource ApplicationName}">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <TextBlock Style="{DynamicResource ContextMenuTextBlock}" Text="{Binding UserLocation.IPAddress, StringFormat={lex:Loc CurrentIP}, FallbackValue={extensions:LocProgress Updating}}" />
+                    <TextBlock Style="{DynamicResource ContextMenuTextBlock}">
+                        <Run Text="{lex:Loc Status}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding SDK.IsConnected, Converter={StaticResource ConnectionStatusToStringConverter}, Mode=OneWay}" />
+                    </TextBlock>
+                    <Separator />
+                    <MenuItem cal:Message.Attach="[Event Click] = [Action Connect()]" IsEnabled="{Binding IsConnectMenuEnabled}">
+                        <MenuItem.Header>
+                            <TextBlock IsEnabled="{Binding IsConnectMenuEnabled}"
+                                       Style="{DynamicResource ContextMenuTextBlock}"
+                                       Text="{lex:Loc Connect}" />
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem cal:Message.Attach="[Event Click] = [Action Disconnect()]" IsEnabled="{Binding SDK.IsConnected}">
+                        <MenuItem.Header>
+                            <TextBlock IsEnabled="{Binding SDK.IsConnected}"
+                                       Style="{DynamicResource ContextMenuTextBlock}"
+                                       Text="{lex:Loc Disconnect}" />
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem cal:Message.Attach="[Event Click] = [ShowWindow()]">
+                        <MenuItem.Header>
+                            <TextBlock Style="{DynamicResource ContextMenuTextBlock}" Text="{lex:Loc ShowWindow}" />
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem cal:Message.Attach="[Event Click] = [ExitApplication()]">
+                        <MenuItem.Header>
+                            <TextBlock Style="{DynamicResource ContextMenuTextBlock}" Text="{lex:Loc Exit}" />
+                        </MenuItem.Header>
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+        <controls:TransitioningContentControl x:Name="BusyManager" Panel.ZIndex="1000" />
+
+        <controls:TransitioningContentControl x:Name="Dialog" Panel.ZIndex="2000" />
+    </Grid>
+</Window>

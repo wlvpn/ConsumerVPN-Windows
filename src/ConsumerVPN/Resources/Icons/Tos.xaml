@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utilities="clr-namespace:WLVPN.Utils">
+    <Style x:Key="TosIcon" TargetType="{x:Type utilities:ExtendedImage}">
+        <Setter Property="Source">
+            <Setter.Value>
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup>
+                                <DrawingGroup.ClipGeometry>
+                                    <RectangleGeometry Rect="0,0,23,22" />
+                                </DrawingGroup.ClipGeometry>
+                                <DrawingGroup>
+                                    <DrawingGroup Transform="1,0,0,1,1.8E-05,0.098185">
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                            <GeometryDrawing.Geometry>
+                                                <PathGeometry Figures="M19.4353644,17.7188226C19.481815,18.3313221 19.2151906,19.0024494 19.9005576,19.3240681 20.1543172,19.4431898 20.6051726,19.4042027 20.8404698,19.2480581 21.4014121,18.8756678 21.121923,18.2646414 21.19263,17.7188226L19.4353644,17.7188226z M1.75654993,3.5478614L2.41451793,3.5478614C6.09373749,3.5478614 9.77285885,3.5478614 13.4519802,3.54776319 13.5827882,3.54776319 13.7225327,3.57427832 13.8417526,3.53656792 13.9421173,3.50484797 14.0855936,3.40487611 14.0946284,3.32248281 14.147364,2.83951465 14.1663174,2.35271654 14.2004925,1.80395159L13.715953,1.80395159C12.8656031,1.80395159 12.0152531,1.80395159 11.1650013,1.80395159 8.3524336,1.80395159 5.53986592,1.80257673 2.72739644,1.80513004 2.13070785,1.80562106 1.82195391,2.03532063 1.762835,2.55197282 1.72826712,2.85483451 1.75654993,3.1649633 1.75654993,3.5478614L1.75654993,3.5478614z M17.6469681,19.4585096L17.6469681,11.5971669C17.6469681,8.74963855 17.6469681,5.90220838 17.6467717,3.05477821 17.6467717,2.90757015 17.6550209,2.75918364 17.640683,2.61325223 17.5905007,2.10534021 17.2223332,1.78941737 16.7097074,1.80503183 16.2166243,1.82005707 15.9093434,2.12792717 15.9011924,2.66215791 15.8880331,3.51172226 15.8976571,4.36158122 15.8976571,5.25573027L0.0397444728,5.25573027C0.0397444728,4.22193488 -0.0650393861,3.1838185 0.065670376,2.17614542 0.237233077,0.854415381 1.38838246,0.0258667237 2.82393115,0.0221349649 5.70406331,0.0146714473 8.58429367,0.0197780646 11.4644258,0.0197780646 13.1173004,0.0197780646 14.7728264,0.0793880012 16.4221656,0.00386898766 18.2479777,-0.0798009728 19.4689502,1.20176356 19.4495058,3.05546564 19.4064924,7.14616071 19.4361501,11.2376414 19.4361501,15.3288275L19.4361501,15.9095088 22.9756251,15.9095088C22.9151313,17.1282227 23.1575974,18.3097172 22.7873677,19.4513407 22.4747838,20.4147237 21.7634909,20.9859774 20.7577819,21.1570491 20.4528579,21.2089009 20.1401758,21.2386568 19.8310291,21.2389514 15.1671162,21.2439598 10.5031051,21.2538784 5.83929046,21.2281489 5.24908335,21.2249082 4.61262206,21.1334801 4.08055182,20.8964152 3.0507828,20.4378017 2.6301743,19.5087902 2.62604973,18.4191166 2.6112209,14.4917351 2.62290719,10.5642554 2.61446164,6.63677564 2.61377421,6.29551612 2.73220845,6.18592025 3.07042364,6.17816212 4.40747353,6.14762062 4.4067861,6.13780021 4.4067861,7.46110152 4.4065897,11.0776668 4.40619688,14.6942321 4.40737533,18.3107974 4.40757174,19.1711642 4.69452435,19.4581168 5.54850789,19.4583132 9.44328562,19.4588043 13.3380634,19.4585096 17.2328411,19.4585096L17.6469681,19.4585096z" FillRule="EvenOdd" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                            <GeometryDrawing.Geometry>
+                                                <PathGeometry Figures="M7.1028,8.8242L7.1028,8.8242 14.0723,8.8242 14.0723,7.1309 7.1028,7.1309z" FillRule="EvenOdd" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                            <GeometryDrawing.Geometry>
+                                                <PathGeometry Figures="M7.1092,12.3619L7.1092,12.3619 14.0655,12.3619 14.0655,10.6641 7.1092,10.6641z" FillRule="EvenOdd" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                        <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                            <GeometryDrawing.Geometry>
+                                                <PathGeometry Figures="M7.06456436,15.9175812C7.06456436,15.3782439 7.0442361,14.9061764 7.0796878,14.4383317 7.08793696,14.3297178 7.28483633,14.1495132 7.39737832,14.1477455 8.63877735,14.126828 9.8807656,14.1382197 11.1226556,14.1318364 11.4050909,14.1304616 11.4737356,14.2658851 11.4870914,14.5240639 11.559566,15.9178758 11.5650655,15.9175812 10.1776368,15.9175812L7.06456436,15.9175812z" FillRule="EvenOdd" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

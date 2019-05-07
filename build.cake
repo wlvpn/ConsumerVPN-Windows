@@ -85,7 +85,7 @@ Task("Restore-NuGet-Packages")
 	.IsDependentOn("ValidateNuGetStore")
     .Does(() =>
 {
-    NuGetRestore("./VpnSDK.WLVpn.sln");
+    NuGetRestore("./ConsumerVPN.sln");
 });
 
 Task("Build")
@@ -97,7 +97,7 @@ Task("Build")
     
     // Move installer to root of solution directory.
     var outputFile = Directory("./src/Bootstrapper/bin/") + Directory(configuration) + File("Bootstrapper.exe");
-    var clientFile = Directory("./src/VpnSDK.WLVpn/bin/") + Directory(configuration) + File(ApplicationName.ToString() + ".exe");
+    var clientFile = Directory("./src/ConsumerVPN/bin/") + Directory(configuration) + File(ApplicationName.ToString() + ".exe");
     var versionNumber = GetFullVersionNumber(clientFile);
     var setupFilename = String.Format("Setup_{0}.exe", versionNumber);
     if(FileExists("./" + setupFilename))

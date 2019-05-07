@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="WLVPN.Views.MessageBoxView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:utilities="clr-namespace:WLVPN.Utils"
+             x:Name="MessageBox"
+             utilities:EnhancedFocusScope.IsEnhancedFocusScope="True"
+             AutomationProperties.Name="{lex:Loc MessageBoxScreenTitle}"
+             Focusable="True"
+             KeyboardNavigation.ControlTabNavigation="Once"
+             KeyboardNavigation.TabNavigation="Cycle"
+             Loaded="MessageBoxView_OnLoaded">
+    <DockPanel HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               Background="{DynamicResource DialogOverlayBrush}"
+               FocusManager.FocusedElement="{Binding ElementName=Message}">
+        <Border HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="{DynamicResource DialogBackgroundBrush}"
+                BorderBrush="{DynamicResource DialogBorderBrush}"
+                BorderThickness="1">
+            <DockPanel MinWidth="400"
+                       MinHeight="160"
+                       MaxWidth="500">
+                <TextBlock x:Name="DisplayName"
+                           Padding="10,8,0,2"
+                           AutomationProperties.Name="{Binding DisplayName}"
+                           DockPanel.Dock="Top"
+                           FontSize="20"
+                           FontWeight="Normal"
+                           Style="{DynamicResource BaseTextBlock}"
+                           Visibility="{Binding DisplayName, Mode=TwoWay, Converter={StaticResource NullToCollapsedConverter}}" />
+                <Grid Margin="10,0,10,10" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox x:Name="Message"
+                             Margin="0,0,10,4"
+                             AutomationProperties.Name="{Binding Message}"
+                             Background="Transparent"
+                             BorderBrush="Transparent"
+                             FocusManager.IsFocusScope="True"
+                             FocusVisualStyle="{x:Null}"
+                             Focusable="True"
+                             FontSize="13"
+                             Foreground="{DynamicResource IdealForegroundBrush}"
+                             IsReadOnly="True"
+                             Style="{StaticResource ReadOnlyTextBox}"
+                             TabIndex="1"
+                             TextWrapping="Wrap"
+                             ToolTip="{Binding Message}" />
+                    <StackPanel Grid.Row="1"
+                                Margin="0,8,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Orientation="Horizontal">
+                        <Button x:Name="Ok"
+                                MinWidth="60"
+                                Margin="5,0,0,0"
+                                AutomationProperties.Name="{lex:Loc Ok}"
+                                Content="{lex:Loc Ok}"
+                                IsDefault="True"
+                                TabIndex="2"
+                                Visibility="{Binding OkVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Button x:Name="Yes"
+                                MinWidth="60"
+                                Margin="5,0,0,0"
+                                AutomationProperties.Name="{lex:Loc Yes}"
+                                Content="{lex:Loc Yes}"
+                                IsDefault="True"
+                                TabIndex="3"
+                                Visibility="{Binding YesVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Button x:Name="No"
+                                MinWidth="60"
+                                Margin="5,0,0,0"
+                                IsCancel="True"
+                                AutomationProperties.Name="{lex:Loc No}"
+                                Content="{lex:Loc No}"
+                                TabIndex="4"
+                                Visibility="{Binding NoVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Button x:Name="Cancel"
+                                IsCancel="True"
+                                MinWidth="60"
+                                Margin="5,0,0,0"
+                                AutomationProperties.Name="{lex:Loc Cancel}"
+                                Content="{lex:Loc Cancel}"
+                                TabIndex="5"
+                                Visibility="{Binding CancelVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </DockPanel>
+</UserControl>

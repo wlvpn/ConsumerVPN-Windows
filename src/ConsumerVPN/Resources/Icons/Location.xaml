@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="LocationIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup.ClipGeometry>
+                        <RectangleGeometry Rect="0,0,28,36" />
+                    </DrawingGroup.ClipGeometry>
+                    <DrawingGroup>
+                        <DrawingGroup Transform="1,0,0,1,-262,-333">
+                            <DrawingGroup Transform="1,0,0,1,266,328">
+                                <DrawingGroup>
+                                    <DrawingGroup Transform="1,0,0,1,0,7">
+                                        <GeometryDrawing Brush="{DynamicResource AccentBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <PathGeometry Figures="M10.0716838,26.0249609C7.03827246,22.3495569 1.81368089,15.0983102 1.81368089,10.2734906 1.81368089,5.6287346 5.51822635,1.85000174 10.0716838,1.85000174 14.6251955,1.85000174 18.3296866,5.6287346 18.3296866,10.2733797 18.3296323,15.0984764 13.1058555,22.3483934 10.0716838,26.0249609z M10.0716838,0C4.51815171,0 0,4.60863241 0,10.2733797 0,17.3035083 9.01321892,27.6241478 9.3969647,28.0600681 9.75740873,28.4695605 10.3866649,28.4688957 10.7464571,28.0600681 11.1302029,27.6241478 20.1434218,17.3035083 20.1434218,10.2733797 20.1433675,4.60863241 15.6252158,0 10.0716838,0L10.0716838,0z" FillRule="EvenOdd" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                        <GeometryDrawing Brush="{DynamicResource AccentBrush}">
+                                            <GeometryDrawing.Geometry>
+                                                <PathGeometry Figures="M10.0716838,13.5922023C8.27766543,13.5922023 6.81818217,12.1033806 6.81818217,10.2733797 6.81818217,8.44343432 8.27771975,6.95461258 10.0716838,6.95461258 11.8657021,6.95461258 13.3252397,8.44343432 13.3252397,10.2733797 13.3252397,12.1033806 11.8657021,13.5922023 10.0716838,13.5922023z M10.0716838,5.10461084C7.27759078,5.10461084 5.00444697,7.42333214 5.00444697,10.2733797 5.00444697,13.1234828 7.2776451,15.4422041 10.0716838,15.4422041 12.8657767,15.4422041 15.1389749,13.1234828 15.1389749,10.2733797 15.1389749,7.42333214 12.8657767,5.10461084 10.0716838,5.10461084L10.0716838,5.10461084z" FillRule="EvenOdd" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

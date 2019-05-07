@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WLVPN.Views.InformationContainerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utilities="clr-namespace:WLVPN.Utils"
+             d:DesignHeight="550"
+             d:DesignWidth="750"
+             Background="{DynamicResource ContentBackgroundBrush}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource FlatHorizontalTabControl}" TargetType="TabItem">
+            <Setter Property="AutomationProperties.Name" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header.TabHeaderTitle}" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel LastChildFill="True">
+        <TabControl Name="Items"
+                    Padding="0"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Style="{StaticResource ContainerTabControlStyle}">
+
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <utilities:ExtendedImage x:Name="ItemIcon"
+                                                 Width="20"
+                                                 Height="20"
+                                                 HorizontalAlignment="Center"
+                                                 VerticalAlignment="Center"
+                                                 Brush="{DynamicResource AccentBrush}"
+                                                 Style="{Binding Icon}" />
+                        <TextBlock x:Name="TabHeader"
+                                   Margin="10,0,10,0"
+                                   VerticalAlignment="Center"
+                                   Style="{DynamicResource BaseTextBlock}"
+                                   Text="{Binding TabHeaderTitle}" />
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}, Path=IsSelected}" Value="False">
+                            <Setter TargetName="ItemIcon" Property="Brush" Value="{DynamicResource IdealForegroundDisabledBrush}" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+    </DockPanel>
+</UserControl>

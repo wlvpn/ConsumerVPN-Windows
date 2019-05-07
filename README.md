@@ -1,4 +1,4 @@
-# ConsumerVPN Example
+# ConsumerVPN-v2 Example
 
 
 
@@ -6,21 +6,20 @@
 
 ConsumerVPN is a VPN client application that implements the WLVPN SDK as a usable application for customers. This is based upon WPF and uses standard MVVM practices.
 
-For further details on how to work with modifying the ConsumerVPN code to be branded and work with your requirements, please view the [VpnSDK.NET documentation](https://wlvpn.github.io/VpnSDK.NET-Documentation/) for the "Branding - How To Make ConsumerVPN Yours" article under Guides & Articles.
-
+For further details on how to work with modifying the ConsumerVPN code to be branded and work with your requirements, please view the reseller documentation for the "Branding - How To Make ConsumerVPN Yours" article under Guides & Articles.
 
 
 ## Requirements
 
 
 
-* [Visual Studio 2017](https://visualstudio.microsoft.com/downloads/)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
 * [WiX Toolset 3.11.1](http://wixtoolset.org/releases/v3.11.1/stable)
 * [WiX Visual Studio Addon](https://marketplace.visualstudio.com/items?itemName=RobMensching.WiXToolset) (if you're a developer working in Visual Studio, build servers do not require this.)
-* .NET Framework 4.6.1
+* .NET Framework 4.6.2
 * Microsoft Authenticode Certificate (for code signing, EV certs are suggested if 'Unauthorized Publisher warnings on Windows 10 are an issue, the application will work signed or unsigned regardless.)
 
-(Note: If you are intending to run this on a build server, the [MS Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15#) can act as a lightweight replacement for a full Visual Studio 2017 install.)
+(Note: If you are intending to run this on a build server, the [MS Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15#) can act as a lightweight replacement for a full Visual Studio 2019 install.)
 
 
 ## Building
@@ -47,22 +46,22 @@ If you are using an EV based certificate, ensure the physical EV key (this may b
 In the file `src/VpnSDK.WLVPN/Properties/AssemblyInfo.cs` look for the lines containing:
 
 ```c#
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyFileVersion("2.1.0.0")]
 ```
 
 Update the version numbers in the parameter to your new version number before building. It is suggested you look at the other options in this file and ensure your application name is what you want it to be and that the company name is set correctly.
 
 #### Updating the installer settings
 
-In the folder `.\src\Installer\` there is a file called Settings.wxi. Open this in your text editor of choice and update all the values in there to fit your application and company name. For the `UpgradeCode` key, you will need to generate a GUID once to place in here. It is suggested when you set it once, you never change it again unless you're going through a major upgrade (e.g. 1.0 to 2.0). Generate a GUID in Powershell by running `[guid]::NewGuid().ToString().ToUpper()` and placing the result of that in between the quotation marks that have the temporary test `PUT_UPGRADECODE_HERE`.
+In the root folder, there is a file called `Installer_Settings.wxi`. Open this in your text editor of choice and update all the values in there to fit your application and company name. For the `UpgradeCode` and `BundleUpgradeCode` key, you will need to generate two GUIDs to place in here. It is suggested when you set it once, you never change it again unless you're going through a major upgrade (e.g. 1.0 to 2.0). Generate a GUID in Powershell by running `[guid]::NewGuid().ToString().ToUpper()` and placing the result of that in between the quotation marks that have the temporary test `PUT_UPGRADECODE_HERE`/`PUT_BUNDLE_UPGRADECODE_HERE`.
 
 #### Building the installer
 
 If you have chosen not to use the build.cmd method of building the application, the following explains the Powershell commands required to go through with it.
 
-In a Powershell prompt, enter the repository directory and run the following command.
-`.\build.ps1 -Configuration Release -CertPassword="CertPasswordHere" -MyGetApiKey="MyGetApiKeyHere" -ApplicationName="ConsumerVPN" UsesEVCert="False"`
+In a Command prompt, enter the repository directory and run the following command.
+`.\tools\Cake\Cake.exe build.cake -Configuration Release -CertPassword="CertPasswordHere" -MyGetApiKey="MyGetApiKeyHere" -ApplicationName="ConsumerVPN" UsesEVCert="False"`
 
 * Configuration refers to whether you want to build a Debug or Release version.
 

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utilities="clr-namespace:WLVPN.Utils">
+
+    <Style x:Key="HomeIcon" TargetType="{x:Type utilities:ExtendedImage}">
+        <Setter Property="Source">
+            <Setter.Value>
+
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup>
+                                <DrawingGroup.ClipGeometry>
+                                    <RectangleGeometry Rect="0,0,27,25" />
+                                </DrawingGroup.ClipGeometry>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M0.921134988,14.5287078L3.09325973,14.5287078 3.09325973,23.4425798C3.09325973,23.9678588,3.51222915,24.397773,4.02428768,24.397773L10.3854221,24.397773C10.8971384,24.397773,11.3161078,23.9678588,11.3161078,23.4425798L11.3161078,16.9163396 15.1949118,16.9163396 15.1949118,23.4425798C15.1949118,23.9678588,15.6136074,24.397773,16.125666,24.397773L22.1765947,24.397773C22.6886532,24.397773,23.1073488,23.9678588,23.1073488,23.4425798L23.1073488,14.5287078 25.7449875,14.5287078C26.1174124,14.5287078 26.458625,14.2900851 26.5981903,13.9398055 26.7380293,13.5897365 26.660204,13.1758336 26.3966113,12.9053289L14.2639523,0.282481705C13.9069967,-0.0834579713,13.3176605,-0.0993286999,12.9607733,0.266891874L0.285048921,12.8894582C0.00591850236,13.1598926 -0.0719067272,13.5738658 0.0679322737,13.9398055 0.207497483,14.3059558 0.548710121,14.5287078 0.921134988,14.5287078z M13.5813217,2.30417377L23.5107806,12.6186727 22.1765947,12.6186727C21.6646046,12.6186727,21.2456352,13.0485166,21.2456352,13.5738658L21.2456352,22.4876676 17.0566255,22.4876676 17.0566255,15.9614975C17.0566255,15.4361483,16.637656,15.0063044,16.125666,15.0063044L10.3854221,15.0063044C9.87336361,15.0063044,9.45439419,15.4361483,9.45439419,15.9614975L9.45439419,22.4876676 4.95504183,22.4876676 4.95504183,13.5738658C4.95504183,13.0485166,4.53607241,12.6186727,4.02428768,12.6186727L3.21735572,12.6186727 13.5813217,2.30417377z" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

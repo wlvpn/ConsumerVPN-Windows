@@ -44,6 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>WLVPN.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -908,13 +909,10 @@
       <Version>2.8.10</Version>
     </PackageReference>
     <PackageReference Include="VpnSDK">
-      <Version>2.0.15</Version>
+      <Version>2.0.18</Version>
     </PackageReference>
     <PackageReference Include="WPFLocalizeExtension">
       <Version>3.3.1</Version>
-    </PackageReference>
-    <PackageReference Include="Zorg.Reactive.Network">
-      <Version>1.0.4</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

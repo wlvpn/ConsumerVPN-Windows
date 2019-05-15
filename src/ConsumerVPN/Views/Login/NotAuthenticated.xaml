@@ -86,27 +86,27 @@
                         </Rectangle.OpacityMask>
                     </Rectangle>
                     <AdornerDecorator Grid.Column="1" TextBlock.Foreground="GreenYellow">
-                        <TextBox x:Name="Password"
-                                 Grid.Column="1"
-                                 Padding="10,0,0,0"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalContentAlignment="Center"
-                                 AutomationProperties.HelpText="{lex:Loc HelpTextPassword}"
-                                 AutomationProperties.Name="{lex:Loc Password}"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 CaretBrush="{DynamicResource AccentBrush}"
-                                 Focusable="True"
-                                 FontSize="17"
-                                 Foreground="{DynamicResource IdealForegroundBrush}"
-                                 TabIndex="1"
-                                 ToolTip="{lex:Loc HelpTextPassword}">
+                        <PasswordBox x:Name="Password"
+                                     Grid.Column="1"
+                                     Padding="10,0,0,0"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalContentAlignment="Center"
+                                     AutomationProperties.HelpText="{lex:Loc HelpTextPassword}"
+                                     AutomationProperties.Name="{lex:Loc Password}"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     CaretBrush="{DynamicResource AccentBrush}"
+                                     Focusable="True"
+                                     FontSize="17"
+                                     Foreground="{DynamicResource IdealForegroundBrush}"
+                                     TabIndex="1"
+                                     ToolTip="{lex:Loc HelpTextPassword}">
                             <utilities:WatermarkService.Watermark>
                                 <TextBlock FontSize="17"
                                            Foreground="{StaticResource IdealForegroundDisabledBrush}"
                                            Text="{lex:Loc Password}" />
                             </utilities:WatermarkService.Watermark>
-                        </TextBox>
+                        </PasswordBox>
                     </AdornerDecorator>
                 </Grid>
             </Border>

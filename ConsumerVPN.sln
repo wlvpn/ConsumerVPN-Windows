@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerVPN", "src\ConsumerVPN\ConsumerVPN.csproj", "{CA2345C9-62E7-4660-94F0-88CBBC593B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "src\App\App.csproj", "{CA2345C9-62E7-4660-94F0-88CBBC593B9E}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "src\Installer\Installer.wixproj", "{170D4D40-19A3-4A6E-883B-E6926248EC2F}"
 EndProject

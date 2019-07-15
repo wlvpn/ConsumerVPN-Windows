@@ -19,14 +19,14 @@ For further details on how to work with modifying the ConsumerVPN code to be bra
 * .NET Framework 4.6.2
 * Microsoft Authenticode Certificate (for code signing, EV certs are suggested if 'Unauthorized Publisher warnings on Windows 10 are an issue, the application will work signed or unsigned regardless.)
 
-(Note: If you are intending to run this on a build server, the [MS Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15#) can act as a lightweight replacement for a full Visual Studio 2019 install.)
+(Note: If you are intending to run this on a build server, the [MS Build Tools](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16#) can act as a lightweight replacement for a full Visual Studio 2019 install.)
 
 
 ## Building
 
 ### Prerequisites
 
-Before building the application, you will need to place a .pfx copy of your codesigning certificate in the following location: `<Repository Root>/Resources/Signing/cert.pfx`. You will also require a MyGet API key that is provided by the `stackpathvpnsdk`  feed details page.
+Before building the application, you will need to place a .pfx copy of your codesigning certificate in the following location: `<Repository Root>/Resources/Signing/cert.pfx`. You will also require a MyGet API key that is provided by the `wlvpn`  feed details page.
 
 If you wish to use `build.cmd` follow the below. This is useful if you wish to have your credentials baked in to the repository itself.
 
@@ -36,14 +36,14 @@ Edit the file `<Repository Root>/build.cmd` to set the codesign certificate key 
 .\tools\Cake\Cake.exe build.cake -Configuration="Release" -CertPassword="CODE SIGNING CERTIFICATE PASSWORD HERE" -MyGetApiKey="MYGET API KEY HERE" -ApplicationName="MyApplication.exe" -UsesEVCert=false -verbosity=diagnostic
 ```
 CAVEAT
-If you are using an EV based certificate, ensure the physical EV key (this may be a smart card or USB key) provided by your certificate authority is plugged in. There may be software that is required from your provider to be installed so please read through the instructions provided by your certificate authority on how to use the key. During building of the application, your EV certificate may require you to use a PIN number that shows on the physical device or is printed on the device itself. For more information on this, please check with your certificate provider.
+If you are using an EV based certificate, ensure the physical EV key (this may be a smart card or USB key) provided by your certificate authority is plugged in. There may be software that is required from your provider to be installed so please read through the instructions provided by your certificate authority on how to use the key. During building of the application, your EV certificate may require you to use a PIN number that shows on the physical device or is printed on the device itself. For more information on this, please check with your certificate provider. Also ensure the `UsesEVCert` option in `build.cmd` is set to `true`, that will execute EV Code signing process.
 
 
 ### Building the application
 
 #### Updating the version number
 
-In the file `src/VpnSDK.WLVPN/Properties/AssemblyInfo.cs` look for the lines containing:
+In the file `src/App/Properties/AssemblyInfo.cs` look for the lines containing:
 
 ```c#
 [assembly: AssemblyVersion("2.1.0.0")]
@@ -67,11 +67,11 @@ In a Command prompt, enter the repository directory and run the following comman
 
 * CertPassword refers to the password that the codesigning certificate uses, if you do not have a password protected certificate, you can keep this blank. 
 
-* MyGetApiKey refers to the API key used to access the MyGet repository for WLVPN. Sign in to www.myget.org with your credentials and go to the  [Feed Details section](https://www.myget.org/feed/Details/stackpathvpnsdk) for the `stackpathvpnsdk` feed. Here you'll find your personal API key to use by scrolling down, copy that and paste it within the brackets for `MyGetApiKey`.
+* MyGetApiKey refers to the API key used to access the MyGet repository for WLVPN. Sign in to www.myget.org with your credentials and go to the  [Feed Details section](https://www.myget.org/feed/Details/wlvpn) for the `wlvpn` feed. Here you'll find your personal API key to use by scrolling down, copy that and paste it within the brackets for `MyGetApiKey`.
 
 * UsesEVCert refers to whether you are codesigning using an EV cert, set this to either `True` or `False`.
 
-At the end of this process, you'll have a Setup_1.1.0.0.exe file in the root of the repository.
+At the end of this process, you'll have a Setup_2.1.0.0.exe file in the root of the repository.
 
 
 ## Distributing the application

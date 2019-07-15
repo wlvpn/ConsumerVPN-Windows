@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Подключиться</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Отключиться</value>
+  </data>
+  <data name="TabSettings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="LoggingIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Connecting" xml:space="preserve">
+    <value>Подключение</value>
+  </data>
+  <data name="Disconnecting" xml:space="preserve">
+    <value>Рассоединение</value>
+  </data>
+  <data name="TabInformation" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Обновление</value>
+  </data>
+  <data name="Installing" xml:space="preserve">
+    <value>Установка</value>
+  </data>
+  <data name="VisibleLocation" xml:space="preserve">
+    <value>Ваше местонахождение</value>
+  </data>
+  <data name="BestAvailable" xml:space="preserve">
+    <value>Лучший из доступных</value>
+  </data>
+  <data name="KillSwitch" xml:space="preserve">
+    <value>Kill Switch</value>
+  </data>
+  <data name="LoggingOut" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="TabSettingsGeneral" xml:space="preserve">
+    <value>Главные</value>
+  </data>
+  <data name="TabSettingsConnection" xml:space="preserve">
+    <value>Соединение</value>
+  </data>
+  <data name="TabSettingsDiagnostics" xml:space="preserve">
+    <value>Диагностика</value>
+  </data>
+  <data name="SystemStartup" xml:space="preserve">
+    <value>При старте Windows</value>
+  </data>
+  <data name="SystemStartupOption2" xml:space="preserve">
+    <value>Спрятать программу при старте</value>
+  </data>
+  <data name="AppStartup" xml:space="preserve">
+    <value>При старте программы</value>
+  </data>
+  <data name="AppStartupOption1" xml:space="preserve">
+    <value>Не подключаться автоматически</value>
+  </data>
+  <data name="AppStartupOption2" xml:space="preserve">
+    <value>Подключиться к последнему использованному серверу</value>
+  </data>
+  <data name="AppStartupOption3" xml:space="preserve">
+    <value>Подключиться к наиболее быстрому серверу</value>
+  </data>
+  <data name="Closing" xml:space="preserve">
+    <value>Закрытие</value>
+  </data>
+  <data name="ClosingOption1" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="ClosingOption2" xml:space="preserve">
+    <value>Спрятать</value>
+  </data>
+  <data name="ClosingOption3" xml:space="preserve">
+    <value>Спрашивать</value>
+  </data>
+  <data name="AutoReconnect" xml:space="preserve">
+    <value>Автоматическое переподключение</value>
+  </data>
+  <data name="BlockLANTraffic" xml:space="preserve">
+    <value>Блокировка LAN траффика</value>
+  </data>
+  <data name="InstallRepair" xml:space="preserve">
+    <value>Установить/Отремонтировать</value>
+  </data>
+  <data name="CopyDiagnosticsData" xml:space="preserve">
+    <value>Скопировать</value>
+  </data>
+  <data name="TapDriverSuccess" xml:space="preserve">
+    <value>TAP драйвер был успешно установлен.</value>
+  </data>
+  <data name="HelpTextUserName" xml:space="preserve">
+    <value>Введите имя пользователя</value>
+  </data>
+  <data name="TabDriverRebootRequired" xml:space="preserve">
+    <value>Требуется перезагрузка компьютера для корректной работы TAP драйвера.</value>
+  </data>
+  <data name="HelpTextPassword" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="TapDriverFail" xml:space="preserve">
+    <value>Ошибка при установке TAP драйвера.</value>
+  </data>
+  <data name="HelpTextSignIn" xml:space="preserve">
+    <value>Это кнопка входа</value>
+  </data>
+  <data name="OpenVpnNotSupportedTapInstall" xml:space="preserve">
+    <value>Директория с OpenVPN драйверами отсутствует.</value>
+  </data>
+  <data name="HelpTextForgotPassword" xml:space="preserve">
+    <value>Эта кнопка откроет web-страницу для сброса пароля.</value>
+  </data>
+  <data name="TapInstaller" xml:space="preserve">
+    <value>Установщик TAP драйвера</value>
+  </data>
+  <data name="HelpTextSignUp" xml:space="preserve">
+    <value>Эта кнопка откроет web-страницу регистрации нового аккаутнта.</value>
+  </data>
+  <data name="NotAuthorizedUserControlTitle" xml:space="preserve">
+    <value>Раздел авторизации пользователя</value>
+  </data>
+  <data name="LoginUserControlTitle" xml:space="preserve">
+    <value>Авторизация пользователя</value>
+  </data>
+  <data name="MessageBoxScreenTitle" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="CloseApplication" xml:space="preserve">
+    <value>Закрыть приложение</value>
+  </data>
+  <data name="MinimizeApplication" xml:space="preserve">
+    <value>Минимизировать окно</value>
+  </data>
+  <data name="MaximizeApplication" xml:space="preserve">
+    <value>Окно на весь экран</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Показать окно</value>
+  </data>
+  <data name="CurrentIP" xml:space="preserve">
+    <value>Текущий IP: {0}</value>
+  </data>
+  <data name="Disconnected" xml:space="preserve">
+    <value>Отключен</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>Подключен</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус:</value>
+  </data>
+  <data name="CloseDialogTitle" xml:space="preserve">
+    <value>Выбрать действие</value>
+  </data>
+  <data name="CloseDialogDescription" xml:space="preserve">
+    <value>Какое действие выполнить при закрытии программы</value>
+  </data>
+  <data name="HideToTray" xml:space="preserve">
+    <value>Спрятать</value>
+  </data>
+  <data name="ChooseLanguage" xml:space="preserve">
+    <value>Выбрать язык:</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="LanguageChangeInfo" xml:space="preserve">
+    <value>Языковые Настройки вступят в силу после перезагрузки программы, вы хотите сохранить изменения?</value>
+  </data>
+  <data name="KillSwitchToolTip" xml:space="preserve">
+    <value>Блокировать Интернет при разрыве VPN соединения.</value>
+  </data>
+  <data name="BlockLanToolTip" xml:space="preserve">
+    <value>Блокировать LAN доступ при включенном Kill Switch.</value>
+  </data>
+  <data name="IPAddress" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Внимание</value>
+  </data>
+  <data name="Reconnecting" xml:space="preserve">
+    <value>Переподключение</value>
+  </data>
+  <data name="ProgressSuffix" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="MainScreenTitle" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="HelpTextProtocol" xml:space="preserve">
+    <value>Ваш VPN протокол</value>
+  </data>
+  <data name="HelpTextKillSwitch" xml:space="preserve">
+    <value>Статус опции Kill Switch. Для управления опцией см. настройки.</value>
+  </data>
+  <data name="VisibleIPAddress" xml:space="preserve">
+    <value>Внешний IP-адрес</value>
+  </data>
+  <data name="HelpTextConnectButton" xml:space="preserve">
+    <value>Нажав на кнопку, в зависимости от текущего состояния VPN соединения, Вы или подключитесь к VPN или разорвете соединение</value>
+  </data>
+  <data name="MainTabControlName" xml:space="preserve">
+    <value>Главный раздел программы</value>
+  </data>
+  <data name="HelpTextMainTabControlName" xml:space="preserve">
+    <value>Это основная часть программы. Здесь находятся все настройки и элементы управления программой.</value>
+  </data>
+  <data name="UpdaterWindowTitle" xml:space="preserve">
+    <value>Сервис обновлений</value>
+  </data>
+  <data name="UpdaterWindowDescription" xml:space="preserve">
+    <value>Новая версия {0} доступна! 
+Номер новой версии {1} (Ваша текущая {2})</value>
+  </data>
+  <data name="UpdaterReleaseNotes" xml:space="preserve">
+    <value>Что нового?</value>
+  </data>
+  <data name="UpdaterInstall" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="UpdaterNoUpdatesAvailable" xml:space="preserve">
+    <value>Обновления отсутствуют.</value>
+  </data>
+  <data name="DisconnectedBalloon" xml:space="preserve">
+    <value>Вы были отсоединены от {0}.</value>
+  </data>
+  <data name="ConnectedBalloon" xml:space="preserve">
+    <value>Вы подключились к {0}.</value>
+  </data>
+  <data name="BalloonNotificationTitle" xml:space="preserve">
+    <value>Смена статуса VPN</value>
+  </data>
+  <data name="LocationChangeConfirmation" xml:space="preserve">
+    <value>Вы хотите отсоединиться от {0}, {1} и подключиться к {2}, {3}?</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="EnableSpeech" xml:space="preserve">
+    <value>Включить голосовое сопровождение</value>
+  </data>
+  <data name="ReconnectTries" xml:space="preserve">
+    <value>Количество повторений:</value>
+  </data>
+  <data name="ViewDiagnosticsButton" xml:space="preserve">
+    <value>Файлы диагностики</value>
+  </data>
+  <data name="ReconnectAfter" xml:space="preserve">
+    <value>Переподключение через {0} секунд</value>
+  </data>
+  <data name="ScrambleDescription" xml:space="preserve">
+    <value>Дополнительное шифрование трафика OpenVPN повышает шансы обхода блокировок в разных странах.</value>
+  </data>
+  <data name="AutoReconnectDescription" xml:space="preserve">
+    <value>В случае если VPN соединение разорвалось, приложение попытается восстановить его.</value>
+  </data>
+  <data name="ConnectShortcutDescription" xml:space="preserve">
+    <value>Подключиться к выбранному серверу</value>
+  </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Горячие клавиши</value>
+  </data>
+  <data name="ListOfShortcuts" xml:space="preserve">
+    <value>Сочетание клавиш</value>
+  </data>
+  <data name="ShortcutDescription" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DisconnectShortcutDescription" xml:space="preserve">
+    <value>Отключиться от VPN</value>
+  </data>
+  <data name="DisableShortcuts" xml:space="preserve">
+    <value>Выключить горячие клавиши</value>
+  </data>
+  <data name="EnableShortcuts" xml:space="preserve">
+    <value>Включить горячие клавиши</value>
+  </data>
+  <data name="InformationShortcutDescription" xml:space="preserve">
+    <value>Раздел информации</value>
+  </data>
+  <data name="HomeShortcutDescription" xml:space="preserve">
+    <value>Открыть раздел Быстрое Соединение</value>
+  </data>
+  <data name="SettingsShortcutDescription" xml:space="preserve">
+    <value>Открыть раздел Настройки</value>
+  </data>
+  <data name="EnableShortCut" xml:space="preserve">
+    <value>Включить горячие клавиши</value>
+  </data>
+  <data name="TapNotInstalledTitle" xml:space="preserve">
+    <value>TAP адаптер не установлен</value>
+  </data>
+  <data name="TapNotInstalledText" xml:space="preserve">
+    <value>OpenVPN TAP адаптер не установлен на данном компьютере.
+Для работы протокола OpenVPN, адаптер должен быть установлен.
+
+Вы ходите установить его?</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Выключено</value>
+  </data>
+  <data name="Scramble" xml:space="preserve">
+    <value>Шифрование трафика</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="TabInformationHelp" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
+  <data name="TabInformationLicenses" xml:space="preserve">
+    <value>Лицензии</value>
+  </data>
+  <data name="VpnProtocol" xml:space="preserve">
+    <value>VPN Протокол</value>
+  </data>
+  <data name="TapAdapter" xml:space="preserve">
+    <value>OpenVPN TAP адаптер</value>
+  </data>
+  <data name="Connectivity" xml:space="preserve">
+    <value>Подключение</value>
+  </data>
+  <data name="InstallRepairTAP" xml:space="preserve">
+    <value>Для работы OpenVPN, TAP адаптер должен быть установлен.</value>
+  </data>
+  <data name="Ikev2Description" xml:space="preserve">
+    <value>Высокая стабильность и безобасность, особенно при смене сетей. Самый быстрый из всех предложенных протоколов.</value>
+  </data>
+  <data name="OpenVPNDescription" xml:space="preserve">
+    <value>Наилучшая безопасность. Этот протокол может быть медленнее других протоколов из-за метода шифрования. Также, данный протокол является хорошим выбором, когда другие протоколы не работают ввиду различного рода блокировок.</value>
+  </data>
+  <data name="HelpTextDisconnectButton" xml:space="preserve">
+    <value>Отключиться от VPN</value>
+  </data>
+  <data name="HelpTextSearch" xml:space="preserve">
+    <value>Это поле поиска места подключения</value>
+  </data>
+  <data name="ClientPortalHelpText" xml:space="preserve">
+    <value>Открыть сайт компании</value>
+  </data>
+  <data name="ClientPortal" xml:space="preserve">
+    <value>Сайт компании</value>
+  </data>
+  <data name="ShortcutsReference" xml:space="preserve">
+    <value>Список горячих клавиш доступен на странице Помощи.</value>
+  </data>
+  <data name="OpenHelp" xml:space="preserve">
+    <value>Открыть Помощь</value>
+  </data>
+  <data name="OpenSettings" xml:space="preserve">
+    <value>Открыть Настройки</value>
+  </data>
+  <data name="ShortcutsEnableHelp" xml:space="preserve">
+    <value>Чтобы включить или отключить горячие клавиши, откройте страницу настроек.</value>
+  </data>
+  <data name="SystemStartupOption1" xml:space="preserve">
+    <value>Запускать программу после входа систему</value>
+  </data>
+</root>

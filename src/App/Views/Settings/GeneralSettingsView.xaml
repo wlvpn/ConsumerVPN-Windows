@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="WLVPN.Views.GeneralSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cc="clr-namespace:CSharpControls.Wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:enums="clr-namespace:WLVPN.Enums"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:properties="clr-namespace:WLVPN.Properties"
+             d:DesignHeight="850"
+             d:DesignWidth="750"
+             Background="{StaticResource TabContentBackgroundBrush}"
+             Foreground="{DynamicResource IdealForegroundBrush}"
+             UseLayoutRounding="True"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="0,14,0,0" />
+        </Style>
+
+        <Style BasedOn="{StaticResource {x:Type cc:ToggleSwitch}}" TargetType="{x:Type cc:ToggleSwitch}">
+            <Setter Property="SwitchPadding" Value="0,0,10,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="{DynamicResource IdealForegroundBrush}" />
+            <Setter Property="HeaderContentPlacement" Value="Top" />
+            <Setter Property="HeaderPadding" Value="0,0,0,10" />
+            <Setter Property="Padding" Value="0,0,0,0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+            <Setter Property="SwitchContentPlacement" Value="Left" />
+            <Setter Property="SwitchPadding" Value="0,0,10,0" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <ScrollViewer Padding="50,20,0,0"
+                  HorizontalAlignment="Stretch"
+                  Background="Transparent"
+                  CanContentScroll="False"
+                  HorizontalScrollBarVisibility="Hidden"
+                  PanningMode="Both">
+
+        <StackPanel Height="Auto"
+                    Margin="3,0,0,20"
+                    Orientation="Vertical">
+            <Label Content="{lex:LocText Key=Language}" Style="{StaticResource HeaderLabel}" />
+
+            <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+                <Label Margin="0,0,0,5"
+                       Content="{lex:Loc ChooseLanguage}"
+                       Style="{StaticResource BaseLabel}" />
+                <ComboBox Height="30"
+                          MinWidth="250"
+                          Margin="0,0,0,4"
+                          HorizontalAlignment="Left"
+                          AutomationProperties.Name="{lex:Loc ChooseLanguage}"
+                          DisplayMemberPath="NativeName"
+                          ItemsSource="{Binding Source={x:Static lex:LocalizeDictionary.Instance}, Path=MergedAvailableCultures}"
+                          SelectedValue="{Binding SelectedCulture}"
+                          SelectedValuePath="." />
+            </StackPanel>
+
+            <cc:ToggleSwitch x:Name="EnableSpeech"
+                             CheckedText="{lex:Loc On}"
+                             Content="{lex:Loc EnableSpeech}"
+                             IsChecked="{Binding EnableSpeech}"
+                             TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                             UncheckedText="{lex:Loc Off}"
+                             Visibility="{Binding Voice.SapiAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+
+            <Label Content="{lex:Loc SystemStartup}" Style="{StaticResource HeaderLabel}" />
+            <cc:ToggleSwitch CheckedText="{lex:Loc On}"
+                             Content="{lex:Loc SystemStartupOption1}"
+                             IsChecked="{Binding StartAppOnWindowsStartup}"
+                             TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                             UncheckedText="{lex:Loc Off}" />
+            <cc:ToggleSwitch Margin="0,10,0,0"
+                             CheckedText="{lex:Loc On}"
+                             Content="{lex:Loc SystemStartupOption2}"
+                             IsChecked="{Binding HideOnStartup}"
+                             TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                             UncheckedText="{lex:Loc Off}" />
+
+
+            <Label Content="{lex:Loc AppStartup}" Style="{StaticResource HeaderLabel}" />
+
+            <RadioButton Margin="0,8,0,0"
+                         Content="{lex:Loc AppStartupOption1}"
+                         GroupName="StartupOptions"
+                         IsChecked="{Binding StartupMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static enums:StartupType.NOP}}" />
+            <RadioButton Content="{lex:Loc AppStartupOption2}"
+                         GroupName="StartupOptions"
+                         IsChecked="{Binding StartupMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static enums:StartupType.LastLocation}}" />
+            <RadioButton Margin="0,14,0,0"
+                         Content="{lex:Loc AppStartupOption3}"
+                         GroupName="StartupOptions"
+                         IsChecked="{Binding StartupMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static enums:StartupType.BestAvailable}}" />
+
+            <Label Content="{lex:Loc Closing}" Style="{StaticResource HeaderLabel}" />
+            <RadioButton Margin="0,8,0,0"
+                         Content="{lex:Loc ClosingOption1}"
+                         GroupName="closing"
+                         IsChecked="{Binding CloseMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static enums:ApplicationCloseType.Exit}}" />
+            <RadioButton Content="{lex:Loc ClosingOption2}"
+                         GroupName="closing"
+                         IsChecked="{Binding CloseMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static enums:ApplicationCloseType.Hide}}" />
+            <RadioButton Content="{lex:Loc ClosingOption3}"
+                         GroupName="closing"
+                         IsChecked="{Binding CloseMethod, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static enums:ApplicationCloseType.Dialog}}" />
+
+            <Label AutomationProperties.Name="{lex:Loc ShortcutsTitle}"
+                   Content="{lex:Loc ShortcutsTitle}"
+                   Style="{StaticResource HeaderLabel}"
+                   TabIndex="1"
+                   ToolTip="{lex:Loc ShortcutsTitle}" />
+
+            <cc:ToggleSwitch x:Name="EnableShortcuts"
+                             HorizontalAlignment="Left"
+                             CheckedText="{lex:Loc On}"
+                             Content="{lex:Loc EnableShortcuts}"
+                             FontSize="14"
+                             HeaderContentPlacement="Top"
+                             HeaderPadding="0,0,0,10"
+                             IsChecked="{Binding EnableShortcuts}"
+                             SwitchContentPlacement="Left"
+                             SwitchPadding="0,0,10,0"
+                             TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                             UncheckedText="{lex:Loc Off}" />
+            <StackPanel Margin="0" Orientation="Horizontal">
+                <TextBlock Margin="0,5,0,0"
+                           FontSize="14"
+                           Text="{lex:Loc ShortcutsReference}" />
+                <TextBlock Grid.Row="9"
+                           Margin="5,5,0,0"
+                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action GoToHelp()]"
+                           Cursor="Hand"
+                           FontSize="14"
+                           Foreground="{DynamicResource AccentBrush}"
+                           Text="{lex:Loc OpenHelp}"
+                           TextDecorations="Underline" />
+            </StackPanel>
+        </StackPanel>
+
+    </ScrollViewer>
+</UserControl>

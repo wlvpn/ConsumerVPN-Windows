@@ -42,10 +42,10 @@ var signToolSettings = UsesEVCert ? new SignToolSignSettings
 // Helper functions
 
 Task("ValidateNuGetStore").Does(() => {
-    if(!GlobalNugetContainsSource("https://www.myget.org/F/stackpathvpnsdk/"))
+    if(!GlobalNugetContainsSource("https://www.myget.org/F/wlvpn/"))
     {
-        Warning("StackPath MyGet repository not found in global store. Adding repository to local store.");
-        NuGetAddSource("StackPath MyGet Repository", "https://www.myget.org/F/stackpathvpnsdk/auth/" + mygetApiKey + "/api/v3/index.json");
+        Warning("WLVPN MyGet repository not found in global store. Adding repository to local store.");
+        NuGetAddSource("WLVPN MyGet Repository", "https://www.myget.org/F/wlvpn/auth/" + mygetApiKey + "/api/v3/index.json");
     }
 });
 
@@ -93,11 +93,18 @@ Task("Build")
     .Does(() =>
 {
     // Build installer and application. The bootstrapper automatically builds the application.
-    MSBuild("./src/Bootstrapper/Bootstrapper.wixproj", settings => settings.SetConfiguration(configuration).WithProperty("SolutionDir", solutionDir.FullPath + "\\").WithProperty("CertificatePassword", certificatePassword).WithProperty("UsesEVCert", UsesEVCert.ToString()));
-    
+    MSBuild("./src/Bootstrapper/Bootstrapper.wixproj", settings => {
+		     settings.SetConfiguration(configuration)
+			 		.WithProperty("SolutionDir", solutionDir.FullPath + "\\")
+				.WithProperty("CertificatePassword", certificatePassword)
+				.WithProperty("UsesEVCert", UsesEVCert.ToString());
+			 settings.ToolVersion = MSBuildToolVersion.VS2019;
+		});    
+
+
     // Move installer to root of solution directory.
     var outputFile = Directory("./src/Bootstrapper/bin/") + Directory(configuration) + File("Bootstrapper.exe");
-    var clientFile = Directory("./src/ConsumerVPN/bin/") + Directory(configuration) + File(ApplicationName.ToString() + ".exe");
+    var clientFile = Directory("./src/App/bin/") + Directory(configuration) + File(ApplicationName.ToString() + ".exe");
     var versionNumber = GetFullVersionNumber(clientFile);
     var setupFilename = String.Format("Setup_{0}.exe", versionNumber);
     if(FileExists("./" + setupFilename))

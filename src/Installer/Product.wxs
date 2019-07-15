@@ -27,12 +27,12 @@
       <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
-    <Condition Message="This application is only supported on Windows 7 or higher.">
-      <![CDATA[Installed OR (VersionNT >= 601)]]>
+    <Condition Message="This application is only supported on Windows 7 Service Pack 1 or higher.">
+      <![CDATA[Installed OR (VersionNT = 601 AND ServicePackLevel >= 1) OR  (VersionNT >= 601)]]>
     </Condition>
 
     <Icon Id="ApplicationIcon.ico"
-          SourceFile="$(var.ConsumerVPN.ProjectDir)\Resources\Icons\AppIcon.ico " />
+          SourceFile="$(var.App.ProjectDir)\Resources\Icons\AppIcon.ico " />
     <Property Id="ARPPRODUCTICON" Value="ApplicationIcon.ico" />
 
     <Feature Id="ProductFeature" Title="Installer" Level="1">
@@ -62,8 +62,8 @@
       <!--App's EXE-->
       <Component Id="ApplicationExecutable">
         <File Id="ApplicationFile"
-              Name="$(var.ConsumerVPN.TargetFileName)"
-              Source="$(var.ConsumerVPN.ProjectDir)bin\$(var.Configuration)\$(var.ConsumerVPN.TargetFileName)"
+              Name="$(var.App.TargetFileName)"
+              Source="$(var.App.ProjectDir)bin\$(var.Configuration)\$(var.App.TargetFileName)"
               DiskId="1"
               KeyPath="yes" />
 
@@ -75,7 +75,7 @@
                   Icon="AppIcon.exe"
                   WorkingDirectory="ApplicationDirectory">
           <Icon Id="AppIcon.exe"
-                SourceFile="$(var.ConsumerVPN.ProjectDir)bin\$(var.Configuration)\$(var.ConsumerVPN.TargetFileName)" />
+                SourceFile="$(var.App.ProjectDir)bin\$(var.Configuration)\$(var.App.TargetFileName)" />
         </Shortcut>
 
         <Shortcut Id="DesktopShortcut"
@@ -86,7 +86,7 @@
                   Icon="DesktopAppIcon.exe"
                   WorkingDirectory="ApplicationDirectory">
           <Icon Id="DesktopAppIcon.exe"
-                SourceFile="$(var.ConsumerVPN.ProjectDir)bin\$(var.Configuration)\$(var.ConsumerVPN.TargetFileName)" />
+                SourceFile="$(var.App.ProjectDir)bin\$(var.Configuration)\$(var.App.TargetFileName)" />
         </Shortcut>
 
         <RemoveFolder Id="ApplicationProgramsFolder"

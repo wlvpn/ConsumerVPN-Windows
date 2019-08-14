@@ -13,6 +13,8 @@
              xmlns:valueConverters="clr-namespace:WLVPN.ValueConverters"
              d:DesignHeight="600"
              d:DesignWidth="800"
+             Focusable="True"
+             Loaded="UserControl_Loaded"
              AutomationProperties.Name="{lex:Loc MainScreenTitle}"
              FocusManager.FocusedElement="{Binding ElementName=Items}"
              mc:Ignorable="d">

@@ -27,7 +27,7 @@ namespace WLVPN.Views
 
         private void Busy_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if ((bool)e.NewValue == true)
+            if (this.Visibility == Visibility.Visible && this.IsLoaded)
             {
                 Busy.Focus();
             }

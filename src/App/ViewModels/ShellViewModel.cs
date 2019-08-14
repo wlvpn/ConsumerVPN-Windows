@@ -395,6 +395,22 @@ namespace WLVPN.ViewModels
             }
         }
 
+
+        public void GoToHelp()
+        {
+            ActivateItem((Screen)ContainerInstance.GetInstance(typeof(MainViewModel)));
+            MainViewModel mvm = (MainViewModel)ActiveItem;
+            mvm.SelectedIndex = (int)MainScreenTabs.Information;
+
+        }
+
+        public void GoToSettings()
+        {
+            ActivateItem((Screen)ContainerInstance.GetInstance(typeof(MainViewModel)));
+            MainViewModel mvm = (MainViewModel)ActiveItem;
+            mvm.SelectedIndex = (int)MainScreenTabs.Settings;
+        }
+
         public void ExitApplication()
         {
             if (_isTerminating)

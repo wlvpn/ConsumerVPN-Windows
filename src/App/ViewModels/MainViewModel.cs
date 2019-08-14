@@ -125,16 +125,5 @@ namespace WLVPN.ViewModels
         {
             ProcessExtensions.LaunchUrl(Resource.Get<Uri>("WebsiteUrl"));
         }
-
-        public void GoToHelp()
-        {
-            ActiveItem = AppBootstrapper.ContainerInstance.GetInstance<InformationContainerViewModel>();
-        }
-
-        public void GoToSettings()
-        {
-            ActiveItem = AppBootstrapper.ContainerInstance.GetInstance<SettingsContainerViewModel>();
-        }
-
     }
 }

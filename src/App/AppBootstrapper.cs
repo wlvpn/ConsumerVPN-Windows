@@ -35,7 +35,6 @@ namespace WLVPN
     public class AppBootstrapper : BootstrapperBase
     {
         private ISDK _sdk;
-        private DebounceDispatcher _debounceTimer = new DebounceDispatcher();
         public static readonly Container ContainerInstance = new Container();
         public static readonly string AssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 

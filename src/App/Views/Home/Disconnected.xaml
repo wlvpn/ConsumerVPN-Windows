@@ -86,7 +86,7 @@
                     cal:Message.Attach="[Event Click] = [Action Connect()]"
                     IsDefault="True"
                     TabIndex="2">
-                <TextBlock AutomationProperties.HelpText="{lex:Loc HelpTextDisconnectButton}"
+                <TextBlock AutomationProperties.HelpText="{lex:Loc HelpTextConnectButton}"
                            FontSize="15"
                            Style="{DynamicResource BaseTextBlock}"
                            Text="{lex:Loc Connect}"

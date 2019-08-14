@@ -1,5 +1,7 @@
-﻿using Serilog;
+﻿using Microsoft.Shell;
+using Serilog;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -11,29 +13,29 @@ namespace WLVPN
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, ISingleInstanceApp
     {
-        private static Mutex _appMutex = null;
-
         // Forces all WPF related modules to load to ensure library localizations don't cause a recursive cycle.
         // This ensures HockeyApp and other libraries are able to access the resource manager when IL merging is used.
         private static bool ForceLoadedModule = ClrBugUtility.InvokeExceptionAndReturnTrue();
 
-        public App()
+        [STAThread]
+        public static void Main()
         {
-            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-            if (IsAnotherInstance())
+            if (SingleInstance<App>.InitializeAsFirstInstance(AppBootstrapper.AssemblyName))
             {
-                BringOtherInstanceToForeground();
-                Environment.Exit(1152);
+                App application = new App();
+                application.InitializeComponent();
+                application.Run();
+
+                // Allow single instance code to perform cleanup operations
+                SingleInstance<App>.Cleanup();
             }
-            this.DispatcherUnhandledException += OnDispatcherUnhandledException;
-            this.ShutdownMode = ShutdownMode.OnLastWindowClose;
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            this.DispatcherUnhandledException += OnDispatcherUnhandledException;
 
             // NOTE:  This code is run after the AppBootstrapper.cs code.  It is NOT the first thing run!
             // Caliburn ....
@@ -52,50 +54,22 @@ namespace WLVPN
         protected override void OnExit(ExitEventArgs e)
         {
             Log.Information($"=== Exiting {AppBootstrapper.AssemblyName} ===");
-            ClearMutext();
             base.OnExit(e);
         }
 
-        private bool IsAnotherInstance()
+        public bool SignalExternalCommandLineArgs(IList<string> args)
         {
-            _appMutex = new Mutex(true, $"Local\\{AppBootstrapper.AssemblyName}", out bool created);
-            return !created;
-        }
-
-        private void ClearMutext()
-        {
-            if (_appMutex == null) return;
-            _appMutex.ReleaseMutex();
-            _appMutex.Dispose();
-            _appMutex = null;
-        }
-
-        private const int SW_RESTORE = 9;
-
-        private void BringOtherInstanceToForeground()
-        {
-            using (Process currentProcess = Process.GetCurrentProcess())
+            if (Current != null)
             {
-                string appName = currentProcess.ProcessName;
-                Process[] otherInstances = Process.GetProcessesByName(appName);
-                if (otherInstances != null && otherInstances.Length > 1)
+                if (Current.MainWindow != null)
                 {
-                    foreach (var process in otherInstances)
-                    {
-                        if (process.Id != currentProcess.Id)
-                        {
-                            var handle = process.MainWindowHandle;
-                            if (NativeMethods.IsIconic(handle))
-                            {
-                                NativeMethods.ShowWindow(handle, SW_RESTORE);
-                            }
-                            NativeMethods.SetForegroundWindow(handle);
-                            process.Dispose();
-                            return;
-                        }
-                    }
+                    Current.MainWindow.Activate();
+                    Current.MainWindow.Visibility = Visibility.Visible;
+                    Current.MainWindow.Show();
+                    Current.MainWindow.WindowState = WindowState.Normal;
                 }
             }
+            return true;
         }
     }
 }

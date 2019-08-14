@@ -72,6 +72,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Security" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Web" />
@@ -90,10 +91,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
+    </Page>
     <Compile Include="Behaviors\CitySorter.cs" />
     <Compile Include="Behaviors\CountrySorter.cs" />
     <Compile Include="Behaviors\ICustomSorter.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Utils\CrlBugUtility.cs" />
     <Compile Include="Utils\DebounseDispatcher.cs" />
+    <Compile Include="Utils\SingleInstance.cs" />
     <Compile Include="Utils\SparkleUiFactory.cs" />
     <Compile Include="Utils\WindowStyleExtension.cs" />
     <Compile Include="Enums\ApplicationCloseType.cs" />

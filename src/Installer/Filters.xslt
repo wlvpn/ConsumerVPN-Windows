@@ -10,7 +10,7 @@
   </xsl:template>
   <xsl:key name="service-search" match="wix:Component[contains(wix:File/@Source, '.pdb')]" use="@Id" />
   <xsl:key name="service-search" match="wix:Component[contains(wix:File/@Source, '.vshost.exe')]" use="@Id" />
-  <xsl:key name="service-search" match="wix:Component[contains(wix:File/@Source, '.exe') and not(contains(wix:File/@Source, 'OpenVPN'))]" use="@Id" />
+  <xsl:key name="service-search" match="wix:Component[substring(wix:File/@Source, string-length(wix:File/@Source) - string-length('.exe') +1)='.exe' and not(contains(wix:File/@Source, 'OpenVPN'))]" use="@Id" />
   <xsl:key name="service-search" match="wix:Component[contains(wix:File/@Source, '.nrmap')]" use="@Id" />
   <xsl:key name="service-search" match="wix:Component[contains(wix:File/@Source, '.hash')]" use="@Id" />
   <xsl:template match="wix:Component[key('service-search', @Id)]" />

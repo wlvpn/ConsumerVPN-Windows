@@ -1334,6 +1334,24 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WireGuard.
+        /// </summary>
+        internal static string WireGuard {
+            get {
+                return ResourceManager.GetString("WireGuard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The newest, fastest and most resilient VPN protocol, with state-of-the-art security..
+        /// </summary>
+        internal static string WireGuardDescription {
+            get {
+                return ResourceManager.GetString("WireGuardDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string Yes {

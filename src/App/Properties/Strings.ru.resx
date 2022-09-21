@@ -506,4 +506,7 @@
   <data name="SystemStartupOption1" xml:space="preserve">
     <value>Запускать программу после входа систему</value>
   </data>
+  <data name="WireGuardDescription" xml:space="preserve">
+    <value>Новейший, самый быстрый и надежный VPN-протокол с самыми современными средствами защиты.</value>
+  </data>
 </root>

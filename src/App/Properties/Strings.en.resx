@@ -526,4 +526,10 @@ The new version is {1} (You currently have version {2})</value>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="WireGuardDescription" xml:space="preserve">
+    <value>The newest, fastest and most resilient VPN protocol, with state-of-the-art security.</value>
+  </data>
+  <data name="OpenVPN" xml:space="preserve">
+    <value>OpenVPN</value>
+  </data>
 </root>

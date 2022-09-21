@@ -114,6 +114,11 @@ namespace WLVPN.Extensions
                         .SetNetworkProtocol(Settings.Default.OpenVpnProtocol)
                         .Build();
                 }
+                else if (Settings.Default.ConnectionProtocol == NetworkConnectionType.WireGuard)
+                {
+                    configuration = new WireGuardConnectionConfigurationBuilder()
+                        .Build();
+                }
                 else
                 {
                     configuration = new RasConnectionConfigurationBuilder()
@@ -152,7 +157,7 @@ namespace WLVPN.Extensions
             {
                 // Do nothing. Finally block will handle it.
             }
-            catch(TapAdapterException)
+            catch (TapAdapterException)
             {
                 _dialog.ShowMessageBox(Strings.TapNotInstalledText, Strings.TapNotInstalledTitle,
                     MessageBoxOptions.YesNo, async box =>

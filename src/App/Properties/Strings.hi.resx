@@ -282,7 +282,7 @@
     <comment>Block LAN Traffic</comment>
   </data>
   <data name="OpenVPN" xml:space="preserve">
-    <value />
+    <value>OpenVPN</value>
     <comment>OpenVPN</comment>
   </data>
   <data name="InstallRepairTAP" xml:space="preserve">
@@ -615,5 +615,8 @@ The new version is {1} (You currently have version {2})</comment>
   </data>
   <data name="SystemStartupOption1" xml:space="preserve">
     <value>जब उपयोगकर्ता लॉगिन करे तो अप्लिकेशन शुरू करें</value>
+  </data>
+  <data name="WireGuardDescription" xml:space="preserve">
+    <value>अत्याधुनिक सुरक्षा के साथ नवीनतम, सबसे तेज और सबसे लचीला वीपीएन प्रोटोकॉल।</value>
   </data>
 </root>

@@ -555,4 +555,11 @@ Would you like to install one now?.</value>
   <data name="SystemStartupOption1" xml:space="preserve">
     <value>Start application when user logs in</value>
   </data>
+  <data name="WireGuard" xml:space="preserve">
+    <value>WireGuard</value>
+    <comment>@Invariant</comment>
+  </data>
+  <data name="WireGuardDescription" xml:space="preserve">
+    <value>The newest, fastest and most resilient VPN protocol, with state-of-the-art security.</value>
+  </data>
 </root>

@@ -62,5 +62,8 @@
     <Setting Name="CipherType" Type="VpnSDK.Enums.OpenVpnCipherType" Scope="User">
       <Value Profile="(Default)">AES_256_CBC</Value>
     </Setting>
+    <Setting Name="BlockNetworkInterfaces" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

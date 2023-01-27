@@ -116,8 +116,7 @@ namespace WLVPN.Extensions
                 }
                 else if (Settings.Default.ConnectionProtocol == NetworkConnectionType.WireGuard)
                 {
-                    configuration = new WireGuardConnectionConfigurationBuilder()
-                         .SetBlockUntunneledTraffic(Settings.Default.BlockNetworkInterfaces)
+                    configuration = new WireGuardConnectionConfigurationBuilder()                         
                         .Build();
                 }
                 else

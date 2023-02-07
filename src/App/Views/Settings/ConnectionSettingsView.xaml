@@ -72,10 +72,20 @@
                            Text="{lex:Loc Ikev2Description}"
                            TextWrapping="Wrap" />
             </StackPanel>
-
+            <StackPanel Margin="0,10,0,0">
+                <RadioButton Name="WireGuardBtn"
+                             Content="{lex:Loc WireGuard}"
+                             GroupName="Protocol"
+                             IsChecked="{Binding Path=ConnectionProtocol, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sdk:NetworkConnectionType.WireGuard}}" />
+                <TextBlock Padding="0,10,0,0"
+                           FontSize="14"
+                           IsEnabled="{Binding ElementName=WireGuardBtn, Path=IsChecked}"
+                           Text="{lex:Loc WireGuardDescription}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
             <StackPanel Margin="0,10,0,0">
                 <RadioButton Name="OpenVPNProtocolBtn"
-                             Content="{lex:Loc OpenVpn}"
+                             Content="{lex:Loc OpenVPN}"
                              GroupName="Protocol"
                              IsChecked="{Binding Path=ConnectionProtocol, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sdk:NetworkConnectionType.OpenVPN}}"
                              IsEnabled="{Binding IsOpenVpnAvailable}" />

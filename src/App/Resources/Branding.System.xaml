@@ -16,7 +16,7 @@
     <!--
         WLVPN API Authentication token
         
-        To obtain API Key you need to be a registered WLVPN reseller.
+        To obtain an Authentication Token you need to be a registered WLVPN reseller.
         If you have not done so already, please visit https://wlvpn.com/#contact to get started.
     -->
     <system:String x:Key="AuthenticationToken">YOURAUTHTOKEN</system:String>

@@ -522,4 +522,7 @@
   <data name="SystemStartupOption1" xml:space="preserve">
     <value>Iniciar la aplicación al inicio de sesión</value>
   </data>
+  <data name="WireGuardDescription" xml:space="preserve">
+    <value>El protocolo VPN más nuevo, rápido y resistente, con seguridad de última generación.</value>
+  </data>
 </root>

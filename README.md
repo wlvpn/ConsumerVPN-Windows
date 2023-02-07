@@ -1,3 +1,6 @@
+The latest version of the WLVPN Windows SDK is 2.2.27.
+The latest version of the WLVPN Windows ConsumerVPN app is 2.0.0.0.
+  
 # ConsumerVPN
 
 ConsumerVPN is an application that WLVPN clients can use as a base for their own customer-facing application, the minimum required effort is adding your WLVPN credentials and changing the colors to fit your brand. It also serves as a real world implementation of VpnSDK and can be used as a reference for your own original application.

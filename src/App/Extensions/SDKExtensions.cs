@@ -173,27 +173,13 @@ namespace WLVPN.Extensions
             // If the network connection type is Unspecified, this means that the Automatic Protocol feature is selected.
             if (Properties.Settings.Default.ConnectionProtocol == NetworkConnectionType.Automatic)
             {
-                if (locations == null)
-                {
-                    await sdk.Connect(location, configurations, token); 
-                }
-                else 
-                { 
-                    await sdk.Connect(locations, configurations, token); 
-                }
+                await sdk.Connect(locations ?? new List<ILocation>() { location }, configurations, token);
             }
             else
             {
                 // Else, connect to a VPN server using a specific Network connection type.
                 var connectionType = configurations.First(x => x.ConnectionType == Properties.Settings.Default.ConnectionProtocol);
-                if (locations == null)
-                {
-                    await sdk.Connect(location, connectionType, token);
-                }
-                else
-                {
-                    await sdk.Connect(locations, connectionType, token);
-                }
+                await sdk.Connect(locations ?? new List<ILocation>() { location }, connectionType, token);
             }
         }
 

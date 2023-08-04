@@ -619,4 +619,22 @@ The new version is {1} (You currently have version {2})</comment>
   <data name="WireGuardDescription" xml:space="preserve">
     <value>अत्याधुनिक सुरक्षा के साथ नवीनतम, सबसे तेज और सबसे लचीला वीपीएन प्रोटोकॉल।</value>
   </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>स्वचालित</value>
+  </data>
+  <data name="AutomaticDescription" xml:space="preserve">
+    <value>नीचे सूचीबद्ध प्रोटोकॉल में से सबसे अच्छे प्रोटोकॉल से जुड़ता है। अन्य प्रोटोकॉल पर वापस आ सकते हैं।</value>
+  </data>
+  <data name="AllowLanInterfaces" xml:space="preserve">
+    <value>कनेक्ट होने पर स्थानीय नेटवर्क इंटरफ़ेस की अनुमति दें।</value>
+  </data>
+  <data name="AllowLanInterfacesDescription" xml:space="preserve">
+    <value>जब आप किसी वीपीएन सर्वर से कनेक्ट होते हैं तो यह विकल्प स्थानीय नेटवर्क इंटरफेस की उपलब्धता को नियंत्रित करता है। यदि विकल्प बंद है, तो ऐप आपके कंप्यूटर पर अन्य सभी नेटवर्क इंटरफेस को ब्लॉक कर देगा। यह आपको डेटा लीक होने से रोकेगा, उदाहरण के लिए, टोरेंटिंग के दौरान, लेकिन आपके LAN संसाधनों तक पहुंचने की क्षमता को अवरुद्ध कर देगा।</value>
+  </data>
+  <data name="DisableDNSLeakProtection" xml:space="preserve">
+    <value>DNS रिसाव सुरक्षा अक्षम करें.</value>
+  </data>
+  <data name="DisableIPv6LeakProtection" xml:space="preserve">
+    <value>IPv6 रिसाव सुरक्षा अक्षम करें.</value>
+  </data>
 </root>

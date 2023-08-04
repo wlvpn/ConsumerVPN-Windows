@@ -262,5 +262,41 @@ namespace WLVPN.Properties {
                 this["CipherType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AllowLanInterfaces {
+            get {
+                return ((bool)(this["AllowLanInterfaces"]));
+            }
+            set {
+                this["AllowLanInterfaces"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisableDNSLeakProtection {
+            get {
+                return ((bool)(this["DisableDNSLeakProtection"]));
+            }
+            set {
+                this["DisableDNSLeakProtection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisableIPv6LeakProtection {
+            get {
+                return ((bool)(this["DisableIPv6LeakProtection"]));
+            }
+            set {
+                this["DisableIPv6LeakProtection"] = value;
+            }
+        }
     }
 }

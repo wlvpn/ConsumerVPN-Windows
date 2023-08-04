@@ -509,4 +509,22 @@
   <data name="WireGuardDescription" xml:space="preserve">
     <value>Новейший, самый быстрый и надежный VPN-протокол с самыми современными средствами защиты.</value>
   </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>автоматический</value>
+  </data>
+  <data name="AutomaticDescription" xml:space="preserve">
+    <value>Подключается к лучшему протоколу среди перечисленных ниже. Может откатиться на другие протоколы.</value>
+  </data>
+  <data name="AllowLanInterfaces" xml:space="preserve">
+    <value>Разрешить локальные сетевые интерфейсы при подключении.</value>
+  </data>
+  <data name="AllowLanInterfacesDescription" xml:space="preserve">
+    <value>Этот параметр управляет доступностью локальных сетевых интерфейсов при подключении к VPN-серверу. Если опция отключена, приложение будет блокировать все другие сетевые интерфейсы на вашем компьютере. Это предотвратит утечку данных, например, при работе с торрентами, но заблокирует возможность доступа к ресурсам вашей локальной сети.</value>
+  </data>
+  <data name="DisableDNSLeakProtection" xml:space="preserve">
+    <value>Отключите защиту от утечки DNS.</value>
+  </data>
+  <data name="DisableIPv6LeakProtection" xml:space="preserve">
+    <value>Отключите защиту от утечки IPv6.</value>
+  </data>
 </root>

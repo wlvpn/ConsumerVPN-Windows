@@ -562,4 +562,22 @@ Would you like to install one now?.</value>
   <data name="WireGuardDescription" xml:space="preserve">
     <value>The newest, fastest and most resilient VPN protocol, with state-of-the-art security.</value>
   </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="AutomaticDescription" xml:space="preserve">
+    <value>Connects to the best protocol among ones listed below. Can fallback to the other protocols.</value>
+  </data>
+  <data name="AllowLanInterfaces" xml:space="preserve">
+    <value>Allow local network interfaces when connected.</value>
+  </data>
+  <data name="AllowLanInterfacesDescription" xml:space="preserve">
+    <value>This option controls local network interfaces availability when you're connected to a VPN server. If the option is off, the app will block all other network interfaces on your computer. This will prevent you from data leaking, for example, while torrenting, but will block the ability to access your LAN resources.</value>
+  </data>
+  <data name="DisableDNSLeakProtection" xml:space="preserve">
+    <value>Disable DNS leak protection.</value>
+  </data>
+  <data name="DisableIPv6LeakProtection" xml:space="preserve">
+    <value>Disable IPv6 leak protection.</value>
+  </data>
 </root>

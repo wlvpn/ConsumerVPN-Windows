@@ -104,34 +104,25 @@ namespace WLVPN.Extensions
 
             try
             {
-                IConnectionConfiguration configuration = null;
+                List<IConnectionConfiguration> configurations = new List<IConnectionConfiguration>();
 
-                if (Settings.Default.ConnectionProtocol == NetworkConnectionType.OpenVPN)
-                {
-                    configuration = new OpenVpnConnectionConfigurationBuilder()
-                        .SetCipher(Settings.Default.Scramble ? OpenVpnCipherType.AES_128_CBC : Settings.Default.CipherType)
-                        .SetScramble(Settings.Default.Scramble)
-                        .SetNetworkProtocol(Settings.Default.OpenVpnProtocol)
-                        .Build();
-                }
-                else if (Settings.Default.ConnectionProtocol == NetworkConnectionType.WireGuard)
-                {
-                    configuration = new WireGuardConnectionConfigurationBuilder()                         
-                        .Build();
-                }
-                else
-                {
-                    configuration = new RasConnectionConfigurationBuilder()
-                        .SetConnectionType(Settings.Default.ConnectionProtocol)
-                        .Build();
-                }
+                // Order is important for Automatic Protocol feature. It starts with first configuration and then uses the next one as a fallback.
+                // Lets stick with the next protocols order for now: WG, OpenVPN, IKEv2.
+                configurations.Add(new WireGuardConnectionConfigurationBuilder().SetBlockUntunneledTraffic(!Properties.Settings.Default.AllowLanInterfaces).Build());
+                configurations.Add(new RasConnectionConfigurationBuilder().SetConnectionType(NetworkConnectionType.IKEv2).Build());
+                configurations.Add(
+                    new OpenVpnConnectionConfigurationBuilder()
+                        .SetCipher(Properties.Settings.Default.Scramble ? OpenVpnCipherType.AES_128_CBC : OpenVpnCipherType.AES_256_CBC)
+                        .SetScramble(Properties.Settings.Default.Scramble)
+                        .SetNetworkProtocol(Properties.Settings.Default.OpenVpnProtocol)
+                        .Build());
 
                 sdk.SetCancellationTokenSource(new CancellationTokenSource());
 
                 if (SpecificLocation != null)
                 {
                     // If specific location is set
-                    await sdk.Connect(SpecificLocation, configuration, sdk.GetCancellationTokenSource().Token);
+                    await Connect(sdk,SpecificLocation, configurations, sdk.GetCancellationTokenSource().Token);
                 }
                 else
                 {
@@ -139,17 +130,17 @@ namespace WLVPN.Extensions
                     if (!string.IsNullOrEmpty(Settings.Default.SelectedCity) && !string.IsNullOrEmpty(Settings.Default.SelectedCountry))
                     {
                         ILocation location = sdk.Locations.FirstOrDefault(x => x.CityCode == Settings.Default.SelectedCity);
-                        await sdk.Connect(location, configuration, sdk.GetCancellationTokenSource().Token);
+                        await Connect(sdk,location, configurations, sdk.GetCancellationTokenSource().Token);
                     }
                     else if (!string.IsNullOrEmpty(Settings.Default.SelectedCountry))
                     {
                         List<ILocation> locations = sdk.Locations.Where(x => x.CountryCode == Settings.Default.SelectedCountry).ToList();
-                        await sdk.Connect(locations, configuration, sdk.GetCancellationTokenSource().Token);
+                        await Connect(sdk,null,configurations, sdk.GetCancellationTokenSource().Token, locations);
                     }
                     else
                     {
                         // First() is always Best Available.
-                        await sdk.Connect(sdk.Locations.First(), configuration, sdk.GetCancellationTokenSource().Token);
+                        await Connect(sdk,sdk.Locations.First(), configurations, sdk.GetCancellationTokenSource().Token);
                     }
                 }
             }
@@ -173,6 +164,35 @@ namespace WLVPN.Extensions
                 if (reconnect == false || (reconnect == true && lastAttempt == true))
                 {
                     _dialog.ShowMessageBox(e.Message, "VPN Connection Failed");
+                }
+            }
+        }
+
+        private async static Task Connect(ISDK sdk, ILocation location, List<IConnectionConfiguration> configurations, CancellationToken token, List<ILocation> locations = null)
+        {
+            // If the network connection type is Unspecified, this means that the Automatic Protocol feature is selected.
+            if (Properties.Settings.Default.ConnectionProtocol == NetworkConnectionType.Automatic)
+            {
+                if (locations == null)
+                {
+                    await sdk.Connect(location, configurations, token); 
+                }
+                else 
+                { 
+                    await sdk.Connect(locations, configurations, token); 
+                }
+            }
+            else
+            {
+                // Else, connect to a VPN server using a specific Network connection type.
+                var connectionType = configurations.First(x => x.ConnectionType == Properties.Settings.Default.ConnectionProtocol);
+                if (locations == null)
+                {
+                    await sdk.Connect(location, connectionType, token);
+                }
+                else
+                {
+                    await sdk.Connect(locations, connectionType, token);
                 }
             }
         }

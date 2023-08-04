@@ -525,4 +525,22 @@
   <data name="WireGuardDescription" xml:space="preserve">
     <value>El protocolo VPN más nuevo, rápido y resistente, con seguridad de última generación.</value>
   </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="AutomaticDescription" xml:space="preserve">
+    <value>Se conecta al mejor protocolo entre los que se enumeran a continuación. Puede recurrir a los otros protocolos.</value>
+  </data>
+  <data name="AllowLanInterfaces" xml:space="preserve">
+    <value>Permitir interfaces de red local cuando esté conectado.</value>
+  </data>
+  <data name="AllowLanInterfacesDescription" xml:space="preserve">
+    <value>Esta opción controla la disponibilidad de las interfaces de la red local cuando está conectado a un servidor VPN. Si la opción está desactivada, la aplicación bloqueará todas las demás interfaces de red en su computadora. Esto evitará que se filtren datos, por ejemplo, durante la descarga de torrents, pero bloqueará la capacidad de acceder a los recursos de su LAN.</value>
+  </data>
+  <data name="DisableDNSLeakProtection" xml:space="preserve">
+    <value>Deshabilite la protección contra fugas de DNS.</value>
+  </data>
+  <data name="DisableIPv6LeakProtection" xml:space="preserve">
+    <value>Deshabilite la protección contra fugas de IPv6.</value>
+  </data>
 </root>

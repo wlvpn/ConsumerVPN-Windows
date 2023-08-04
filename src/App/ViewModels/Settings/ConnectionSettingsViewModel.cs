@@ -81,9 +81,28 @@ namespace WLVPN.ViewModels
                     Properties.Settings.Default.Save();
                 }
             }
+
             if (e.PropertyName == nameof(Properties.Settings.Default.BlockLANTraffic))
             {
                 SDK.AllowLANTraffic = !Properties.Settings.Default.BlockLANTraffic;
+                Properties.Settings.Default.Save();
+            }
+
+            if (e.PropertyName == nameof(Properties.Settings.Default.DisableDNSLeakProtection))
+            {
+                SDK.DisableDNSLeakProtection = Properties.Settings.Default.DisableDNSLeakProtection;
+                Properties.Settings.Default.Save();
+            }
+
+            if (e.PropertyName == nameof(Properties.Settings.Default.DisableIPv6LeakProtection))
+            {
+                SDK.DisableIPv6LeakProtection = Properties.Settings.Default.DisableIPv6LeakProtection;
+                Properties.Settings.Default.Save();
+            }
+
+            if (e.PropertyName == nameof(Properties.Settings.Default.AllowLanInterfaces))
+            {
+                SDK.AllowLocalAdaptersWhenConnected = Properties.Settings.Default.AllowLanInterfaces;
                 Properties.Settings.Default.Save();
             }
         }
@@ -230,8 +249,52 @@ namespace WLVPN.ViewModels
                 Properties.Settings.Default.Save();
             }
         }
-        
 
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the local adapters are allowed when connected to a VPN server.
+        /// </summary>
+        /// <value>true or false</value>
+        public bool AllowLanInterfaces
+        {
+            get => Properties.Settings.Default.AllowLanInterfaces;
+
+            set
+            {                
+                Properties.Settings.Default.AllowLanInterfaces = value;
+                Properties.Settings.Default.Save();                
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the VPN connection should allow DNS to leak.
+        /// </summary>
+        /// <value>true or false</value>
+        public bool DisableDNSLeakProtection
+        {
+            get => Properties.Settings.Default.DisableDNSLeakProtection;
+
+            set
+            {                
+                Properties.Settings.Default.DisableDNSLeakProtection = value;
+                Properties.Settings.Default.Save();                
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the VPN connection should allow IPv6 to leak.
+        /// </summary>
+        /// <value>true or false</value>
+        public bool DisableIPv6LeakProtection
+        {
+            get => Properties.Settings.Default.DisableIPv6LeakProtection;
+
+            set
+            {               
+                Properties.Settings.Default.DisableIPv6LeakProtection = value;
+                Properties.Settings.Default.Save();             
+            }
+        }
         public bool IsOpenVpnAvailable
         {
             get => SDK.AvailableProtocols.Any(x => x.Key == NetworkConnectionType.OpenVPN && x.Value == true);

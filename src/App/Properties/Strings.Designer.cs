@@ -61,6 +61,24 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow local network interfaces when connected..
+        /// </summary>
+        internal static string AllowLanInterfaces {
+            get {
+                return ResourceManager.GetString("AllowLanInterfaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option controls local network interfaces availability when you&apos;re connected to a VPN server. If the option is off, the app will block all other network interfaces on your computer. This will prevent you from data leaking, for example, while torrenting, but will block the ability to access your LAN resources..
+        /// </summary>
+        internal static string AllowLanInterfacesDescription {
+            get {
+                return ResourceManager.GetString("AllowLanInterfacesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Startup.
         /// </summary>
         internal static string AppStartup {
@@ -93,6 +111,24 @@ namespace WLVPN.Properties {
         internal static string AppStartupOption3 {
             get {
                 return ResourceManager.GetString("AppStartupOption3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        internal static string Automatic {
+            get {
+                return ResourceManager.GetString("Automatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connects to the best protocol among ones listed below. Can fallback to the other protocols..
+        /// </summary>
+        internal static string AutomaticDescription {
+            get {
+                return ResourceManager.GetString("AutomaticDescription", resourceCulture);
             }
         }
         
@@ -345,6 +381,24 @@ namespace WLVPN.Properties {
         internal static string CurrentIP {
             get {
                 return ResourceManager.GetString("CurrentIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable DNS leak protection..
+        /// </summary>
+        internal static string DisableDNSLeakProtection {
+            get {
+                return ResourceManager.GetString("DisableDNSLeakProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable IPv6 leak protection..
+        /// </summary>
+        internal static string DisableIPv6LeakProtection {
+            get {
+                return ResourceManager.GetString("DisableIPv6LeakProtection", resourceCulture);
             }
         }
         

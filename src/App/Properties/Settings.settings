@@ -62,5 +62,14 @@
     <Setting Name="CipherType" Type="VpnSDK.Enums.OpenVpnCipherType" Scope="User">
       <Value Profile="(Default)">AES_256_CBC</Value>
     </Setting>
+    <Setting Name="AllowLanInterfaces" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DisableDNSLeakProtection" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DisableIPv6LeakProtection" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

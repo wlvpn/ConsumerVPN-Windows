@@ -858,7 +858,7 @@
       <Version>0.16.3</Version>
     </PackageReference>
     <PackageReference Include="OpenVPN.Binaries.Scramble">
-      <Version>2.4.6.3</Version>
+      <Version>2.5.1</Version>
     </PackageReference>
     <PackageReference Include="OpenVPN.Certificates.WLVPN">
       <Version>1.1.0</Version>

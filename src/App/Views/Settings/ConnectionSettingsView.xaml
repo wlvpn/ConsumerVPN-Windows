@@ -61,6 +61,17 @@
             <StackPanel Margin="0">
                 <Label Content="{lex:Loc VpnProtocol}" Style="{StaticResource HeaderLabel}" />
 
+                <RadioButton Name="AutomaticBtn"
+                             Content="{lex:Loc Automatic}"
+                             GroupName="Protocol"
+                             IsChecked="{Binding Path=ConnectionProtocol, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter={x:Static sdk:NetworkConnectionType.Automatic}}" />
+                <TextBlock Padding="0,10,0,0"
+                           FontSize="14"
+                           Text="{lex:Loc AutomaticDescription}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0">
                 <RadioButton Name="IKEv2Btn"
                              Margin="0,5,0,0"
                              Content="{lex:Loc IKEv2}"
@@ -259,6 +270,18 @@
                                  ToolTip="{lex:Loc BlockLanToolTip}"
                                  UncheckedText="{lex:Loc Off}"
                                  Visibility="{Binding ElementName=KillSwitchCheckbox, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" />
+
+                <cc:ToggleSwitch Content="{lex:Loc AllowLanInterfaces}" IsChecked="{Binding AllowLanInterfaces, Mode=TwoWay}" />
+
+                <TextBlock Padding="0,10,0,0"
+                           FontSize="14"
+                           Text="{lex:Loc AllowLanInterfacesDescription}"
+                           TextWrapping="Wrap" />
+
+                <cc:ToggleSwitch Content="{lex:Loc DisableDNSLeakProtection}" IsChecked="{Binding DisableDNSLeakProtection, Mode=TwoWay}" />
+
+                <cc:ToggleSwitch Content="{lex:Loc DisableIPv6LeakProtection}" IsChecked="{Binding DisableIPv6LeakProtection, Mode=TwoWay}" />
+
             </StackPanel>
         </StackPanel>
 

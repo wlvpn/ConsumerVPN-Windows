@@ -98,6 +98,9 @@ namespace WLVPN.ViewModels
 
                 _sdk.AllowOnlyVPNConnectivity = Properties.Settings.Default.KillSwitch;
                 _sdk.AllowLANTraffic = !Properties.Settings.Default.BlockLANTraffic;
+                _sdk.DisableDNSLeakProtection = Properties.Settings.Default.DisableDNSLeakProtection;
+                _sdk.DisableIPv6LeakProtection = Properties.Settings.Default.DisableIPv6LeakProtection;
+                _sdk.AllowLocalAdaptersWhenConnected = Properties.Settings.Default.AllowLanInterfaces;
             }
             catch (Exception e)
             {

@@ -1,6 +1,5 @@
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
 #addin nuget:?package=Cake.VersionReader
-#addin "Cake.FileHelpers"
 using System.Xml.Linq;
 using System.Xml;
 using System.Security.Cryptography;

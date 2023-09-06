@@ -459,6 +459,9 @@
   <data name="TabSettingsConnection" xml:space="preserve">
     <value>Connection</value>
   </data>
+  <data name="TabSettingsSplitTunneling" xml:space="preserve">
+    <value>Split Tunneling</value>
+  </data>
   <data name="TabSettingsDiagnostics" xml:space="preserve">
     <value>Diagnostics</value>
   </data>
@@ -549,5 +552,65 @@ The new version is {1} (You currently have version {2})</value>
   </data>
   <data name="DisableIPv6LeakProtection" xml:space="preserve">
     <value>Disable IPv6 leak protection.</value>
+  </data>
+  <data name="NoAppAdded" xml:space="preserve">
+    <value>No app has been added yet</value>
+  </data>
+  <data name="NoDomainAdded" xml:space="preserve">
+    <value>No domain has been added yet</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="PickManually" xml:space="preserve">
+    <value>Pick Manually</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="SplitTunneling" xml:space="preserve">
+    <value>Split Tunneling</value>
+  </data>
+  <data name="AddApplications" xml:space="preserve">
+    <value>Add Applications</value>
+  </data>
+  <data name="AddDomainAlreadyExistsError" xml:space="preserve">
+    <value>This domain already exists, please enter a different domain.</value>
+  </data>
+  <data name="AddDomainValidationError" xml:space="preserve">
+    <value>Please enter a valid domain format</value>
+  </data>
+  <data name="ApplicationAlreadyAdded" xml:space="preserve">
+    <value>Application already added: {0}</value>
+  </data>
+  <data name="Domains" xml:space="preserve">
+    <value>Domains</value>
+  </data>
+  <data name="EnableSplitTunneling" xml:space="preserve">
+    <value>Enable Split Tunneling</value>
+  </data>
+  <data name="DuplicateApplication" xml:space="preserve">
+    <value>Duplicate Application</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="IncludeSubdomains" xml:space="preserve">
+    <value>Include Subdomains</value>
+  </data>
+  <data name="Applications" xml:space="preserve">
+    <value>Applications</value>
+  </data>
+  <data name="InvalidApplication" xml:space="preserve">
+    <value>Invalid application selected</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="UnsupportedFileChosen" xml:space="preserve">
+    <value>Unsupported file chosen: {0}</value>
   </data>
 </root>

@@ -19,7 +19,7 @@ namespace WLVPN.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -61,6 +61,42 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Applications.
+        /// </summary>
+        internal static string AddApplications {
+            get {
+                return ResourceManager.GetString("AddApplications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This domain already exists, please enter a different domain..
+        /// </summary>
+        internal static string AddDomainAlreadyExistsError {
+            get {
+                return ResourceManager.GetString("AddDomainAlreadyExistsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid domain format.
+        /// </summary>
+        internal static string AddDomainValidationError {
+            get {
+                return ResourceManager.GetString("AddDomainValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow local network interfaces when connected..
         /// </summary>
         internal static string AllowLanInterfaces {
@@ -75,6 +111,33 @@ namespace WLVPN.Properties {
         internal static string AllowLanInterfacesDescription {
             get {
                 return ResourceManager.GetString("AllowLanInterfacesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application.
+        /// </summary>
+        internal static string Application {
+            get {
+                return ResourceManager.GetString("Application", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application already added: {0}.
+        /// </summary>
+        internal static string ApplicationAlreadyAdded {
+            get {
+                return ResourceManager.GetString("ApplicationAlreadyAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applications.
+        /// </summary>
+        internal static string Applications {
+            get {
+                return ResourceManager.GetString("Applications", resourceCulture);
             }
         }
         
@@ -385,6 +448,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable DNS leak protection..
         /// </summary>
         internal static string DisableDNSLeakProtection {
@@ -466,6 +538,33 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domain.
+        /// </summary>
+        internal static string Domain {
+            get {
+                return ResourceManager.GetString("Domain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domains.
+        /// </summary>
+        internal static string Domains {
+            get {
+                return ResourceManager.GetString("Domains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicate Application.
+        /// </summary>
+        internal static string DuplicateApplication {
+            get {
+                return ResourceManager.GetString("DuplicateApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Shortcuts.
         /// </summary>
         internal static string EnableShortCut {
@@ -489,6 +588,15 @@ namespace WLVPN.Properties {
         internal static string EnableSpeech {
             get {
                 return ResourceManager.GetString("EnableSpeech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Split Tunneling.
+        /// </summary>
+        internal static string EnableSplitTunneling {
+            get {
+                return ResourceManager.GetString("EnableSplitTunneling", resourceCulture);
             }
         }
         
@@ -664,6 +772,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include All Subdomains.
+        /// </summary>
+        internal static string IncludeAllSubdomains {
+            get {
+                return ResourceManager.GetString("IncludeAllSubdomains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         internal static string Information {
@@ -714,6 +831,15 @@ namespace WLVPN.Properties {
         internal static string InstallRepairTAP {
             get {
                 return ResourceManager.GetString("InstallRepairTAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid application selected.
+        /// </summary>
+        internal static string InvalidApplication {
+            get {
+                return ResourceManager.GetString("InvalidApplication", resourceCulture);
             }
         }
         
@@ -880,6 +1006,24 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No app has been added yet.
+        /// </summary>
+        internal static string NoAppAdded {
+            get {
+                return ResourceManager.GetString("NoAppAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No domain has been added yet.
+        /// </summary>
+        internal static string NoDomainAdded {
+            get {
+                return ResourceManager.GetString("NoDomainAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authorize User Screen.
         /// </summary>
         internal static string NotAuthorizedUserControlTitle {
@@ -966,6 +1110,24 @@ namespace WLVPN.Properties {
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path.
+        /// </summary>
+        internal static string Path {
+            get {
+                return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick Manually.
+        /// </summary>
+        internal static string PickManually {
+            get {
+                return ResourceManager.GetString("PickManually", resourceCulture);
             }
         }
         
@@ -1114,6 +1276,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Split Tunneling.
+        /// </summary>
+        internal static string SplitTunneling {
+            get {
+                return ResourceManager.GetString("SplitTunneling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status:.
         /// </summary>
         internal static string Status {
@@ -1222,6 +1393,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Split Tunneling.
+        /// </summary>
+        internal static string TabSettingsSplitTunneling {
+            get {
+                return ResourceManager.GetString("TabSettingsSplitTunneling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OpenVPN TAP Adapter.
         /// </summary>
         internal static string TapAdapter {
@@ -1275,6 +1455,15 @@ namespace WLVPN.Properties {
         internal static string TapNotInstalledTitle {
             get {
                 return ResourceManager.GetString("TapNotInstalledTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file chosen: {0}.
+        /// </summary>
+        internal static string UnsupportedFileChosen {
+            get {
+                return ResourceManager.GetString("UnsupportedFileChosen", resourceCulture);
             }
         }
         

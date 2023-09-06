@@ -103,6 +103,7 @@
     <Compile Include="Controls\ProgressRing.cs" />
     <Compile Include="Controls\ToggleSwitch.cs" />
     <Compile Include="Controls\VisualStates.cs" />
+    <Compile Include="Interfaces\ISplitTunnelingTabItem.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Utils\CrlBugUtility.cs" />
     <Compile Include="Utils\DebounseDispatcher.cs" />
@@ -191,6 +192,9 @@
     <Compile Include="ViewModels\Settings\SettingsContainerViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SplitTunnelingApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SplitTunnelingContainerViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SplitTunnelingDomainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\BusyView.xaml.cs">
       <DependentUpon>BusyView.xaml</DependentUpon>
@@ -249,6 +253,15 @@
     <Compile Include="Views\Settings\GeneralSettingsView.xaml.cs">
       <DependentUpon>GeneralSettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\SplitTunnelingApplicationView.xaml.cs">
+      <DependentUpon>SplitTunnelingApplicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SplitTunnelingContainerView.xaml.cs">
+      <DependentUpon>SplitTunnelingContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\SplitTunnelingDomainView.xaml.cs">
+      <DependentUpon>SplitTunnelingDomainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -272,6 +285,10 @@
     <Page Include="Resources\Icons\Speedometer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons\Split.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\NamedStyles\BaseFocus.xaml">
       <SubType>Designer</SubType>
@@ -506,6 +523,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\GeneralSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SplitTunnelingApplicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\SplitTunnelingContainerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Settings\SplitTunnelingDomainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -914,7 +943,7 @@
       <Version>1.3.7</Version>
     </PackageReference>
     <PackageReference Include="VpnSDK">
-      <Version>2.2.29</Version>
+      <Version>2.2.30</Version>
     </PackageReference>
     <PackageReference Include="WPFLocalizeExtension">
       <Version>3.3.1</Version>

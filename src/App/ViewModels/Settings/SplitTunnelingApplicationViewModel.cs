@@ -1,13 +1,10 @@
-﻿using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using VpnSDK.Common.Settings;
@@ -62,11 +59,11 @@ namespace WLVPN.ViewModels
                 foreach (var filePath in openFileDlg.FileNames)
                 {
                     var extension = Path.GetExtension(filePath);
-                    var fileName = Path.GetFileNameWithoutExtension(filePath);
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
                     if (!SupportedExtension.Equals(extension, System.StringComparison.OrdinalIgnoreCase) ||
                         UnsupportedApp.Equals(fileName, System.StringComparison.OrdinalIgnoreCase))
                     {
-                        var message = string.Format(Strings.UnsupportedFileChosen, fileName);
+                        var message = string.Format(CultureInfo.CurrentCulture,Strings.UnsupportedFileChosen, fileName);
                         System.Windows.MessageBox.Show(message, Strings.InvalidApplication, MessageBoxButton.OK, MessageBoxImage.Error);
                         e.Cancel = true;
                         continue;

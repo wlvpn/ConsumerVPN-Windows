@@ -22,7 +22,7 @@ namespace WLVPN.ViewModels
         public SplitTunnelingDomainViewModel(ISDK sdk)
         {
             SDK = sdk;
-            Domains = new ObservableCollection<SplitTunnelDomain>(SDK.SplitTunnelAllowedDomains);
+            Domains = new ObservableCollection<SplitTunnelDomain>();
         }
         public void AddDomain()
         {
@@ -60,10 +60,8 @@ namespace WLVPN.ViewModels
             }
             catch (Exception)
             {
-
                 //ignore.
-            }
-           
+            }           
         }
     }
 }

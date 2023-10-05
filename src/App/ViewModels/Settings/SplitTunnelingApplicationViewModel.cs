@@ -94,10 +94,8 @@ namespace WLVPN.ViewModels
             }
             catch (Exception)
             {
-
                 //ignore.
             }
-
         }
     }
 }

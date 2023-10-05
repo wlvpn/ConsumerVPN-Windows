@@ -23,22 +23,12 @@
                       AutoGenerateColumns="False"
                       CanUserAddRows="True"
                       CanUserDeleteRows="True"
-                      ItemsSource="{Binding Domains, Mode=TwoWay}"
-                      ScrollViewer.CanContentScroll="False"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ItemsSource="{Binding Domains, Mode=TwoWay}"                      
                       Style="{StaticResource MetroDataGrid}"
                       Visibility="{Binding ShowList, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="335" Header="{lex:Loc Key=Domain}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Focusable="False"
-                                           IsHitTestVisible="False"
-                                           Text="{Binding DomainName}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="{lex:Loc Key=IncludeSubdomains}">
+                    <DataGridTextColumn Width="*" Header="{lex:Loc Key=Domain}" Binding="{Binding DomainName}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="{lex:Loc Key=IncludeSubdomains}" Width="*" MaxWidth="180">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox HorizontalAlignment="Center"
@@ -49,7 +39,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="auto" Header="">
+                    <DataGridTemplateColumn Width="*" Header="" MaxWidth="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Margin="10,0"

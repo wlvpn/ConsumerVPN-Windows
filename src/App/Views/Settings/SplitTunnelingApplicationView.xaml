@@ -26,27 +26,21 @@
                   Style="{StaticResource MetroDataGrid}"
                   Visibility="{Binding ShowList, Converter={StaticResource BooleanToVisibilityConverter}}">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="160" Header="{lex:Loc Key=Application}">
+                <DataGridTextColumn Width="*" Header="{lex:Loc Key=Application}" Binding="{Binding Name}"  IsReadOnly="True"  />
+                <DataGridTextColumn Width="2*" Header="{lex:Loc Key=Path}" Binding="{Binding Path}" IsReadOnly="True"  >
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MetroDataGridCell}">
+                            <Setter Property="ToolTip" Value="{Binding Path}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="*" Header="" MaxWidth="80" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Margin="5,0,0,0"
-                                       Focusable="False"
-                                       IsHitTestVisible="False"
-                                       Text="{Binding Name}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="400" Header="{lex:Loc Key=Path}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Path}" ToolTip="{Binding Path}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="auto" Header="">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                            <Button Margin="10,0"
+                                    HorizontalAlignment="Center" 
+                                    IsHitTestVisible="True"
+                                    cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     cal:Bind.Model="{Binding}"
                                     cal:Message.Attach="[Event Click] = [Action DeleteApplication($dataContext)]"
                                     CommandParameter="{Binding}"

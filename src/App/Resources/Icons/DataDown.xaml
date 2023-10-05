@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="DataDownIcon">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Transform>
+                    <RotateTransform Angle="180" />
+                </DrawingGroup.Transform>
+                <GeometryDrawing Brush="{DynamicResource AccentBrush}">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M71.5,0L71.5,0 63,8.6078 65.0776,10.713 70.0027,5.7252 70.0027,18 72.9973,18 72.9973,5.7252 77.9224,10.713 80,8.6078z" FillRule="EvenOdd" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

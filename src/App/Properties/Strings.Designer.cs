@@ -448,6 +448,33 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Protocol.
+        /// </summary>
+        internal static string CurrentProtocol {
+            get {
+                return ResourceManager.GetString("CurrentProtocol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Downloaded.
+        /// </summary>
+        internal static string DataDownloaded {
+            get {
+                return ResourceManager.GetString("DataDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Uploaded.
+        /// </summary>
+        internal static string DataUploaded {
+            get {
+                return ResourceManager.GetString("DataUploaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {

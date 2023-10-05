@@ -12,9 +12,7 @@ using WLVPN.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
-using WLVPN.Utils;
 using DynamicData;
-using DynamicData.Aggregation;
 using DynamicData.Alias;
 using DynamicData.Binding;
 using DynamicData.PLinq;
@@ -22,13 +20,17 @@ using System.Reactive.Linq;
 using System.Windows.Input;
 using VpnSDK.DTO;
 using System.Net;
+using System.Threading;
 
 namespace WLVPN.ViewModels
 {
     public class HomeViewModel : Screen, IMainScreenTabItem
     {
         private ILocation _selectedLocationItem = null;
+        private const double SpeedNormalization = 1000.0;
         private ObservableCollectionExtended<ILocation> _items = new ObservableCollectionExtended<ILocation>();
+        private double _uploadedData;
+        private double _downloadedData;
 
         public ISDK SDK { get; }
 
@@ -48,12 +50,31 @@ namespace WLVPN.ViewModels
 
         public string Search { get; set; }
 
+        /// <summary>
+        /// Gets or sets uploaded bytes.
+        /// </summary>
+        public double UploadedData
+        {
+            get => _uploadedData;
+            set {_uploadedData = value;}
+        }
+
+        /// <summary>
+        /// Gets or sets downloaded bytes.
+        /// </summary>
+        public double DownloadedData
+        {
+            get => _downloadedData;
+            set { _downloadedData = value; }
+        }
+
         public HomeViewModel(ISDK sdk)
         {
             SDK = sdk;
             SDK.VpnConnectionStatusChanged += OnVpnConnectionStatusChanged;
             SDK.UserLocationStatusChanged += SdkOnUserLocationStatusChanged;
 
+            SDK.DataTransferUpdate += OnDataTransferUpdate;
             var filter = this.WhenValueChanged(t => t.Search)
                 .Throttle(TimeSpan.FromMilliseconds(250))
                 .Select(BuildFilter);
@@ -61,7 +82,7 @@ namespace WLVPN.ViewModels
             SDK.Locations
                 .ToObservableChangeSet(x => x.Id)
                 .Filter(filter)
-                .ObserveOnDispatcher()
+                .ObserveOn(SynchronizationContext.Current)
                 .Bind(_items)
                 .DisposeMany()
                 .Subscribe();
@@ -111,6 +132,12 @@ namespace WLVPN.ViewModels
             {
                 ConnectedState = current;
             }
+        }
+
+        private void OnDataTransferUpdate(ISDK sender, VpnSDK.DataTransferEventArgs args)
+        {
+            UploadedData = Math.Max(0, args.UploadedBytes / SpeedNormalization);
+            DownloadedData = Math.Max(0, args.DownloadedBytes / SpeedNormalization);
         }
 
         public async Task ConnectFromLocation(ILocation row, object view, MouseButtonEventArgs args)

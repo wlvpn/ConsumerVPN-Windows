@@ -207,6 +207,7 @@ namespace WLVPN
                             .SetAuthenticationToken(Resource.Get<string>("AuthenticationToken"))
                             .SetApplicationName(Resource.Get<string>("ApplicationName"))
                             .SetAutomaticRefreshTokenHandling(true)
+                            .SetOpenVpnConfiguration(new VpnSDK.DTO.OpenVpnConfiguration() { TapDeviceDescription = Properties.Settings.Default.TapDeviceDescription })
                             .SetServerListCache(TimeSpan.FromDays(1))
                             .Create(), Lifestyle.Singleton);
         }

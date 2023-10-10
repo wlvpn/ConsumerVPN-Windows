@@ -298,5 +298,17 @@ namespace WLVPN.Properties {
                 this["DisableIPv6LeakProtection"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TAP-Windows Adapter V9")]
+        public string TapDeviceDescription {
+            get {
+                return ((string)(this["TapDeviceDescription"]));
+            }
+            set {
+                this["TapDeviceDescription"] = value;
+            }
+        }
     }
 }

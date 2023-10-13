@@ -73,6 +73,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -111,39 +112,58 @@
                                    Text="{Binding Path=IPAddress, Converter={StaticResource IPAddressConverter}, FallbackValue=Updating, TargetNullValue=Updating}"/>
                     </StackPanel>
                 </StackPanel>
-
-                <StackPanel Grid.Column="3" Margin="20,0,0,0"
+                <StackPanel Grid.Column="4"
                             HorizontalAlignment="Left"
-                            Orientation="Vertical">
-                    <TextBlock FontSize="16"
+                            Orientation="Horizontal">
+                    <Image Width="20"
+                           Height="30"
+                           Margin="0,15,0,0"
+                           VerticalAlignment="Center"
+                           Source="{StaticResource ProtocolIcon}"
+                           Stretch="Fill" />
+                    <StackPanel Margin="10,0,0,0" Orientation="Vertical">
+                        <TextBlock FontSize="16"
                                    Style="{DynamicResource BaseTextBlock}"
                                    Text="{lex:Loc CurrentProtocol}" />
-                    <TextBlock FontSize="15"
+                        <TextBlock FontSize="15"
                                    Foreground="{StaticResource AccentBrush}"
                                    Style="{DynamicResource BaseTextBlock}"
                                    Text="{Binding Source={x:Static properties:Settings.Default}, Path=ConnectionProtocol}" />
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"
-                            HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="5"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
                     <Image Width="20"
                            Height="30"
                            Source="{StaticResource DataDownIcon}" />
-                    <StackPanel Margin="10,5,20,5" Orientation="Vertical" HorizontalAlignment="Right">
-                        <TextBlock Style="{DynamicResource BaseTextBlock}" FontSize="16" Text="{lex:Loc DataDownloaded}" />
-                        <TextBlock FontSize="15" HorizontalAlignment="Center" Foreground="{StaticResource AccentBrush}"
-                           Style="{DynamicResource BaseTextBlock}" Text="{Binding DownloadedData, StringFormat='\{0\} KB'}" />
+                    <StackPanel Margin="10,5,20,5"
+                                HorizontalAlignment="Right"
+                                Orientation="Vertical">
+                        <TextBlock FontSize="16"
+                                   Style="{DynamicResource BaseTextBlock}"
+                                   Text="{lex:Loc DataDownloaded}" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   Style="{DynamicResource BaseTextBlock}"
+                                   Text="{Binding DownloadedData, StringFormat='\{0\} KB'}" />
                     </StackPanel>
                     <Image Width="20"
                            Height="30"
                            Source="{StaticResource DataUpIcon}" />
-                    <StackPanel 
-                        Margin="10,5,20,5"
-                        HorizontalAlignment="Center">
-                        <TextBlock Style="{DynamicResource BaseTextBlock}" FontSize="16" Text="{lex:Loc DataUploaded}" />
-                        <TextBlock FontSize="15" HorizontalAlignment="Center"  Foreground="{StaticResource AccentBrush}"
-                           Style="{DynamicResource BaseTextBlock}" 
-                        Text="{Binding UploadedData, StringFormat='\{0\} KB'}" />
+                    <StackPanel Margin="10,5,20,5" HorizontalAlignment="Center">
+                        <TextBlock FontSize="16"
+                                   Style="{DynamicResource BaseTextBlock}"
+                                   Text="{lex:Loc DataUploaded}" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="15"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   Style="{DynamicResource BaseTextBlock}"
+                                   Text="{Binding UploadedData, StringFormat='\{0\} KB'}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>

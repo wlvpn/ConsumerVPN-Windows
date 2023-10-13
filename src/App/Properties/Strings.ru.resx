@@ -594,9 +594,9 @@
     <value>Текущий протокол</value>
   </data>
   <data name="DataDownloaded" xml:space="preserve">
-    <value>Данные загружены</value>
+    <value>Данные Скачано</value>
   </data>
   <data name="DataUploaded" xml:space="preserve">
-    <value>Данные загружены</value>
+    <value>Данные Загружено</value>
   </data>
 </root>

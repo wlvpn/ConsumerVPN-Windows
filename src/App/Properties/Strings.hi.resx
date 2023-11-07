@@ -700,4 +700,13 @@ The new version is {1} (You currently have version {2})</comment>
   <data name="Delete" xml:space="preserve">
     <value>इसे मिटाएं</value>
   </data>
+  <data name="CurrentProtocol" xml:space="preserve">
+    <value>वर्तमान प्रोटोकॉल</value>
+  </data>
+  <data name="DataDownloaded" xml:space="preserve">
+    <value>डेटा डाउनलोड किया गया</value>
+  </data>
+  <data name="DataUploaded" xml:space="preserve">
+    <value>डेटा अपलोड किया गया</value>
+  </data>
 </root>

@@ -8,6 +8,9 @@
         <ResourceDictionary Source="/Resources/Icons/ConnectedCheckMark.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Logout.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Globe.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/DataUp.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/DataDown.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Protocol.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Location.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Shield.xaml" />
         <ResourceDictionary Source="/Resources/Icons/License.xaml" />

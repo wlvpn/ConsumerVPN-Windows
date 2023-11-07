@@ -643,4 +643,13 @@ Would you like to install one now?.</value>
   <data name="Domain" xml:space="preserve">
     <value>Domain</value>
   </data>
+  <data name="CurrentProtocol" xml:space="preserve">
+    <value>Current Protocol</value>
+  </data>
+  <data name="DataDownloaded" xml:space="preserve">
+    <value>Data Downloaded</value>
+  </data>
+  <data name="DataUploaded" xml:space="preserve">
+    <value>Data Uploaded</value>
+  </data>
 </root>

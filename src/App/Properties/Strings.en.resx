@@ -613,4 +613,13 @@ The new version is {1} (You currently have version {2})</value>
   <data name="UnsupportedFileChosen" xml:space="preserve">
     <value>Unsupported file chosen: {0}</value>
   </data>
+  <data name="CurrentProtocol" xml:space="preserve">
+    <value>Current Protocol</value>
+  </data>
+  <data name="DataDownloaded" xml:space="preserve">
+    <value>Data Downloaded</value>
+  </data>
+  <data name="DataUploaded" xml:space="preserve">
+    <value>Data Uploaded</value>
+  </data>
 </root>

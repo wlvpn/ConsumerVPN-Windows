@@ -590,4 +590,13 @@
   <data name="Delete" xml:space="preserve">
     <value>удалить</value>
   </data>
+  <data name="CurrentProtocol" xml:space="preserve">
+    <value>Текущий протокол</value>
+  </data>
+  <data name="DataDownloaded" xml:space="preserve">
+    <value>Данные Скачано</value>
+  </data>
+  <data name="DataUploaded" xml:space="preserve">
+    <value>Данные Загружено</value>
+  </data>
 </root>

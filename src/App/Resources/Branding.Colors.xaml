@@ -20,6 +20,9 @@
     <Color x:Key="IdealForegroundColor">#FFFFFFFF</Color>
     <SolidColorBrush x:Key="IdealForegroundBrush" Color="{StaticResource IdealForegroundColor}" />
 
+    <Color x:Key="ErrorForegroundColor">#FFD0021B</Color>
+    <SolidColorBrush x:Key="ErrorForegroundBrush" Color="{StaticResource ErrorForegroundColor}" />
+
     <Color x:Key="IdealForegroundDisabledColor">#8b8b8b</Color>
     <SolidColorBrush x:Key="IdealForegroundDisabledBrush" Color="{StaticResource IdealForegroundDisabledColor}" />
 

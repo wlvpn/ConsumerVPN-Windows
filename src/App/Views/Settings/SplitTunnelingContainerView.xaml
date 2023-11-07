@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="WLVPN.Views.SplitTunnelingContainerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cc="clr-namespace:CSharpControls.Wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utilities="clr-namespace:WLVPN.Utils"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource TabContentBackgroundBrush}"
+             Foreground="{DynamicResource IdealForegroundBrush}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource BorderlessTabItem}" TargetType="TabItem">
+            <Setter Property="AutomationProperties.Name" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Header.TabHeaderTitle}" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Height="Auto" Margin="53,20,0,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="{lex:LocText Key=SplitTunneling}" Style="{StaticResource HeaderLabel}" />
+
+        <cc:ToggleSwitch x:Name="SplitTunneling"
+                         Grid.Row="1"
+                         HorizontalAlignment="Left"
+                         CheckedText="{lex:Loc On}"
+                         Content="{lex:Loc EnableSplitTunneling}"
+                         FontSize="14"
+                         HeaderContentPlacement="Top"
+                         HeaderPadding="0,0,0,10"
+                         IsChecked="{Binding IsSplitTunnelingOn}"
+                         SwitchContentPlacement="Left"
+                         SwitchPadding="0,0,10,0"
+                         TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                         UncheckedText="{lex:Loc Off}" />
+        <Grid Grid.Row="2" Margin="0,15,0,0">
+            <TabControl Name="Items"
+                        Padding="0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Style="{StaticResource BorderlessTabControlStyle}">
+                <TabControl.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="IsEnabled" Value="{Binding CanAddItems}" />
+                    </Style>
+                </TabControl.Resources>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

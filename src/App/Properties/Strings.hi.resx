@@ -229,6 +229,9 @@
     <value>कनेक्षन</value>
     <comment>Connection</comment>
   </data>
+  <data name="TabSettingsSplitTunneling" xml:space="preserve">
+    <value>स्प्लिट टनलिंग</value>
+  </data>
   <data name="TabSettingsDiagnostics" xml:space="preserve">
     <value>डाइयग्नॉस्टिक्स</value>
     <comment>Diagnostics</comment>
@@ -636,5 +639,65 @@ The new version is {1} (You currently have version {2})</comment>
   </data>
   <data name="DisableIPv6LeakProtection" xml:space="preserve">
     <value>IPv6 रिसाव सुरक्षा अक्षम करें.</value>
+  </data>
+  <data name="SplitTunneling" xml:space="preserve">
+    <value>स्प्लिट टनलिंग</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>सूची में शामिल करे</value>
+  </data>
+  <data name="AddApplications" xml:space="preserve">
+    <value>ऐड ऍप्लिकेशन्स</value>
+  </data>
+  <data name="AddDomainAlreadyExistsError" xml:space="preserve">
+    <value>यह डोमेन पहले से मौजूद है, कृपया कोई अन्य डोमेन दर्ज करें.</value>
+  </data>
+  <data name="AddDomainValidationError" xml:space="preserve">
+    <value>कृपया एक वैध डोमेन प्रारूप दर्ज करें</value>
+  </data>
+  <data name="ApplicationAlreadyAdded" xml:space="preserve">
+    <value>ऍप्लिकेशन पहले से ही सूची में है: {0}</value>
+  </data>
+  <data name="NoAppAdded" xml:space="preserve">
+    <value>अभी तक कोई ऐप नहीं जोड़ा गया है</value>
+  </data>
+  <data name="NoDomainAdded" xml:space="preserve">
+    <value>अभी तक कोई डोमेन नहीं जोड़ा गया है</value>
+  </data>
+  <data name="EnableSplitTunneling" xml:space="preserve">
+    <value>स्प्लिट टनलिंग सक्षम करें</value>
+  </data>
+  <data name="DuplicateApplication" xml:space="preserve">
+    <value>डुप्लिकेट एप्लीकेशन</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>स्थान</value>
+  </data>
+  <data name="IncludeSubdomains" xml:space="preserve">
+    <value>सबडोमेन शामिल करें</value>
+  </data>
+  <data name="Domains" xml:space="preserve">
+    <value>डोमेन्स</value>
+  </data>
+  <data name="Applications" xml:space="preserve">
+    <value>ऍप्लिकेशन्स</value>
+  </data>
+  <data name="InvalidApplication" xml:space="preserve">
+    <value>अमान्य ऍप्लिकेशन का चयन किया गया है</value>
+  </data>
+  <data name="Application" xml:space="preserve">
+    <value>एप्लिकेशन</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>डोमेन</value>
+  </data>
+  <data name="PickManually" xml:space="preserve">
+    <value>मैन्युअल रूप से चुनें</value>
+  </data>
+  <data name="UnsupportedFileChosen" xml:space="preserve">
+    <value>असमर्थित फ़ाइल चुनी गई: {0}</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>इसे मिटाएं</value>
   </data>
 </root>

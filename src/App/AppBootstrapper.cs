@@ -186,10 +186,14 @@ namespace WLVPN
 
             ContainerInstance.Collection.Append<ISettingsTabItem, GeneralSettingsViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<ISettingsTabItem, ConnectionSettingsViewModel>(Lifestyle.Singleton);
+            ContainerInstance.Collection.Append<ISettingsTabItem, SplitTunnelingContainerViewModel>(Lifestyle.Singleton);
 
             ContainerInstance.Collection.Append<IInformationTabItem, HelpViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IInformationTabItem, LicenseViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IInformationTabItem, DiagnosticsViewModel>(Lifestyle.Singleton);
+
+            ContainerInstance.Collection.Append<ISplitTunnelingTabItem, SplitTunnelingApplicationViewModel>(Lifestyle.Singleton);
+            ContainerInstance.Collection.Append<ISplitTunnelingTabItem, SplitTunnelingDomainViewModel>(Lifestyle.Singleton);
 
             /*
              The values for the ApiKey and AuthenticationToken for this app are stored in Resources\Branding.System.xaml.

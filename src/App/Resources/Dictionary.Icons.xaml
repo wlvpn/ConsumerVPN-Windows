@@ -2,6 +2,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Resources/Icons/Logo.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Home.xaml" />
+        <ResourceDictionary Source="/Resources/Icons/Split.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Settings.xaml" />
         <ResourceDictionary Source="/Resources/Icons/Info.xaml" />
         <ResourceDictionary Source="/Resources/Icons/ConnectedCheckMark.xaml" />

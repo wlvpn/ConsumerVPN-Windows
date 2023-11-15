@@ -599,4 +599,13 @@
   <data name="DataUploaded" xml:space="preserve">
     <value>Данные Загружено</value>
   </data>
+  <data name="AdvancedProtection" xml:space="preserve">
+    <value>Расширенная защита</value>
+  </data>
+  <data name="ThreatProtectionText" xml:space="preserve">
+    <value>Блокируйте рекламу, трекеры и вредоносные веб-сайты при подключении VPN.</value>
+  </data>
+  <data name="ThreatProtection" xml:space="preserve">
+    <value>Защита от угроз</value>
+  </data>
 </root>

@@ -615,4 +615,13 @@
   <data name="DataUploaded" xml:space="preserve">
     <value>Datos cargados</value>
   </data>
+  <data name="AdvancedProtection" xml:space="preserve">
+    <value>Protección avanzada</value>
+  </data>
+  <data name="ThreatProtectionText" xml:space="preserve">
+    <value>Bloquear anuncios, rastreadores y sitios web malintencionados cuando la VPN está conectada</value>
+  </data>
+  <data name="ThreatProtection" xml:space="preserve">
+    <value>Protección frente a amenazas</value>
+  </data>
 </root>

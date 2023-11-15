@@ -101,6 +101,7 @@ namespace WLVPN.ViewModels
                 _sdk.DisableDNSLeakProtection = Properties.Settings.Default.DisableDNSLeakProtection;
                 _sdk.DisableIPv6LeakProtection = Properties.Settings.Default.DisableIPv6LeakProtection;
                 _sdk.AllowLocalAdaptersWhenConnected = Properties.Settings.Default.AllowLanInterfaces;
+                _sdk.DnsFilterMode = Properties.Settings.Default.IsThreatProtectionEnabled ? DnsFilteringMode.WithWLVPNDns : DnsFilteringMode.Disabled;
             }
             catch (Exception e)
             {

@@ -105,6 +105,12 @@ namespace WLVPN.ViewModels
                 SDK.AllowLocalAdaptersWhenConnected = Properties.Settings.Default.AllowLanInterfaces;
                 Properties.Settings.Default.Save();
             }
+
+            if (e.PropertyName == nameof(Properties.Settings.Default.IsThreatProtectionEnabled))
+            {
+                SDK.DnsFilterMode = IsThreatProtectionEnabled ? VpnSDK.Enums.DnsFilteringMode.WithWLVPNDns : VpnSDK.Enums.DnsFilteringMode.Disabled; 
+                Properties.Settings.Default.Save();
+            }                      
         }
 
         /// <summary>
@@ -293,6 +299,25 @@ namespace WLVPN.ViewModels
             {               
                 Properties.Settings.Default.DisableIPv6LeakProtection = value;
                 Properties.Settings.Default.Save();             
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether Threat protection feature is enabled.
+        /// Enable threat protection with the default WLVPN DNS.Optionally, partners can choose to use their own DNS server for threat protection.
+        /// To do this, configure the DNS server at the backend and, after enabling threat protection, set SDK.DnsFilterMode to DnsFilteringMode.WithPartnerDns.
+        /// </summary>
+        /// <value>true or false</value>
+        public bool IsThreatProtectionEnabled
+        {
+            get
+            {
+                return Properties.Settings.Default.IsThreatProtectionEnabled;
+            }
+            set
+            {
+                Properties.Settings.Default.IsThreatProtectionEnabled = value;
+                Properties.Settings.Default.Save();
             }
         }
         public bool IsOpenVpnAvailable

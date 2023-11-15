@@ -709,4 +709,13 @@ The new version is {1} (You currently have version {2})</comment>
   <data name="DataUploaded" xml:space="preserve">
     <value>डेटा अपलोड किया गया</value>
   </data>
+  <data name="AdvancedProtection" xml:space="preserve">
+    <value>उन्नत सुरक्षा</value>
+  </data>
+  <data name="ThreatProtectionText" xml:space="preserve">
+    <value>वीपीएन कनेक्ट होने पर विज्ञापनों, ट्रैकर्स और दुर्भावनापूर्ण वेबसाइटों को ब्लॉक करें।</value>
+  </data>
+  <data name="ThreatProtection" xml:space="preserve">
+    <value>ख़तरे से सुरक्षा</value>
+  </data>
 </root>

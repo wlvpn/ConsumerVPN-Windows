@@ -282,6 +282,24 @@
 
                 <cc:ToggleSwitch Content="{lex:Loc DisableIPv6LeakProtection}" IsChecked="{Binding DisableIPv6LeakProtection, Mode=TwoWay}" />
 
+                <Label Content="{lex:Loc AdvancedProtection}" Style="{StaticResource HeaderLabel}" />
+                <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+
+                    <cc:ToggleSwitch x:Name="ThreatProtection"
+                                     AutomationProperties.HelpText="{lex:Loc ThreatProtection}"
+                                     CheckedText="{lex:Loc On}"
+                                     Content="{lex:Loc ThreatProtection}"
+                                     IsChecked="{Binding IsThreatProtectionEnabled, Mode=TwoWay}"
+                                     TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                                     UncheckedText="{lex:Loc Off}" />
+
+                    <TextBlock Margin="0,5,0,0"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Text="{lex:Loc ThreatProtectionText}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

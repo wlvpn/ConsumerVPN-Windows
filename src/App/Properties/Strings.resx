@@ -652,4 +652,13 @@ Would you like to install one now?.</value>
   <data name="DataUploaded" xml:space="preserve">
     <value>Data Uploaded</value>
   </data>
+  <data name="AdvancedProtection" xml:space="preserve">
+    <value>Advanced protection</value>
+  </data>
+  <data name="ThreatProtectionText" xml:space="preserve">
+    <value>Block ads, trackers, and malicious websites when the VPN is connected.</value>
+  </data>
+  <data name="ThreatProtection" xml:space="preserve">
+    <value>Threat Protection</value>
+  </data>
 </root>

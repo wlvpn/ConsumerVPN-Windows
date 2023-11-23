@@ -108,8 +108,7 @@ namespace WLVPN.ViewModels
 
             if (e.PropertyName == nameof(Properties.Settings.Default.IsThreatProtectionEnabled))
             {
-                SDK.DnsFilterMode = IsThreatProtectionEnabled ? VpnSDK.Enums.DnsFilteringMode.WithWLVPNDns : VpnSDK.Enums.DnsFilteringMode.Disabled; 
-                Properties.Settings.Default.Save();
+                SDK.DnsFilterMode = IsThreatProtectionEnabled ? VpnSDK.Enums.DnsFilteringMode.WithWLVPNDns : VpnSDK.Enums.DnsFilteringMode.Disabled;                 
             }                      
         }
 

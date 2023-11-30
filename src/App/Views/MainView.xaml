@@ -75,7 +75,7 @@
         <!--  this overlays the bottom left of the tab control.  -->
         <Grid Grid.Row="0"
               Width="{StaticResource TabItemWidth}"
-              Margin="0,0,0,40"
+              Margin="0,0,0,50"
               HorizontalAlignment="Left"
               VerticalAlignment="Bottom"
               Background="Transparent">

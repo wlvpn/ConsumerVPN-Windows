@@ -29,7 +29,7 @@ namespace WLVPN.ViewModels
 
         public ISDK SDK { get; }
 
-        public bool CanAddItems => !IsSplitTunnelingOn && !SDK.IsConnected;
+        public bool CanAddItems => IsSplitTunnelingOn;
         public SplitTunnelingContainerViewModel(ISDK sdk, IEnumerable<ISplitTunnelingTabItem> tabs)
         {
             SDK = sdk;

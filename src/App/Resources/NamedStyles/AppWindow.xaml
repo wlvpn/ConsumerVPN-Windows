@@ -127,7 +127,7 @@
                             <Setter TargetName="PART_MAXIMIZE_RESTORE" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="WindowState" Value="Maximized">
-                            <Setter TargetName="MainContentPresenter" Property="Margin" Value="0,0,15,40" />
+                            <Setter TargetName="MainContentPresenter" Property="Margin" Value="0,0,25,45" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

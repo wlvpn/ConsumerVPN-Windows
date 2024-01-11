@@ -34,6 +34,7 @@
                          HeaderContentPlacement="Top"
                          HeaderPadding="0,0,0,10"
                          IsChecked="{Binding IsSplitTunnelingOn}"
+                         IsEnabled="{Binding SDK.IsConnected, Converter={StaticResource InverseBooleanConverter}}"
                          SwitchContentPlacement="Left"
                          SwitchPadding="0,0,10,0"
                          TextBlock.Foreground="{StaticResource IdealForegroundBrush}"

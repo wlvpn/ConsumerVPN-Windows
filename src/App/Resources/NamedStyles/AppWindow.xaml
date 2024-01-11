@@ -33,9 +33,11 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <AdornerDecorator Grid.Row="1" DockPanel.Dock="Bottom">
-                                    <ContentPresenter Content="{TemplateBinding Content}"
+                                    <ContentPresenter x:Name="MainContentPresenter"
+                                                      Content="{TemplateBinding Content}"
                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                                       ContentTemplate="{TemplateBinding ContentTemplate}" />
+
                                 </AdornerDecorator>
 
                                 <Border x:Name="TitleBar"
@@ -123,6 +125,9 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="ResizeMode" Value="NoResize">
                             <Setter TargetName="PART_MAXIMIZE_RESTORE" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="MainContentPresenter" Property="Margin" Value="0,0,25,45" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

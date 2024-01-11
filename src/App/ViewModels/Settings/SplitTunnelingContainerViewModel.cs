@@ -29,7 +29,7 @@ namespace WLVPN.ViewModels
 
         public ISDK SDK { get; }
 
-        public bool CanAddItems => !IsSplitTunnelingOn && !SDK.IsConnected;
+        public bool CanAddItems => IsSplitTunnelingOn && !SDK.IsConnected;
         public SplitTunnelingContainerViewModel(ISDK sdk, IEnumerable<ISplitTunnelingTabItem> tabs)
         {
             SDK = sdk;
@@ -37,6 +37,12 @@ namespace WLVPN.ViewModels
             SDK.SplitTunnelMode = SplitTunnelMode.RouteSelectedTrafficOutsideVpn;
             SDK.SplitTunnelAllowedApps = new List<SplitTunnelApp>();
             SDK.SplitTunnelAllowedDomains = new List<SplitTunnelDomain>();
+            SDK.VpnConnectionStatusChanged += SDK_VpnConnectionStatusChanged;
+        }
+
+        private void SDK_VpnConnectionStatusChanged(ISDK sender, VpnSDK.Enums.ConnectionStatus previous, VpnSDK.Enums.ConnectionStatus current)
+        {
+            NotifyOfPropertyChange(nameof(CanAddItems));
         }
     }
 }

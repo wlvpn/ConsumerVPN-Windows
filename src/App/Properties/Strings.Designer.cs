@@ -19,7 +19,7 @@ namespace WLVPN.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -93,6 +93,15 @@ namespace WLVPN.Properties {
         internal static string AddDomainValidationError {
             get {
                 return ResourceManager.GetString("AddDomainValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced protection.
+        /// </summary>
+        internal static string AdvancedProtection {
+            get {
+                return ResourceManager.GetString("AdvancedProtection", resourceCulture);
             }
         }
         
@@ -799,11 +808,11 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Include All Subdomains.
+        ///   Looks up a localized string similar to Include Subdomains.
         /// </summary>
-        internal static string IncludeAllSubdomains {
+        internal static string IncludeSubdomains {
             get {
-                return ResourceManager.GetString("IncludeAllSubdomains", resourceCulture);
+                return ResourceManager.GetString("IncludeSubdomains", resourceCulture);
             }
         }
         
@@ -1482,6 +1491,24 @@ namespace WLVPN.Properties {
         internal static string TapNotInstalledTitle {
             get {
                 return ResourceManager.GetString("TapNotInstalledTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Threat Protection.
+        /// </summary>
+        internal static string ThreatProtection {
+            get {
+                return ResourceManager.GetString("ThreatProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Block ads, trackers, and malicious websites when the VPN is connected..
+        /// </summary>
+        internal static string ThreatProtectionText {
+            get {
+                return ResourceManager.GetString("ThreatProtectionText", resourceCulture);
             }
         }
         

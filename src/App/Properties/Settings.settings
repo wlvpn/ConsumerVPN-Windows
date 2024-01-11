@@ -74,5 +74,8 @@
     <Setting Name="TapDeviceDescription" Type="System.String" Scope="User">
       <Value Profile="(Default)">TAP-Windows Adapter V9</Value>
     </Setting>
+    <Setting Name="IsThreatProtectionEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

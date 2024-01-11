@@ -310,5 +310,17 @@ namespace WLVPN.Properties {
                 this["TapDeviceDescription"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsThreatProtectionEnabled {
+            get {
+                return ((bool)(this["IsThreatProtectionEnabled"]));
+            }
+            set {
+                this["IsThreatProtectionEnabled"] = value;
+            }
+        }
     }
 }

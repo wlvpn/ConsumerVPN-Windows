@@ -19,7 +19,7 @@ namespace WLVPN.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Strings {
@@ -574,6 +574,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dns Monitoring.
+        /// </summary>
+        internal static string DnsMonitoring {
+            get {
+                return ResourceManager.GetString("DnsMonitoring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Domain.
         /// </summary>
         internal static string Domain {
@@ -592,11 +601,29 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double Hop.
+        /// </summary>
+        internal static string DoubleHop {
+            get {
+                return ResourceManager.GetString("DoubleHop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicate Application.
         /// </summary>
         internal static string DuplicateApplication {
             get {
                 return ResourceManager.GetString("DuplicateApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Double Hop (Only available with OpenVPN and WireGuard).
+        /// </summary>
+        internal static string EnableDoubleHop {
+            get {
+                return ResourceManager.GetString("EnableDoubleHop", resourceCulture);
             }
         }
         
@@ -633,6 +660,15 @@ namespace WLVPN.Properties {
         internal static string EnableSplitTunneling {
             get {
                 return ResourceManager.GetString("EnableSplitTunneling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable traffic optimizer.
+        /// </summary>
+        internal static string EnableTrafficOptimizer {
+            get {
+                return ResourceManager.GetString("EnableTrafficOptimizer", resourceCulture);
             }
         }
         
@@ -1015,6 +1051,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please note that a maximum of 3 applications can only be attached..
+        /// </summary>
+        internal static string MaxThreeApplication {
+            get {
+                return ResourceManager.GetString("MaxThreeApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message Box Popup.
         /// </summary>
         internal static string MessageBoxScreenTitle {
@@ -1177,6 +1222,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reached maximum limit.
+        /// </summary>
+        internal static string ReachedMaxLimit {
+            get {
+                return ResourceManager.GetString("ReachedMaxLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Will attempt to reconnect in {0} seconds.
         /// </summary>
         internal static string ReconnectAfter {
@@ -1227,6 +1281,15 @@ namespace WLVPN.Properties {
         internal static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an entry location to route your VPN connection through:.
+        /// </summary>
+        internal static string SelectEntryLocation {
+            get {
+                return ResourceManager.GetString("SelectEntryLocation", resourceCulture);
             }
         }
         
@@ -1509,6 +1572,15 @@ namespace WLVPN.Properties {
         internal static string ThreatProtectionText {
             get {
                 return ResourceManager.GetString("ThreatProtectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Traffic Optimizer.
+        /// </summary>
+        internal static string TrafficOptimizer {
+            get {
+                return ResourceManager.GetString("TrafficOptimizer", resourceCulture);
             }
         }
         

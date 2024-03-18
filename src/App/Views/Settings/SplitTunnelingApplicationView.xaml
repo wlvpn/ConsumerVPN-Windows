@@ -5,58 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:app="clr-namespace:WLVPN.Views"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="8*" />
-            <RowDefinition Height="2*" />
-        </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Content="{lex:Loc Key=NoAppAdded}"
-               Style="{StaticResource HeaderLabel}"
-               Visibility="{Binding ShowList, Converter={StaticResource CollapsedIfTrueConverter}}" />
-        <DataGrid x:Name="dgDomains"
-                  AutoGenerateColumns="False"
-                  CanUserAddRows="True"
-                  CanUserDeleteRows="True"
-                  ItemsSource="{Binding Applications, Mode=TwoWay}"
-                  Style="{StaticResource MetroDataGrid}"
-                  Visibility="{Binding ShowList, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="{lex:Loc Key=Application}" Binding="{Binding Name}"  IsReadOnly="True"  />
-                <DataGridTextColumn Width="2*" Header="{lex:Loc Key=Path}" Binding="{Binding Path}" IsReadOnly="True"  >
-                    <DataGridTextColumn.CellStyle>
-                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MetroDataGridCell}">
-                            <Setter Property="ToolTip" Value="{Binding Path}" />
-                        </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
-                <DataGridTemplateColumn Width="*" Header="" MaxWidth="80" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Margin="10,0"
-                                    HorizontalAlignment="Center" 
-                                    IsHitTestVisible="True"
-                                    cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                    cal:Bind.Model="{Binding}"
-                                    cal:Message.Attach="[Event Click] = [Action DeleteApplication($dataContext)]"
-                                    CommandParameter="{Binding}"
-                                    Content="{lex:Loc Key=Delete}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
 
-        <Button x:Name="PickManually"
-                Grid.Row="1"
-                Width="100"
-                Height="30"
-                HorizontalAlignment="Left"
-                Content="{lex:Loc Key=PickManually}" />
+        <Control Style="{StaticResource AppListControl}" />
 
     </Grid>
 </UserControl>

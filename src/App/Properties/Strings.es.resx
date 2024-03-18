@@ -624,4 +624,28 @@
   <data name="ThreatProtection" xml:space="preserve">
     <value>Protección frente a amenazas</value>
   </data>
+  <data name="DnsMonitoring" xml:space="preserve">
+    <value>Monitoreo DNS</value>
+  </data>
+  <data name="EnableDoubleHop" xml:space="preserve">
+    <value>Habilitar doble salto (solo disponible con OpenVPN y WireGuard)</value>
+  </data>
+  <data name="SelectEntryLocation" xml:space="preserve">
+    <value>Seleccione una ubicación de entrada para enrutar su conexión VPN a través de:</value>
+  </data>
+  <data name="TrafficOptimizer" xml:space="preserve">
+    <value>Optimizador de tráfico</value>
+  </data>
+  <data name="EnableTrafficOptimizer" xml:space="preserve">
+    <value>Habilitar optimizador de tráfico</value>
+  </data>
+  <data name="DoubleHop" xml:space="preserve">
+    <value>Doble salto</value>
+  </data>
+  <data name="MaxThreeApplication" xml:space="preserve">
+    <value>Tenga en cuenta que solo se pueden optimizar un máximo de 3 aplicaciones.</value>
+  </data>
+  <data name="ReachedMaxLimit" xml:space="preserve">
+    <value>Límite máximo alcanzado</value>
+  </data>
 </root>

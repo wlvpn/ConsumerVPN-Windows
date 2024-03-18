@@ -608,4 +608,28 @@
   <data name="ThreatProtection" xml:space="preserve">
     <value>Защита от угроз</value>
   </data>
+  <data name="DnsMonitoring" xml:space="preserve">
+    <value>DNS-мониторинг</value>
+  </data>
+  <data name="EnableDoubleHop" xml:space="preserve">
+    <value>Включить двойной переход (доступно только с OpenVPN и WireGuard)</value>
+  </data>
+  <data name="SelectEntryLocation" xml:space="preserve">
+    <value>Выберите место входа для маршрутизации вашего VPN-соединения:</value>
+  </data>
+  <data name="TrafficOptimizer" xml:space="preserve">
+    <value>Оптимизатор трафика</value>
+  </data>
+  <data name="EnableTrafficOptimizer" xml:space="preserve">
+    <value>Включить оптимизатор трафика</value>
+  </data>
+  <data name="DoubleHop" xml:space="preserve">
+    <value>Двойной прыжок</value>
+  </data>
+  <data name="MaxThreeApplication" xml:space="preserve">
+    <value>Обратите внимание, что оптимизировать можно только 3 приложения.</value>
+  </data>
+  <data name="ReachedMaxLimit" xml:space="preserve">
+    <value>Достигнут максимальный лимит</value>
+  </data>
 </root>

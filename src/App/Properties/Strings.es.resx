@@ -643,7 +643,7 @@
     <value>Doble salto</value>
   </data>
   <data name="MaxThreeApplication" xml:space="preserve">
-    <value>Tenga en cuenta que solo se pueden optimizar un máximo de 3 aplicaciones.</value>
+    <value>Tenga en cuenta que solo se pueden optimizar hasta 3 aplicaciones a la vez.</value>
   </data>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Límite máximo alcanzado</value>

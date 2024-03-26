@@ -737,7 +737,7 @@ The new version is {1} (You currently have version {2})</comment>
     <value>डबल हॉप</value>
   </data>
   <data name="MaxThreeApplication" xml:space="preserve">
-    <value>कृपया ध्यान दें कि अधिकतम 3 एप्लिकेशन को ही अनुकूलित किया जा सकता है।</value>
+    <value>कृपया ध्यान दें कि एक समय में केवल 3 एप्लिकेशन तक ही अनुकूलित किए जा सकते हैं।</value>
   </data>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>अधिकतम सीमा तक पहुंच गया</value>

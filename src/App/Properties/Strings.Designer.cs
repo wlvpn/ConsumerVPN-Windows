@@ -1051,7 +1051,7 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please note that a maximum of 3 applications can only be attached..
+        ///   Looks up a localized string similar to Please note that only up to 3 applications can be optimized at a time..
         /// </summary>
         internal static string MaxThreeApplication {
             get {

@@ -650,7 +650,7 @@ The new version is {1} (You currently have version {2})</value>
     <value>Double Hop</value>
   </data>
   <data name="MaxThreeApplication" xml:space="preserve">
-    <value>Please note that a maximum of 3 applications can only be optimized.</value>
+    <value>Please note that only up to 3 applications can be optimized at a time.</value>
   </data>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Reached maximum limit</value>

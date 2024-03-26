@@ -627,7 +627,7 @@
     <value>Двойной прыжок</value>
   </data>
   <data name="MaxThreeApplication" xml:space="preserve">
-    <value>Обратите внимание, что оптимизировать можно только 3 приложения.</value>
+    <value>Обратите внимание, что одновременно можно оптимизировать только до 3 приложений.</value>
   </data>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Достигнут максимальный лимит</value>

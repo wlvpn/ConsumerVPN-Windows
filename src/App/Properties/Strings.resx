@@ -680,7 +680,7 @@ Would you like to install one now?.</value>
     <value>Double Hop</value>
   </data>
   <data name="MaxThreeApplication" xml:space="preserve">
-    <value>Please note that a maximum of 3 applications can only be attached.</value>
+    <value>Please note that only up to 3 applications can be optimized at a time.</value>
   </data>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Reached maximum limit</value>

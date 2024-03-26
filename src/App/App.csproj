@@ -579,7 +579,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Strings.en.resx" />
+    <EmbeddedResource Include="Properties\Strings.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.es.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -963,7 +965,7 @@
       <Version>2.2.33</Version>
     </PackageReference>
     <PackageReference Include="VpnSDK.Private.OpenVpn">
-      <Version>1.0.37-develop00010</Version>
+      <Version>1.0.38</Version>
     </PackageReference>
     <PackageReference Include="WPFLocalizeExtension">
       <Version>3.3.1</Version>

@@ -12,7 +12,7 @@ namespace WLVPN.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -320,6 +320,52 @@ namespace WLVPN.Properties {
             }
             set {
                 this["IsThreatProtectionEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsDoubleHopEnabled {
+            get {
+                return ((bool)(this["IsDoubleHopEnabled"]));
+            }
+            set {
+                this["IsDoubleHopEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::VpnSDK.Interfaces.ILocation EntryLocation {
+            get {
+                return ((global::VpnSDK.Interfaces.ILocation)(this["EntryLocation"]));
+            }
+            set {
+                this["EntryLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DnsMonitoring {
+            get {
+                return ((bool)(this["DnsMonitoring"]));
+            }
+            set {
+                this["DnsMonitoring"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::VpnSDK.Interfaces.ILocation SelectedDestination {
+            get {
+                return ((global::VpnSDK.Interfaces.ILocation)(this["SelectedDestination"]));
+            }
+            set {
+                this["SelectedDestination"] = value;
             }
         }
     }

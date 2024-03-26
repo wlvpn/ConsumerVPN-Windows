@@ -661,4 +661,28 @@ Would you like to install one now?.</value>
   <data name="ThreatProtection" xml:space="preserve">
     <value>Threat Protection</value>
   </data>
+  <data name="DnsMonitoring" xml:space="preserve">
+    <value>Dns Monitoring</value>
+  </data>
+  <data name="EnableDoubleHop" xml:space="preserve">
+    <value>Enable Double Hop (Only available with OpenVPN and WireGuard)</value>
+  </data>
+  <data name="SelectEntryLocation" xml:space="preserve">
+    <value>Select an entry location to route your VPN connection through:</value>
+  </data>
+  <data name="TrafficOptimizer" xml:space="preserve">
+    <value>Traffic Optimizer</value>
+  </data>
+  <data name="EnableTrafficOptimizer" xml:space="preserve">
+    <value>Enable traffic optimizer</value>
+  </data>
+  <data name="DoubleHop" xml:space="preserve">
+    <value>Double Hop</value>
+  </data>
+  <data name="MaxThreeApplication" xml:space="preserve">
+    <value>Please note that only up to 3 applications can be optimized at a time.</value>
+  </data>
+  <data name="ReachedMaxLimit" xml:space="preserve">
+    <value>Reached maximum limit</value>
+  </data>
 </root>

@@ -14,6 +14,8 @@ using System.Windows;
 using VpnSDK.Enums;
 using VpnSDK.Interfaces;
 using WLVPN.Helpers;
+using Org.BouncyCastle.Bcpg;
+using VpnSDK.DnsMonitor.DTO;
 
 namespace WLVPN.ViewModels
 {
@@ -62,7 +64,8 @@ namespace WLVPN.ViewModels
             if (status != AuthenticationStatus.Authenticated)
             {
                 State = status;
-                if (State == AuthenticationStatus.InProgress) {
+                if (State == AuthenticationStatus.InProgress)
+                {
                     if (_previousState == AuthenticationStatus.NotAuthenticated)
                     {
                         ProgressText = $"{Properties.Strings.LoggingIn}{Properties.Strings.ProgressSuffix}";
@@ -102,6 +105,10 @@ namespace WLVPN.ViewModels
                 _sdk.DisableIPv6LeakProtection = Properties.Settings.Default.DisableIPv6LeakProtection;
                 _sdk.AllowLocalAdaptersWhenConnected = Properties.Settings.Default.AllowLanInterfaces;
                 _sdk.DnsFilterMode = Properties.Settings.Default.IsThreatProtectionEnabled ? DnsFilteringMode.WithWLVPNDns : DnsFilteringMode.Disabled;
+                _sdk.SetDnsMonitorConfig(new DnsMonitoringConfig()
+                {
+                    IsEnabled = Properties.Settings.Default.DnsMonitoring,
+                });
             }
             catch (Exception e)
             {

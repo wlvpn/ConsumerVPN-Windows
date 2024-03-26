@@ -9,6 +9,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:properties="clr-namespace:WLVPN.Properties"
              xmlns:sdk="clr-namespace:VpnSDK.Enums;assembly=VpnSDK"
+             xmlns:app="clr-namespace:WLVPN.Views"
              d:DesignHeight="900"
              d:DesignWidth="750"
              Background="{StaticResource TabContentBackgroundBrush}"
@@ -282,7 +283,32 @@
 
                 <cc:ToggleSwitch Content="{lex:Loc DisableIPv6LeakProtection}" IsChecked="{Binding DisableIPv6LeakProtection, Mode=TwoWay}" />
 
+                <cc:ToggleSwitch x:Name="DnsMonitoring" Content="{lex:Loc DnsMonitoring}" IsChecked="{Binding DnsMonitoring, Mode=TwoWay}" />
+
+                <Label Content="{lex:Loc DoubleHop}" Style="{StaticResource HeaderLabel}" />
+
+                <cc:ToggleSwitch Margin="0,5,0,0" x:Name="DoubleHop" Content="{lex:Loc EnableDoubleHop}" IsChecked="{Binding IsDoubleHopEnabled, Mode=TwoWay}" />
+
+                <StackPanel Orientation="Horizontal" IsEnabled="{Binding ElementName=DoubleHop, Path=IsChecked}" Visibility="{Binding ElementName=DoubleHop, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+
+                    <TextBlock VerticalAlignment="Bottom" FontSize="14" Text="{lex:Loc SelectEntryLocation}" TextWrapping="Wrap" />
+
+                    <ComboBox ItemsSource="{Binding SDK.Locations}"                               
+                              DisplayMemberPath="SearchName"
+                              SelectedItem="{Binding SelectedLocation, UpdateSourceTrigger=PropertyChanged}"
+                              Margin="10,0,0,0"
+                              IsEditable="False"
+                              Width="220"/>
+                </StackPanel>
+
+                <Label Content="{lex:Loc TrafficOptimizer}" Style="{StaticResource HeaderLabel}" />
+
+                <cc:ToggleSwitch Margin="0,5,0,0" x:Name="TrafficOptimizer" Content="{lex:Loc EnableTrafficOptimizer}" />
+
+                <Control Style="{StaticResource AppListControl}" IsEnabled="{Binding ElementName=TrafficOptimizer, Path=IsChecked}" Visibility="{Binding ElementName=TrafficOptimizer, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"/>
+
                 <Label Content="{lex:Loc AdvancedProtection}" Style="{StaticResource HeaderLabel}" />
+
                 <StackPanel Margin="0,5,0,0" Orientation="Vertical">
 
                     <cc:ToggleSwitch x:Name="ThreatProtection"

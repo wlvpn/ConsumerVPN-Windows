@@ -5,7 +5,6 @@
         <ResourceDictionary Source="/Resources/NamedStyles/ReadOnlyTextBox.xaml" />
         <ResourceDictionary Source="/Resources/NamedStyles/TransitioningContentControl.xaml" />
         <ResourceDictionary Source="/Resources/NamedStyles/FlatHorizontalTabControl.xaml" />
-        <ResourceDictionary Source="/Resources/NamedStyles/MetroDataGrid.xaml" />
         <ResourceDictionary Source="/Resources/NamedStyles/BaseLabel.xaml" />
         <ResourceDictionary Source="/Resources/NamedStyles/HeaderLabel.xaml" />
         <ResourceDictionary Source="/Resources/NamedStyles/BaseTextBlock.xaml" />

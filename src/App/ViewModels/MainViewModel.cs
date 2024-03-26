@@ -14,6 +14,8 @@ using VpnSDK.Enums;
 using VpnSDK.Extensions;
 using VpnSDK.Interfaces;
 using WLVPN.Helpers;
+using VpnSDK.DnsMonitor.DTO;
+using Serilog;
 
 namespace WLVPN.ViewModels
 {
@@ -40,6 +42,7 @@ namespace WLVPN.ViewModels
             _sdk.VpnConnectionStatusChanged += OnVpnConnectionStatusChanged;
             _sdk.UserLocationStatusChanged += SdkOnUserLocationStatusChanged;
             Dialog = dialogManager;
+            _sdk.DnsMonitoringUpdate += OnDnsMonitorUpdate;
         }
 
         protected override async void OnInitialize()
@@ -84,6 +87,16 @@ namespace WLVPN.ViewModels
         private void OnVpnConnectionStatusChanged(ISDK sender, ConnectionStatus previous, ConnectionStatus current)
         {
             VpnConnectionStatus = current;
+        }
+
+        private void OnDnsMonitorUpdate(DnsMonitoringArgs dnsMonitoringArgs)
+        {
+            if (dnsMonitoringArgs == null)
+            {
+                return;
+            }
+
+            Log.Information($"Received DnsMonitoringEvent url count: {dnsMonitoringArgs.DomainNames.Count} {string.Join(",", dnsMonitoringArgs.DomainNames)}");
         }
 
         public void OpenSettingsTab()

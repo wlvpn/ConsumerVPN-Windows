@@ -2,26 +2,36 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
 using WLVPN.Interfaces;
 using VpnSDK.Enums;
 using VpnSDK.Interfaces;
-using WPFLocalizeExtension.Engine;
 using System.Windows;
 using WLVPN.Helpers;
+using VpnSDK.DnsMonitor.DTO;
+using System.Windows.Forms;
+using Screen = Caliburn.Micro.Screen;
+using WLVPN.Properties;
+using System.ComponentModel;
+using System.IO;
+using VpnSDK.TrafficOptimizer.DTO;
+using System.Collections.ObjectModel;
+using WLVPN.Model;
 
 namespace WLVPN.ViewModels
 {
-    public class ConnectionSettingsViewModel : Screen , ISettingsTabItem
+    public class ConnectionSettingsViewModel : Screen, ISettingsTabItem
     {
         private bool _openVpnScramble = Properties.Settings.Default.Scramble;
+        private const string SupportedExtension = ".exe";
+        private const string UnsupportedApp = "ConsumerVPN";
+        private static IDialogManager _dialog = AppBootstrapper.ContainerInstance.GetInstance<IDialogManager>();
+
+        private TrafficOptimizerConfig _trafficOptimizerConfig;
 
         public ConnectionSettingsViewModel(ISDK sdk)
         {
             SDK = sdk;
-            
+
             ConnectionTypes = SDK.AvailableProtocols.Where(x => x.Value == true).Select(x => x.Key).ToList();
 
             if (!SDK.AvailableProtocols.Where(x => x.Value == true).Select(x => x.Key.ToString().Equals(Properties.Settings.Default.ConnectionProtocol)).Any())
@@ -29,12 +39,13 @@ namespace WLVPN.ViewModels
                 Properties.Settings.Default.ConnectionProtocol = ConnectionTypes.First();
                 Properties.Settings.Default.Save();
             }
-
+            _trafficOptimizerConfig = new TrafficOptimizerConfig();
+            IsDoubleHopEnabled = false;
             Properties.Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
         }
 
         public string TabHeaderTitle => Properties.Strings.TabSettingsConnection;
-
+        public bool ShowList => Applications.Any();
         public static Style Icon => Resource.Get<Style>("SignalIcon");
 
         public ISDK SDK { get; }
@@ -69,6 +80,7 @@ namespace WLVPN.ViewModels
 
         public List<NetworkProtocolType> OpenVpnProtocols { get; } = new List<NetworkProtocolType> { NetworkProtocolType.UDP, NetworkProtocolType.TCP };
 
+        public ObservableCollection<ApplicationDetails> Applications { get; set; } = new ObservableCollection<ApplicationDetails>();
 
         private void OnSettingsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -107,9 +119,17 @@ namespace WLVPN.ViewModels
             }
 
             if (e.PropertyName == nameof(Properties.Settings.Default.IsThreatProtectionEnabled))
-            {                
-                SDK.DnsFilterMode = IsThreatProtectionEnabled ? VpnSDK.Enums.DnsFilteringMode.WithWLVPNDns : VpnSDK.Enums.DnsFilteringMode.Disabled;             
-            }                      
+            {
+                SDK.DnsFilterMode = IsThreatProtectionEnabled ? VpnSDK.Enums.DnsFilteringMode.WithWLVPNDns : VpnSDK.Enums.DnsFilteringMode.Disabled;
+            }
+
+            if (e.PropertyName == nameof(Properties.Settings.Default.DnsMonitoring))
+            {
+                SDK.SetDnsMonitorConfig(new DnsMonitoringConfig()
+                {
+                    IsEnabled = Properties.Settings.Default.DnsMonitoring,
+                });
+            }
         }
 
         /// <summary>
@@ -152,7 +172,8 @@ namespace WLVPN.ViewModels
         /// Gets or sets a value indicating whether the Cipher Combo Box is enabled
         /// The Cipher must be set to 128 when Scramble is enabled and we do not let the user change it.
         /// </summary>
-        public bool IsCipherEnabled {
+        public bool IsCipherEnabled
+        {
             get
             {
                 if (ConnectionProtocol == NetworkConnectionType.OpenVPN && OpenVpnScramble == false)
@@ -265,9 +286,9 @@ namespace WLVPN.ViewModels
             get => Properties.Settings.Default.AllowLanInterfaces;
 
             set
-            {                
+            {
                 Properties.Settings.Default.AllowLanInterfaces = value;
-                Properties.Settings.Default.Save();                
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -280,9 +301,9 @@ namespace WLVPN.ViewModels
             get => Properties.Settings.Default.DisableDNSLeakProtection;
 
             set
-            {                
+            {
                 Properties.Settings.Default.DisableDNSLeakProtection = value;
-                Properties.Settings.Default.Save();                
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -295,9 +316,9 @@ namespace WLVPN.ViewModels
             get => Properties.Settings.Default.DisableIPv6LeakProtection;
 
             set
-            {               
+            {
                 Properties.Settings.Default.DisableIPv6LeakProtection = value;
-                Properties.Settings.Default.Save();             
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -323,5 +344,135 @@ namespace WLVPN.ViewModels
         {
             get => SDK.AvailableProtocols.Any(x => x.Key == NetworkConnectionType.OpenVPN && x.Value == true);
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the DNS Monitoring is enabled or not.
+        /// </summary>
+        /// <value>true or false</value>
+        public bool DnsMonitoring
+        {
+            get => Properties.Settings.Default.DnsMonitoring;
+
+            set
+            {
+                Properties.Settings.Default.DnsMonitoring = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        ///// <summary>
+        ///// Sets a value indicating whether double hop is enabled.
+        ///// </summary>
+        public bool IsDoubleHopEnabled
+        {
+            get
+            {
+                return Properties.Settings.Default.IsDoubleHopEnabled;
+            }
+            set
+            {
+                Properties.Settings.Default.IsDoubleHopEnabled = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the entry location.
+        /// </summary>
+        public ILocation SelectedLocation
+        {
+            get => Properties.Settings.Default.EntryLocation;
+
+            set
+            {
+                Properties.Settings.Default.EntryLocation = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public void PickManually()
+        {
+            // Maximum 3 applications can be added
+            if (Applications.Count < 3)
+            {
+                var filter = string.Join("|", SupportedExtension
+                                      .Select(_ => $"Executable (*{SupportedExtension})|*{SupportedExtension}"));
+
+                // Create OpenFileDialog
+                OpenFileDialog openFileDlg = new OpenFileDialog()
+                {
+                    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    DefaultExt = SupportedExtension,
+                    Filter = filter,
+                    CheckFileExists = true,
+                    Title = Strings.AddApplications,
+                    CheckPathExists = true,
+                    Multiselect = true,
+                };
+                openFileDlg.FileOk += OpenFileDlg_FileOk;
+
+                openFileDlg.ShowDialog();
+            }
+            else
+            {
+                var message = string.Format(CultureInfo.CurrentCulture, Strings.MaxThreeApplication);
+                _dialog.ShowMessageBox(message, Strings.ReachedMaxLimit, Enums.MessageBoxOptions.Ok);
+            }
+
+        }
+
+        private void OpenFileDlg_FileOk(object sender, CancelEventArgs e)
+        {
+            if (sender is OpenFileDialog openFileDlg)
+            {
+                foreach (var filePath in openFileDlg.FileNames)
+                {
+                    var extension = Path.GetExtension(filePath);
+                    string fileName = Path.GetFileNameWithoutExtension(filePath);
+                    if (!SupportedExtension.Equals(extension, System.StringComparison.OrdinalIgnoreCase) ||
+                        UnsupportedApp.Equals(fileName, System.StringComparison.OrdinalIgnoreCase))
+                    {
+                        var message = string.Format(CultureInfo.CurrentCulture, Strings.UnsupportedFileChosen, fileName);
+                        System.Windows.MessageBox.Show(message, Strings.InvalidApplication, MessageBoxButton.OK, MessageBoxImage.Error);
+                        e.Cancel = true;
+                        continue;
+                    }
+
+                    if (Applications.Any(_ => _.Path == filePath))
+                    {
+                        var message = string.Format(Strings.ApplicationAlreadyAdded, fileName);
+                        System.Windows.MessageBox.Show(message, Strings.DuplicateApplication, MessageBoxButton.OK, MessageBoxImage.Error);
+                        e.Cancel = true;
+                        continue;
+                    }
+                   
+                    Applications.Add(new ApplicationDetails(Path.GetFileNameWithoutExtension(filePath),filePath));
+                    UpdateConfiguration();
+                    NotifyOfPropertyChange(nameof(ShowList));
+                }
+            }
+        }
+
+        private void UpdateConfiguration()
+        {
+            _trafficOptimizerConfig.PrioritizedApps = Applications.Select(_ => _.Path).ToArray();
+            SDK.SetTrafficOptimizerConfig(_trafficOptimizerConfig);
+        }
+
+        public void DeleteApplication(ApplicationDetails process)
+        {
+            try
+            {
+                Applications.Remove(process);
+                UpdateConfiguration();
+                NotifyOfPropertyChange(nameof(ShowList));
+            }
+            catch (Exception)
+            {
+                //ignore.
+            }
+        }        
     }
 }
+
+

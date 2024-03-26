@@ -142,11 +142,6 @@ namespace WLVPN
                 return;
             }
 
-            if (Debugger.IsAttached)
-            {
-                throw exception;
-            }
-
             try
             {
                 Log.Information("Unhandled Exception, trying to dispose of SDK");
@@ -158,6 +153,11 @@ namespace WLVPN
             catch (Exception ex)
             {
                 Log.Error(ex, "Exception while Disposing of SDK");
+            }
+
+            if (Debugger.IsAttached)
+            {
+                throw exception;
             }
 
             Log.Information(DiagnosticsHelper.GetSettingsStateInfo());
@@ -207,7 +207,11 @@ namespace WLVPN
                             .SetAuthenticationToken(Resource.Get<string>("AuthenticationToken"))
                             .SetApplicationName(Resource.Get<string>("ApplicationName"))
                             .SetAutomaticRefreshTokenHandling(true)
-                            .SetOpenVpnConfiguration(new VpnSDK.DTO.OpenVpnConfiguration() { TapDeviceDescription = Properties.Settings.Default.TapDeviceDescription })
+                            .SetOpenVpnConfiguration(new VpnSDK.DTO.OpenVpnConfiguration() 
+                            {
+                                PreferredTapAdapter = VpnSDK.Private.OpenVpn.Enums.OpenVpnTapAdapter.TapWLVPN,
+                                TapDeviceDescription = Properties.Settings.Default.TapDeviceDescription 
+                            })
                             .SetServerListCache(TimeSpan.FromDays(1))
                             .Create(), Lifestyle.Singleton);
         }

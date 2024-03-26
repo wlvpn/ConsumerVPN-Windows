@@ -77,5 +77,17 @@
     <Setting Name="IsThreatProtectionEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="IsDoubleHopEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="EntryLocation" Type="VpnSDK.Interfaces.ILocation" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DnsMonitoring" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SelectedDestination" Type="VpnSDK.Interfaces.ILocation" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

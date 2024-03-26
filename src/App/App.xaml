@@ -33,7 +33,9 @@
                 </ResourceDictionary>
 
 
-
+                <ResourceDictionary Source="/Resources/NamedStyles/MetroDataGrid.xaml" />
+                <ResourceDictionary Source="/Resources/NamedStyles/AppListControl.xaml" />
+                
                 <ResourceDictionary Source="/Resources/Branding.System.xaml" />
                 <ResourceDictionary Source="/Resources/Branding.General.xaml" />
                 <ResourceDictionary Source="/Resources/Branding.Colors.xaml" />

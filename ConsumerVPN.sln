@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29025.244
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "src\App\App.csproj", "{CA2345C9-62E7-4660-94F0-88CBBC593B9E}"
 EndProject
@@ -48,8 +48,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_NeutralResourcesLanguage = en-US
-		SolutionGuid = {CF1064CF-3B4D-47D4-AB2B-CD867541A932}
 		RESX_AutoCreateNewLanguageFiles = False
+		SolutionGuid = {CF1064CF-3B4D-47D4-AB2B-CD867541A932}
+		RESX_NeutralResourcesLanguage = en-US
 	EndGlobalSection
 EndGlobal

@@ -14,6 +14,7 @@ using VpnSDK.Enums;
 using VpnSDK.Interfaces;
 using MessageBoxOptions = WLVPN.Enums.MessageBoxOptions;
 using System.Globalization;
+using WLVPN.ViewModels;
 
 namespace WLVPN.Extensions
 {
@@ -39,6 +40,8 @@ namespace WLVPN.Extensions
             {
                 Settings.Default.SelectedCity = location?.CityCode;
             }
+
+            Settings.Default.SelectedDestination = location;
             Properties.Settings.Default.Save();
         }
 
@@ -103,18 +106,22 @@ namespace WLVPN.Extensions
             }
 
             try
-            {
+                {
                 List<IConnectionConfiguration> configurations = new List<IConnectionConfiguration>();
 
                 // Order is important for Automatic Protocol feature. It starts with first configuration and then uses the next one as a fallback.
-                // Lets stick with the next protocols order for now: WG, OpenVPN, IKEv2.
-                configurations.Add(new WireGuardConnectionConfigurationBuilder().SetBlockUntunneledTraffic(!Properties.Settings.Default.AllowLanInterfaces).Build());
+                // Lets stick with the next protocols order for now: WG, OpenVPN, IKEv2.                
+                configurations.Add(new WireGuardConnectionConfigurationBuilder()
+               .SetBlockUntunneledTraffic(!Properties.Settings.Default.AllowLanInterfaces)
+               .SetDoubleHopSettings(Properties.Settings.Default.IsDoubleHopEnabled, Properties.Settings.Default.EntryLocation, Properties.Settings.Default.SelectedDestination)
+               .Build());
                 configurations.Add(new RasConnectionConfigurationBuilder().SetConnectionType(NetworkConnectionType.IKEv2).Build());
                 configurations.Add(
                     new OpenVpnConnectionConfigurationBuilder()
                         .SetCipher(Properties.Settings.Default.Scramble ? OpenVpnCipherType.AES_128_CBC : OpenVpnCipherType.AES_256_CBC)
                         .SetScramble(Properties.Settings.Default.Scramble)
                         .SetNetworkProtocol(Properties.Settings.Default.OpenVpnProtocol)
+                        .SetDoubleHopSettings(Properties.Settings.Default.IsDoubleHopEnabled, Properties.Settings.Default.EntryLocation, Properties.Settings.Default.SelectedDestination)
                         .Build());
 
                 sdk.SetCancellationTokenSource(new CancellationTokenSource());
@@ -159,9 +166,13 @@ namespace WLVPN.Extensions
                         }
                     });
             }
+            catch (InvalidDoubleHopConfigurationException e)
+            {
+                _dialog.ShowMessageBox(e.Message, "Double hop");
+            }
             catch (Exception e)
             {
-                if (reconnect == false || (reconnect == true && lastAttempt == true))
+              if (reconnect == false || (reconnect == true && lastAttempt == true))
                 {
                     _dialog.ShowMessageBox(e.Message, "VPN Connection Failed");
                 }

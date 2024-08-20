@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using WLVPN.Interfaces;
 using WLVPN.Properties;
 using Serilog;
-using VpnSDK;
-using VpnSDK.Enums;
-using VpnSDK.Interfaces;
 using MessageBoxOptions = WLVPN.Enums.MessageBoxOptions;
 using System.Globalization;
-using WLVPN.ViewModels;
+using VpnSDK.Interfaces;
+using VpnSDK;
+using VpnSDK.Enums;
 
 namespace WLVPN.Extensions
 {
@@ -22,6 +18,7 @@ namespace WLVPN.Extensions
     {
         private static CancellationTokenSource TokenSource { get; set; }
         private static IDialogManager _dialog = AppBootstrapper.ContainerInstance.GetInstance<IDialogManager>();
+        private const string BestAvailable = "bestavailable";
 
         public static CancellationTokenSource GetCancellationTokenSource(this ISDK sdk)
         {
@@ -191,6 +188,11 @@ namespace WLVPN.Extensions
                 // Else, connect to a VPN server using a specific Network connection type.
                 var connectionType = configurations.First(x => x.ConnectionType == Properties.Settings.Default.ConnectionProtocol);
                 await sdk.Connect(locations ?? new List<ILocation>() { location }, connectionType, token);
+            }
+            if (location != null && location.Id != BestAvailable)
+            {
+                Properties.Settings.Default.LastSelectedServer = ((IChildren<IServer>)location).Children.FirstOrDefault().ToString();
+                Properties.Settings.Default.Save();
             }
         }
 

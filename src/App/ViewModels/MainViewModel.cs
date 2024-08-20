@@ -23,6 +23,7 @@ namespace WLVPN.ViewModels
     {
         private readonly ISDK _sdk;
 
+        private const string BestAvailable = "bestavailable";
         public IDialogManager Dialog { get; }
 
         public ConnectionStatus VpnConnectionStatus { get; set; } = ConnectionStatus.Disconnected;
@@ -52,7 +53,11 @@ namespace WLVPN.ViewModels
             {
                 if (Properties.Settings.Default.StartupType == StartupType.LastLocation)
                 {
-                    await _sdk.InitiateConnection();
+                    var lastLocation = _sdk.Locations.Where(i => i.Id != BestAvailable)
+                        .FirstOrDefault(location => ((IChildren<IServer>)location).Children
+                        .Any(child => child.ToString() == Properties.Settings.Default.LastSelectedServer));
+
+                    await _sdk.InitiateConnection(lastLocation);
                 }
                 else
                 {

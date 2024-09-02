@@ -89,5 +89,8 @@
     <Setting Name="SelectedDestination" Type="VpnSDK.Interfaces.ILocation" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="LastSelectedServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

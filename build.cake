@@ -15,8 +15,8 @@ var certificatePassword = Argument("CertPassword", "");
 var mygetApiKey = Argument("MyGetApiKey", "");
 var ApplicationName = Argument("ApplicationName","ConsumerVPN");
 var UsesEVCert = Argument<bool>("EVCert", false);
-var certSubject = ""; //Add your own cert subject
-var TimeServer = "http://timestamp.sectigo.com";
+var certSubject = Argument("CertSubject",""); //Add your own cert subject
+var TimeServerUrl = "http://timestamp.sectigo.com";
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -30,13 +30,13 @@ var solutionDir = MakeAbsolute(Directory("."));
 // Codesign stuff.
 var signToolSettings = UsesEVCert ? new SignToolSignSettings
 {
-    TimeStampUri = new Uri(TimeServer),
+    TimeStampUri = new Uri(TimeServerUrl),
     DigestAlgorithm = SignToolDigestAlgorithm.Sha256,
     TimeStampDigestAlgorithm = SignToolDigestAlgorithm.Sha256,
     CertSubjectName = certSubject	
 } : new SignToolSignSettings 
 {
-    TimeStampUri = new Uri("http://timestamp.digicert.com"),
+    TimeStampUri = new Uri(TimeServerUrl),
     CertPath = "./Resources/Signing/cert.pfx",
     Password = certificatePassword,
 };

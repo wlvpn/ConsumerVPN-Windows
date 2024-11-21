@@ -1,4 +1,4 @@
-The latest version of the WLVPN Windows SDK is 2.2.42.
+The latest version of the WLVPN Windows SDK is 2.2.45.
 
 The latest version of the WLVPN Windows ConsumerVPN app is 2.0.0.0.
   

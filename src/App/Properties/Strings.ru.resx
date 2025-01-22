@@ -632,4 +632,16 @@
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Достигнут максимальный лимит</value>
   </data>
+  <data name="AutoConnectOnUntrusted" xml:space="preserve">
+    <value>Автоматическое подключение к ненадежной сети</value>
+  </data>
+  <data name="TrustedWiFiNetworks" xml:space="preserve">
+    <value>Ваши надежные сети Wi-Fi</value>
+  </data>
+  <data name="AutoConnectOnUntrustedDescription" xml:space="preserve">
+    <value>Приложение автоматически подключится к последнему выбранному вами VPN-серверу при нахождении в ненадежной сети.</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
 </root>

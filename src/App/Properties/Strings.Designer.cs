@@ -187,6 +187,24 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto-connect on Untrusted network.
+        /// </summary>
+        internal static string AutoConnectOnUntrusted {
+            get {
+                return ResourceManager.GetString("AutoConnectOnUntrusted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application will auto connect to your last selected VPN server location when on an untrusted network..
+        /// </summary>
+        internal static string AutoConnectOnUntrustedDescription {
+            get {
+                return ResourceManager.GetString("AutoConnectOnUntrustedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatic.
         /// </summary>
         internal static string Automatic {
@@ -1581,6 +1599,15 @@ namespace WLVPN.Properties {
         internal static string TrafficOptimizer {
             get {
                 return ResourceManager.GetString("TrafficOptimizer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your trusted Wi-Fi networks.
+        /// </summary>
+        internal static string TrustedWiFiNetworks {
+            get {
+                return ResourceManager.GetString("TrustedWiFiNetworks", resourceCulture);
             }
         }
         

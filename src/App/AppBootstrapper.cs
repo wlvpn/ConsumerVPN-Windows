@@ -180,6 +180,7 @@ namespace WLVPN
             ContainerInstance.RegisterSingleton<IBusyManager, BusyViewModel>();
             ContainerInstance.RegisterInstance<IMessageBoxFactory>(new MessageBoxFactory());
 
+            ContainerInstance.Register<IWifiService, WifiService>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IMainScreenTabItem, HomeViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IMainScreenTabItem, SettingsContainerViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IMainScreenTabItem, InformationContainerViewModel>(Lifestyle.Singleton);

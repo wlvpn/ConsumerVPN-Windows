@@ -685,4 +685,16 @@ Would you like to install one now?.</value>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Reached maximum limit</value>
   </data>
+  <data name="AutoConnectOnUntrusted" xml:space="preserve">
+    <value>Auto-connect on Untrusted network</value>
+  </data>
+  <data name="TrustedWiFiNetworks" xml:space="preserve">
+    <value>Your trusted Wi-Fi networks</value>
+  </data>
+  <data name="AutoConnectOnUntrustedDescription" xml:space="preserve">
+    <value>Application will auto connect to your last selected VPN server location when on an untrusted network.</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>

@@ -228,21 +228,6 @@
                              Text="{Binding ReconnectTries}"
                              TextAlignment="Center"
                              Visibility="{Binding ElementName=AR, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                    <cc:ToggleSwitch Margin="0,5,0,0"
-                                     CheckedText="{lex:Loc On}"
-                                     Content="{lex:Loc AutoConnectOnUntrusted}"
-                                     IsChecked="{Binding AutoConnectOnUntrusted}"
-                                     TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
-                                     UncheckedText="{lex:Loc Off}" />
-
-                    <TextBlock Margin="0,5,0,0"
-                               HorizontalAlignment="Stretch"
-                               VerticalAlignment="Center"
-                               FontSize="14"
-                               Text="{lex:Loc AutoReconnectDescription}"
-                               TextWrapping="Wrap" />
-
                 </StackPanel>
 
                 <StackPanel Margin="0,10,0,0"
@@ -354,6 +339,20 @@
                                TextWrapping="Wrap" />
                 </StackPanel>
 
+                <cc:ToggleSwitch Margin="0,20,0,0"
+                                 CheckedText="{lex:Loc On}"
+                                 Content="{lex:Loc AutoConnectOnUntrusted}"
+                                 IsChecked="{Binding AutoConnectOnUntrusted}"
+                                 TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                                 UncheckedText="{lex:Loc Off}" />
+
+                <TextBlock Margin="0,5,0,0"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           Text="{lex:Loc AutoReconnectDescription}"
+                           TextWrapping="Wrap" />
+                
                 <Label Content="{lex:Loc TrustedWiFiNetworks}"
                        Style="{StaticResource HeaderLabel}" />
                 <StackPanel>
@@ -369,8 +368,6 @@
                              SelectedItem="{Binding SelectedWiFiSSID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
-                                <Setter Property="KeyboardNavigation.DirectionalNavigation"
-                                        Value="Cycle" />
                                 <Setter Property="IsTabStop"
                                         Value="True" />
                                 <Setter Property="SnapsToDevicePixels"
@@ -382,18 +379,18 @@
                                         <ControlTemplate TargetType="ListBoxItem">
                                             <DockPanel>
                                                 <Button x:Name="DeleteBtn"
-                                                        Content="Delete"
+                                                        Content="Delete"                                                        
                                                         Width="60"
                                                         Height="20"
-                                                        Margin="0,2,2,0"
+                                                        Margin="0,2,5,0"
                                                         cal:Message.Attach="[Event Click] = [Action RemoveWiFiSSID($this)]"
                                                         Cursor="Hand"
                                                         DockPanel.Dock="Right"
-                                                        FocusVisualStyle="{x:Null}">
+                                                        Focusable="True">
                                                 </Button>
                                                 <TextBlock DockPanel.Dock="Left"
                                                            VerticalAlignment="Center"
-                                                           Margin="2,2,2,0"
+                                                           Margin="5,2,2,0"
                                                            FontSize="14"
                                                            Foreground="{StaticResource IdealForegroundBrush}"
                                                            Text="{Binding}" />

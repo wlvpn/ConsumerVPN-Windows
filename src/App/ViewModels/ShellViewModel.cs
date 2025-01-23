@@ -79,7 +79,7 @@ namespace WLVPN.ViewModels
             {
                 _sparkleUpdater = new Sparkle(
                     Properties.Settings.Default.BetaOptIn ? Resource.Get<string>("BetaAppcastUrl") : Resource.Get<string>("AppcastUrl"),
-                     Icon.ExtractAssociatedIcon(new Uri(typeof(ShellViewModel).Assembly.CodeBase).LocalPath),
+                    Application.Current?.MainWindow?.Icon?.ToIcon() ?? Icon.ExtractAssociatedIcon(new Uri(typeof(ShellViewModel).Assembly.CodeBase).LocalPath),
                     SecurityMode.Unsafe)
                     {
                         ShowsUIOnMainThread = true,

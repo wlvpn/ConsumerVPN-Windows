@@ -32,8 +32,7 @@ namespace WLVPN.Utils
         /// </summary>
         public WifiService()
         {
-            _nativeWifiPlayer = new NativeWifiPlayer();
-            _currentSsid = GetCurrentSsid();
+            _nativeWifiPlayer = new NativeWifiPlayer();            
             NetworkChange.NetworkAddressChanged += OnNetworkChanged;
             _wifiNetworks = new SmartCollection<WifiNetwork>();
         }
@@ -89,10 +88,10 @@ namespace WLVPN.Utils
             if (!string.IsNullOrWhiteSpace(newSsid) && _currentSsid != newSsid)
             {
                 SetConnectionStatus(newSsid, true);
-                SetConnectionStatus(_currentSsid, false);
-                _currentSsid = newSsid;
+                SetConnectionStatus(_currentSsid, false);                
                 NetworkChanged?.Invoke(this, new EventArgs());                
             }
+            _currentSsid = newSsid;
         }
         private string GetCurrentSsid()
         {

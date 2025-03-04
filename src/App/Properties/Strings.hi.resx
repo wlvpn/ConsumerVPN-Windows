@@ -742,4 +742,16 @@ The new version is {1} (You currently have version {2})</comment>
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>अधिकतम सीमा तक पहुंच गया</value>
   </data>
+  <data name="AutoConnectOnUntrusted" xml:space="preserve">
+    <value>अविश्वसनीय नेटवर्क पर स्वतः कनेक्ट करें</value>
+  </data>
+  <data name="TrustedWiFiNetworks" xml:space="preserve">
+    <value>आपके विश्वसनीय वाई-फाई नेटवर्क</value>
+  </data>
+  <data name="AutoConnectOnUntrustedDescription" xml:space="preserve">
+    <value>अविश्वसनीय नेटवर्क पर होने पर एप्लिकेशन आपके अंतिम चयनित VPN सर्वर स्थान से स्वतः कनेक्ट हो जाएगा।</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>ताज़ा करना</value>
+  </data>
 </root>

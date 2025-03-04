@@ -8,6 +8,7 @@
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:properties="clr-namespace:WLVPN.Properties"
+             xmlns:utilities="clr-namespace:WLVPN.Utils"
              xmlns:sdk="clr-namespace:VpnSDK.Enums;assembly=VpnSDK"
              xmlns:app="clr-namespace:WLVPN.Views"
              d:DesignHeight="900"
@@ -19,20 +20,32 @@
     <UserControl.Resources>
 
         <Style TargetType="{x:Type StackPanel}">
-            <Setter Property="Margin" Value="0,14,0,0" />
+            <Setter Property="Margin"
+                    Value="0,14,0,0" />
         </Style>
 
-        <Style BasedOn="{StaticResource {x:Type cc:ToggleSwitch}}" TargetType="{x:Type cc:ToggleSwitch}">
-            <Setter Property="SwitchPadding" Value="0,0,10,0" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Foreground" Value="{DynamicResource IdealForegroundBrush}" />
-            <Setter Property="HeaderContentPlacement" Value="Top" />
-            <Setter Property="HeaderPadding" Value="0,0,0,10" />
-            <Setter Property="Padding" Value="0,0,0,0" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="Margin" Value="0,5,0,0" />
-            <Setter Property="SwitchContentPlacement" Value="Left" />
-            <Setter Property="SwitchPadding" Value="0,0,10,0" />
+        <Style BasedOn="{StaticResource {x:Type cc:ToggleSwitch}}"
+               TargetType="{x:Type cc:ToggleSwitch}">
+            <Setter Property="SwitchPadding"
+                    Value="0,0,10,0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource IdealForegroundBrush}" />
+            <Setter Property="HeaderContentPlacement"
+                    Value="Top" />
+            <Setter Property="HeaderPadding"
+                    Value="0,0,0,10" />
+            <Setter Property="Padding"
+                    Value="0,0,0,0" />
+            <Setter Property="FontSize"
+                    Value="14" />
+            <Setter Property="Margin"
+                    Value="0,5,0,0" />
+            <Setter Property="SwitchContentPlacement"
+                    Value="Left" />
+            <Setter Property="SwitchPadding"
+                    Value="0,0,10,0" />
         </Style>
 
 
@@ -49,9 +62,12 @@
             <Style x:Key="SectionTitles"
                    BasedOn="{StaticResource BaseTextBlock}"
                    TargetType="{x:Type TextBlock}">
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Margin" Value="0,0,0,0" />
-                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="FontWeight"
+                        Value="Bold" />
+                <Setter Property="Margin"
+                        Value="0,0,0,0" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
             </Style>
         </ScrollViewer.Resources>
 
@@ -60,7 +76,8 @@
                     Orientation="Vertical">
 
             <StackPanel Margin="0">
-                <Label Content="{lex:Loc VpnProtocol}" Style="{StaticResource HeaderLabel}" />
+                <Label Content="{lex:Loc VpnProtocol}"
+                       Style="{StaticResource HeaderLabel}" />
 
                 <RadioButton Name="AutomaticBtn"
                              Content="{lex:Loc Automatic}"
@@ -108,7 +125,8 @@
                            Text="{lex:Loc OpenVPNDescription}"
                            TextWrapping="Wrap" />
 
-                <StackPanel IsEnabled="{Binding ElementName=OpenVPNProtocolBtn, Path=IsChecked}" Visibility="{Binding ElementName=OpenVPNProtocolBtn, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+                <StackPanel IsEnabled="{Binding ElementName=OpenVPNProtocolBtn, Path=IsChecked}"
+                            Visibility="{Binding ElementName=OpenVPNProtocolBtn, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
 
                     <TextBlock Margin="0,0,0,10"
                                FontSize="14"
@@ -157,34 +175,27 @@
 
                 </StackPanel>
 
-                <Label Content="{lex:Loc TapAdapter}" Style="{StaticResource HeaderLabel}" />
+                <Label Content="{lex:Loc TapAdapter}"
+                       Style="{StaticResource HeaderLabel}" />
 
-                <TextBlock Grid.Row="9"
-                           Margin="0,5,0,0"
+                <TextBlock Margin="0,5,0,0"
                            FontSize="14"
                            Text="{lex:Loc InstallRepairTAP}" />
 
-                <Button Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        Height="32"
+                <Button Height="32"
                         MinWidth="100"
                         Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         cal:Message.Attach="[Event Click] = [Action InstallOrRepairDrivers()]"
                         Content="{lex:Loc InstallRepair}" />
 
-                <Label Content="{lex:Loc Connectivity}" Style="{StaticResource HeaderLabel}" />
+                <Label Content="{lex:Loc Connectivity}"
+                       Style="{StaticResource HeaderLabel}" />
 
-                <StackPanel Grid.Row="2"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            Margin="0,5,0,0"
+                <StackPanel Margin="0,5,0,0"
                             Orientation="Vertical">
 
                     <cc:ToggleSwitch x:Name="AR"
-                                     Grid.Row="2"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="2"
                                      Margin="0"
                                      AutomationProperties.HelpText="{lex:Loc AutoReconnectDescription}"
                                      CheckedText="{lex:Loc On}"
@@ -193,28 +204,20 @@
                                      TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
                                      UncheckedText="{lex:Loc Off}" />
 
-
-
-                    <TextBlock Grid.Row="3"
-                               Grid.Column="0"
-                               Margin="0,5,0,0"
+                    <TextBlock Margin="0,5,0,0"
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Center"
                                FontSize="14"
                                Text="{lex:Loc AutoReconnectDescription}"
                                TextWrapping="Wrap" />
 
-                    <TextBlock Grid.Row="3"
-                               Grid.Column="0"
-                               Margin="0,10,0,0"
+                    <TextBlock Margin="0,10,0,0"
                                VerticalAlignment="Center"
                                FontSize="14"
                                Text="{lex:Loc ReconnectTries}"
                                Visibility="{Binding ElementName=AR, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-                    <TextBox Grid.Row="3"
-                             Grid.Column="1"
-                             Width="50"
+                    <TextBox Width="50"
                              Margin="0,5,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Center"
@@ -225,19 +228,12 @@
                              Text="{Binding ReconnectTries}"
                              TextAlignment="Center"
                              Visibility="{Binding ElementName=AR, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
                 </StackPanel>
 
-                <StackPanel Grid.Row="4"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            Margin="0,10,0,0"
+                <StackPanel Margin="0,10,0,0"
                             Orientation="Vertical">
 
                     <cc:ToggleSwitch x:Name="KillSwitchCheckbox"
-                                     Grid.Row="4"
-                                     Grid.Column="0"
-                                     Grid.ColumnSpan="2"
                                      Margin="0"
                                      AutomationProperties.HelpText="{lex:Loc KillSwitchToolTip}"
                                      CheckedText="{lex:Loc On}"
@@ -247,9 +243,7 @@
                                      ToolTip="{lex:Loc KillSwitchToolTip}"
                                      UncheckedText="{lex:Loc Off}" />
 
-                    <TextBlock Grid.Row="3"
-                               Grid.Column="0"
-                               Margin="0,5,0,0"
+                    <TextBlock Margin="0,5,0,0"
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Center"
                                FontSize="14"
@@ -259,9 +253,6 @@
 
 
                 <cc:ToggleSwitch x:Name="BlockLanTrafficCheckbox"
-                                 Grid.Row="5"
-                                 Grid.Column="0"
-                                 Grid.ColumnSpan="2"
                                  Margin="0,10"
                                  CheckedText="{lex:Loc On}"
                                  Content="{lex:Loc BlockLANTraffic}"
@@ -272,44 +263,65 @@
                                  UncheckedText="{lex:Loc Off}"
                                  Visibility="{Binding ElementName=KillSwitchCheckbox, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" />
 
-                <cc:ToggleSwitch Content="{lex:Loc AllowLanInterfaces}" IsChecked="{Binding AllowLanInterfaces, Mode=TwoWay}" />
+                <cc:ToggleSwitch Content="{lex:Loc AllowLanInterfaces}"
+                                 IsChecked="{Binding AllowLanInterfaces, Mode=TwoWay}" />
 
                 <TextBlock Padding="0,10,0,0"
                            FontSize="14"
                            Text="{lex:Loc AllowLanInterfacesDescription}"
                            TextWrapping="Wrap" />
 
-                <cc:ToggleSwitch Content="{lex:Loc DisableDNSLeakProtection}" IsChecked="{Binding DisableDNSLeakProtection, Mode=TwoWay}" />
+                <cc:ToggleSwitch Content="{lex:Loc DisableDNSLeakProtection}"
+                                 IsChecked="{Binding DisableDNSLeakProtection, Mode=TwoWay}" />
 
-                <cc:ToggleSwitch Content="{lex:Loc DisableIPv6LeakProtection}" IsChecked="{Binding DisableIPv6LeakProtection, Mode=TwoWay}" />
+                <cc:ToggleSwitch Content="{lex:Loc DisableIPv6LeakProtection}"
+                                 IsChecked="{Binding DisableIPv6LeakProtection, Mode=TwoWay}" />
 
-                <cc:ToggleSwitch x:Name="DnsMonitoring" Content="{lex:Loc DnsMonitoring}" IsChecked="{Binding DnsMonitoring, Mode=TwoWay}" />
+                <cc:ToggleSwitch x:Name="DnsMonitoring"
+                                 Content="{lex:Loc DnsMonitoring}"
+                                 IsChecked="{Binding DnsMonitoring, Mode=TwoWay}" />
 
-                <Label Content="{lex:Loc DoubleHop}" Style="{StaticResource HeaderLabel}" />
+                <Label Content="{lex:Loc DoubleHop}"
+                       Style="{StaticResource HeaderLabel}" />
 
-                <cc:ToggleSwitch Margin="0,5,0,0" x:Name="DoubleHop" Content="{lex:Loc EnableDoubleHop}" IsChecked="{Binding IsDoubleHopEnabled, Mode=TwoWay}" />
+                <cc:ToggleSwitch Margin="0,5,0,0"
+                                 x:Name="DoubleHop"
+                                 Content="{lex:Loc EnableDoubleHop}"
+                                 IsChecked="{Binding IsDoubleHopEnabled, Mode=TwoWay}" />
 
-                <StackPanel Orientation="Horizontal" IsEnabled="{Binding ElementName=DoubleHop, Path=IsChecked}" Visibility="{Binding ElementName=DoubleHop, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+                <StackPanel Orientation="Horizontal"
+                            IsEnabled="{Binding ElementName=DoubleHop, Path=IsChecked}"
+                            Visibility="{Binding ElementName=DoubleHop, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
 
-                    <TextBlock VerticalAlignment="Bottom" FontSize="14" Text="{lex:Loc SelectEntryLocation}" TextWrapping="Wrap" />
+                    <TextBlock VerticalAlignment="Bottom"
+                               FontSize="14"
+                               Text="{lex:Loc SelectEntryLocation}"
+                               TextWrapping="Wrap" />
 
-                    <ComboBox ItemsSource="{Binding SDK.Locations}"                               
+                    <ComboBox ItemsSource="{Binding SDK.Locations}"
                               DisplayMemberPath="SearchName"
                               SelectedItem="{Binding SelectedLocation, UpdateSourceTrigger=PropertyChanged}"
                               Margin="10,0,0,0"
                               IsEditable="False"
-                              Width="220"/>
+                              Width="220" />
                 </StackPanel>
 
-                <Label Content="{lex:Loc TrafficOptimizer}" Style="{StaticResource HeaderLabel}" />
+                <Label Content="{lex:Loc TrafficOptimizer}"
+                       Style="{StaticResource HeaderLabel}" />
 
-                <cc:ToggleSwitch Margin="0,5,0,0" x:Name="TrafficOptimizer" Content="{lex:Loc EnableTrafficOptimizer}" />
+                <cc:ToggleSwitch Margin="0,5,0,0"
+                                 x:Name="TrafficOptimizer"
+                                 Content="{lex:Loc EnableTrafficOptimizer}" />
 
-                <Control Style="{StaticResource AppListControl}" IsEnabled="{Binding ElementName=TrafficOptimizer, Path=IsChecked}" Visibility="{Binding ElementName=TrafficOptimizer, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"/>
+                <Control Style="{StaticResource AppListControl}"
+                         IsEnabled="{Binding ElementName=TrafficOptimizer, Path=IsChecked}"
+                         Visibility="{Binding ElementName=TrafficOptimizer, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" />
 
-                <Label Content="{lex:Loc AdvancedProtection}" Style="{StaticResource HeaderLabel}" />
+                <Label Content="{lex:Loc AdvancedProtection}"
+                       Style="{StaticResource HeaderLabel}" />
 
-                <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+                <StackPanel Margin="0,5,0,0"
+                            Orientation="Vertical">
 
                     <cc:ToggleSwitch x:Name="ThreatProtection"
                                      AutomationProperties.HelpText="{lex:Loc ThreatProtection}"
@@ -326,6 +338,102 @@
                                Text="{lex:Loc ThreatProtectionText}"
                                TextWrapping="Wrap" />
                 </StackPanel>
+
+                <cc:ToggleSwitch Margin="0,20,0,0"
+                                 CheckedText="{lex:Loc On}"
+                                 Content="{lex:Loc AutoConnectOnUntrusted}"
+                                 IsChecked="{Binding AutoConnectOnUntrusted}"
+                                 TextBlock.Foreground="{StaticResource IdealForegroundBrush}"
+                                 UncheckedText="{lex:Loc Off}" />
+
+                <TextBlock Margin="0,5,0,0"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           Text="{lex:Loc AutoReconnectDescription}"
+                           TextWrapping="Wrap" />
+                
+                <Label Content="{lex:Loc TrustedWiFiNetworks}"
+                       Style="{StaticResource HeaderLabel}" />
+                <StackPanel>
+                    <ListBox x:Name="WifiSecurityList"
+                             Width="472"
+                             Height="200"
+                             HorizontalAlignment="Left"
+                             HorizontalContentAlignment="Stretch"
+                             Background="Transparent"
+                             FocusVisualStyle="{x:Null}"
+                             IsSynchronizedWithCurrentItem="True"
+                             ItemsSource="{Binding TrustedWiFiSSIDs}"
+                             SelectedItem="{Binding SelectedWiFiSSID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="IsTabStop"
+                                        Value="True" />
+                                <Setter Property="SnapsToDevicePixels"
+                                        Value="true" />
+                                <Setter Property="OverridesDefaultStyle"
+                                        Value="true" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <DockPanel>
+                                                <Button x:Name="DeleteBtn"
+                                                        Content="Delete"                                                        
+                                                        Width="60"
+                                                        Height="20"
+                                                        Margin="0,2,5,0"
+                                                        cal:Message.Attach="[Event Click] = [Action RemoveWiFiSSID($this)]"
+                                                        Cursor="Hand"
+                                                        DockPanel.Dock="Right"
+                                                        Focusable="True">
+                                                </Button>
+                                                <TextBlock DockPanel.Dock="Left"
+                                                           VerticalAlignment="Center"
+                                                           Margin="5,2,2,0"
+                                                           FontSize="14"
+                                                           Foreground="{StaticResource IdealForegroundBrush}"
+                                                           Text="{Binding}" />
+                                            </DockPanel>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox x:Name="TrustedWiFiNetworksComboBox"
+                                  MinWidth="290"
+                                  Width="300"
+                                  Height="30"
+                                  Margin="0,5,0,0"
+                                  HorizontalAlignment="Left"
+                                  IsEditable="False"
+                                  DisplayMemberPath="SSID"
+                                  IsReadOnly="True"
+                                  IsTabStop="True"
+                                  ItemsSource="{Binding WifiNetworks}"
+                                  SelectedItem="{Binding SelectedNetwork}">
+                        </ComboBox>
+                        <Button Height="32"
+                                MinWidth="80"
+                                Margin="5,5,0,0"
+                                HorizontalAlignment="Left"
+                                IsEnabled="{Binding CanRefreshWifiNetwork}"
+                                cal:Message.Attach="[Event Click] = [Action RefreshWifiNetworks()]"
+                                Content="Refresh" />
+                        <Button Height="32"
+                                MinWidth="80"
+                                Margin="5,5,0,0"
+                                HorizontalAlignment="Left"
+                                IsEnabled="{Binding CanAddWifiNetwork}"
+                                cal:Message.Attach="[Event Click] = [Action AddWiFiSSID()]"
+                                Content="{lex:Loc Add}" />
+                    </StackPanel>
+                </StackPanel>
+
+
             </StackPanel>
         </StackPanel>
 

@@ -16,6 +16,9 @@ using System.IO;
 using VpnSDK.TrafficOptimizer.DTO;
 using System.Collections.ObjectModel;
 using WLVPN.Model;
+using System.Reactive.Linq;
+using WLVPN.Extensions;
+using System.Threading;
 
 namespace WLVPN.ViewModels
 {
@@ -25,13 +28,51 @@ namespace WLVPN.ViewModels
         private const string SupportedExtension = ".exe";
         private const string UnsupportedApp = "ConsumerVPN";
         private static IDialogManager _dialog = AppBootstrapper.ContainerInstance.GetInstance<IDialogManager>();
-
+        private bool _connectionInProcess = false;
         private TrafficOptimizerConfig _trafficOptimizerConfig;
+        private readonly IWifiService _wifiService;
+        private WifiNetwork _selectedNetwork;
 
-        public ConnectionSettingsViewModel(ISDK sdk)
+        /// <summary>
+        /// Gets the can add wifinetwork based on selected network.
+        /// </summary>
+        public bool CanAddWifiNetwork => SelectedNetwork != null;
+
+        /// <summary>
+        /// Gets the can refresh wifi network.
+        /// </summary>
+        public bool CanRefreshWifiNetwork { get; set; } = true;
+        /// <summary>
+        ///  Gets the collection of trusted Wi-Fi SSIDs.
+        /// </summary>
+        public ObservableCollection<string> TrustedWiFiSSIDs { get; private set; }
+
+        /// <summary>
+        ///  Gets or Sets value for selected Wi-Fi SSIDs.
+        /// </summary>
+        public string SelectedWiFiSSID { get; set; }
+
+        /// <summary>
+        ///  Gets the collection for Wi-Fi networks.
+        /// </summary>
+        public IReadOnlyCollection<WifiNetwork> WifiNetworks => _wifiService?.Networks;
+
+        /// <summary>
+        /// Gets or Sets value for selected network.
+        /// </summary>
+        public WifiNetwork SelectedNetwork
+        {
+            get => _selectedNetwork;
+            set
+            {
+                _selectedNetwork = value;
+                NotifyOfPropertyChange(nameof(SelectedNetwork));
+            }
+        }
+
+        public ConnectionSettingsViewModel(ISDK sdk, IWifiService wifiService)
         {
             SDK = sdk;
-
             ConnectionTypes = SDK.AvailableProtocols.Where(x => x.Value == true).Select(x => x.Key).ToList();
 
             if (!SDK.AvailableProtocols.Where(x => x.Value == true).Select(x => x.Key.ToString().Equals(Properties.Settings.Default.ConnectionProtocol)).Any())
@@ -41,7 +82,13 @@ namespace WLVPN.ViewModels
             }
             _trafficOptimizerConfig = new TrafficOptimizerConfig();
             IsDoubleHopEnabled = false;
+
+            _wifiService = wifiService;
+            TrustedWiFiSSIDs = new ObservableCollection<string>();
+            SDK.VpnConnectionStatusChanged += OnVpnConnectionStatusChanged;
             Properties.Settings.Default.PropertyChanged += OnSettingsPropertyChanged;
+            _wifiService.NetworkChanged += OnNetworkChanged;
+            RefreshWifiNetworks();
         }
 
         public string TabHeaderTitle => Properties.Strings.TabSettingsConnection;
@@ -130,8 +177,17 @@ namespace WLVPN.ViewModels
                     IsEnabled = Properties.Settings.Default.DnsMonitoring,
                 });
             }
+
+            if (e.PropertyName == nameof(Properties.Settings.Default.AutoConnectOnUntrusted))
+            {
+                InitiateUntrustedConnection();
+            }
         }
 
+        private void OnVpnConnectionStatusChanged(ISDK sender, ConnectionStatus previous, ConnectionStatus current)
+        {
+            _connectionInProcess = current == ConnectionStatus.Connecting || current == ConnectionStatus.Disconnecting;
+        }
         /// <summary>
         /// Gets a list of the available protocols for OpenVPN
         /// </summary>
@@ -147,6 +203,21 @@ namespace WLVPN.ViewModels
             {
                 Properties.Settings.Default.ConnectionProtocol = value;
                 NotifyOfPropertyChange(nameof(IsCipherEnabled));
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        /// <summary>
+        /// Gets or Sets value for AutoConnectOnUntrusted.
+        /// </summary>
+        public bool AutoConnectOnUntrusted
+        {
+            get => Properties.Settings.Default.AutoConnectOnUntrusted;
+            set
+            {
+                Properties.Settings.Default.AutoConnectOnUntrusted = value;
+                NotifyOfPropertyChange(nameof(AutoConnectOnUntrusted));
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -471,7 +542,66 @@ namespace WLVPN.ViewModels
             {
                 //ignore.
             }
-        }        
+        }
+
+        /// <summary>
+        /// Load wifi network asynchronously.
+        /// </summary>
+        /// <returns></returns>
+        public async void RefreshWifiNetworks()
+        {
+            try
+            {
+                CancellationToken cancellationToken = new CancellationToken();
+                CanRefreshWifiNetwork = false;
+                await _wifiService.Refresh(cancellationToken);
+                NotifyOfPropertyChange(nameof(WifiNetworks));
+            }
+            catch
+            {
+                //ignore.
+            }
+            CanRefreshWifiNetwork = true;
+        }
+
+        /// <summary>
+        /// Add wifi ssid name to TrustedWiFiSSIDs list.
+        /// </summary>
+        public void AddWiFiSSID()
+        {
+            if (!TrustedWiFiSSIDs.Contains(SelectedNetwork?.SSID))
+            {
+                TrustedWiFiSSIDs.Add(SelectedNetwork?.SSID);
+            }
+        }
+
+        /// <summary>
+        /// Remove wifi ssid name to TrustedWiFiSSIDs list.
+        /// </summary>
+        /// <param name="ssid">Passing SSID as string.</param>
+        public void RemoveWiFiSSID(string ssid)
+        {
+            if (!string.IsNullOrEmpty(ssid) && TrustedWiFiSSIDs.Contains(ssid))
+            {
+                TrustedWiFiSSIDs.Remove(ssid);
+            }
+        }
+        private bool CanConnect()
+        {
+            return !_connectionInProcess && !SDK.IsConnected && !SDK.IsConnecting;
+        }
+        private async void InitiateUntrustedConnection()
+        {
+            if (Properties.Settings.Default.AutoConnectOnUntrusted && CanConnect()
+                && !TrustedWiFiSSIDs.Any(network => WifiNetworks.Any(net => net.SSID == network && net.Connected)))
+            {
+                await SDK.InitiateConnection();
+            }
+        }
+        private void OnNetworkChanged(object sender, EventArgs e)
+        {
+            InitiateUntrustedConnection();
+        }
     }
 }
 

@@ -648,4 +648,16 @@
   <data name="ReachedMaxLimit" xml:space="preserve">
     <value>Límite máximo alcanzado</value>
   </data>
+  <data name="AutoConnectOnUntrusted" xml:space="preserve">
+    <value>Conexión automática en una red que no es de confianza</value>
+  </data>
+  <data name="TrustedWiFiNetworks" xml:space="preserve">
+    <value>Tus redes Wi-Fi de confianza</value>
+  </data>
+  <data name="AutoConnectOnUntrustedDescription" xml:space="preserve">
+    <value>La aplicación se conectará automáticamente a la última ubicación de servidor VPN seleccionada cuando esté en una red que no sea confiable.</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refrescar</value>
+  </data>
 </root>

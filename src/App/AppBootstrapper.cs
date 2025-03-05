@@ -211,7 +211,7 @@ namespace WLVPN
                             .SetOpenVpnConfiguration(new VpnSDK.DTO.OpenVpnConfiguration() 
                             {
                                 PreferredTapAdapter = VpnSDK.Private.OpenVpn.Enums.OpenVpnTapAdapter.TapWLVPN,
-                                TapDeviceDescription = Properties.Settings.Default.TapDeviceDescription 
+                                TapDeviceFriendlyName = Properties.Settings.Default.TapDeviceDescription 
                             })
                             .SetServerListCache(TimeSpan.FromDays(1))
                             .Create(), Lifestyle.Singleton);

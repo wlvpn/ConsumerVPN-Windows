@@ -41,7 +41,7 @@
                     BorderThickness="0"
                     Focusable="True"
                     ItemContainerStyle="{StaticResource VerticalImageTabItem}"
-                    KeyboardNavigation.TabNavigation="None"
+                    KeyboardNavigation.TabNavigation="Continue"
                     SelectedIndex="{Binding SelectedIndex}"
                     TabIndex="995"
                     TabStripPlacement="Left">

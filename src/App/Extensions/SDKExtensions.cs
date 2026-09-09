@@ -191,8 +191,15 @@ namespace WLVPN.Extensions
             }
             if (location != null && location.Id != BestAvailable)
             {
-                Properties.Settings.Default.LastSelectedServer = ((IChildren<IServer>)location).Children.FirstOrDefault().ToString();
-                Properties.Settings.Default.Save();
+                // A location is usually a region, but the Dedicated IP screen connects to a single
+                // server, and an empty region would otherwise throw here.
+                IServer server = location as IServer ?? (location as IChildren<IServer>)?.Children?.FirstOrDefault();
+
+                if (server != null)
+                {
+                    Properties.Settings.Default.LastSelectedServer = server.ToString();
+                    Properties.Settings.Default.Save();
+                }
             }
         }
 

@@ -22,6 +22,7 @@ namespace WLVPN.ViewModels
     internal class MainViewModel : Conductor<IMainScreenTabItem>.Collection.OneActive
     {
         private readonly ISDK _sdk;
+        private readonly DedicatedIpViewModel _dedicatedIp;
 
         private const string BestAvailable = "bestavailable";
         public IDialogManager Dialog { get; }
@@ -36,19 +37,82 @@ namespace WLVPN.ViewModels
 
         public int SelectedIndex { get; set; }
 
-        public MainViewModel(IEnumerable<IMainScreenTabItem> tabs, ISDK sdk, IDialogManager dialogManager)
+        public MainViewModel(IEnumerable<IMainScreenTabItem> tabs, ISDK sdk, IDialogManager dialogManager, DedicatedIpViewModel dedicatedIp)
         {
             Items.AddRange(tabs);
             _sdk = sdk;
+            _dedicatedIp = dedicatedIp;
             _sdk.VpnConnectionStatusChanged += OnVpnConnectionStatusChanged;
             _sdk.UserLocationStatusChanged += SdkOnUserLocationStatusChanged;
+            _sdk.AuthenticationStatusChanged += OnAuthenticationStatusChanged;
             Dialog = dialogManager;
             _sdk.DnsMonitoringUpdate += OnDnsMonitorUpdate;
+        }
+
+        /// <summary>
+        /// Selects the tab supplied by <typeparamref name="T"/>. Tabs are not at fixed
+        /// positions, the Dedicated IP tab only exists for entitled accounts.
+        /// </summary>
+        public void SelectTab<T>()
+            where T : IMainScreenTabItem
+        {
+            int index = Items.IndexOf(Items.OfType<T>().FirstOrDefault());
+            if (index >= 0)
+            {
+                SelectedIndex = index;
+            }
+        }
+
+        private async void OnAuthenticationStatusChanged(ISDK sender, AuthenticationStatus status)
+        {
+            if (status == AuthenticationStatus.Authenticated)
+            {
+                await UpdateDedicatedIpTab();
+            }
+            else if (status == AuthenticationStatus.NotAuthenticated)
+            {
+                Items.Remove(_dedicatedIp);
+            }
+        }
+
+        /// <summary>
+        /// Shows the Dedicated IP tab right after Home, but only for accounts that hold
+        /// the entitlement for it.
+        /// </summary>
+        private async Task UpdateDedicatedIpTab()
+        {
+            bool entitled;
+
+            try
+            {
+                var entitlements = await _sdk.GetUserEntitlementsAsync();
+                entitled = entitlements.Contains(UserEntitlement.DedicatedIp);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Unable to read the user entitlements, hiding the Dedicated IP tab.");
+                entitled = false;
+            }
+
+            if (!entitled)
+            {
+                Items.Remove(_dedicatedIp);
+                return;
+            }
+
+            if (!Items.Contains(_dedicatedIp))
+            {
+                int home = Items.IndexOf(Items.OfType<HomeViewModel>().FirstOrDefault());
+                Items.Insert(home >= 0 ? home + 1 : 0, _dedicatedIp);
+            }
         }
 
         protected override async void OnInitialize()
         {
             base.OnInitialize();
+
+            await UpdateDedicatedIpTab();
+
             if (Properties.Settings.Default.StartupType != StartupType.NOP)
             {
                 if (Properties.Settings.Default.StartupType == StartupType.LastLocation)
@@ -106,7 +170,7 @@ namespace WLVPN.ViewModels
 
         public void OpenSettingsTab()
         {
-            SelectedIndex = (int)MainScreenTabs.Settings;
+            SelectTab<SettingsContainerViewModel>();
         }
 
         public async Task InstallOrRepairDrivers()

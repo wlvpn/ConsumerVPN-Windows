@@ -644,4 +644,13 @@
   <data name="Refresh" xml:space="preserve">
     <value>Обновить</value>
   </data>
+  <data name="DedicatedIp" xml:space="preserve">
+    <value>Выделенный IP</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="ExpandCollapse" xml:space="preserve">
+    <value>Развернуть или свернуть</value>
+  </data>
 </root>

@@ -667,4 +667,13 @@ The new version is {1} (You currently have version {2})</value>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="DedicatedIp" xml:space="preserve">
+    <value>Dedicated IP</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="ExpandCollapse" xml:space="preserve">
+    <value>Expand or collapse</value>
+  </data>
 </root>

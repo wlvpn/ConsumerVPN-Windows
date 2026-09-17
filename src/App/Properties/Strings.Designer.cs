@@ -502,6 +502,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dedicated IP.
+        /// </summary>
+        internal static string DedicatedIp {
+            get {
+                return ResourceManager.GetString("DedicatedIp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {
@@ -705,6 +714,15 @@ namespace WLVPN.Properties {
         internal static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand or collapse.
+        /// </summary>
+        internal static string ExpandCollapse {
+            get {
+                return ResourceManager.GetString("ExpandCollapse", resourceCulture);
             }
         }
         
@@ -1276,6 +1294,15 @@ namespace WLVPN.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scramble.
         /// </summary>
         internal static string Scramble {
@@ -1308,6 +1335,15 @@ namespace WLVPN.Properties {
         internal static string SelectEntryLocation {
             get {
                 return ResourceManager.GetString("SelectEntryLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
             }
         }
         

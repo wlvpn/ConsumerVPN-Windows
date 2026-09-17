@@ -370,16 +370,16 @@ namespace WLVPN.ViewModels
                 {
 
                     case "H":
-                        mvm.SelectedIndex = (int)MainScreenTabs.Home;
+                        mvm.SelectTab<HomeViewModel>();
                         break;
 
                     case "S":
-                        mvm.SelectedIndex = (int)MainScreenTabs.Settings;
+                        mvm.SelectTab<SettingsContainerViewModel>();
                         break;
 
                     case "F1":
                     case "I":
-                        mvm.SelectedIndex = (int)MainScreenTabs.Information;
+                        mvm.SelectTab<InformationContainerViewModel>();
                         break;
 
                     case "C":
@@ -400,7 +400,7 @@ namespace WLVPN.ViewModels
         {
             ActivateItem((Screen)ContainerInstance.GetInstance(typeof(MainViewModel)));
             MainViewModel mvm = (MainViewModel)ActiveItem;
-            mvm.SelectedIndex = (int)MainScreenTabs.Information;
+            mvm.SelectTab<InformationContainerViewModel>();
 
         }
 
@@ -408,7 +408,7 @@ namespace WLVPN.ViewModels
         {
             ActivateItem((Screen)ContainerInstance.GetInstance(typeof(MainViewModel)));
             MainViewModel mvm = (MainViewModel)ActiveItem;
-            mvm.SelectedIndex = (int)MainScreenTabs.Settings;
+            mvm.SelectTab<SettingsContainerViewModel>();
         }
 
         public void ExitApplication()

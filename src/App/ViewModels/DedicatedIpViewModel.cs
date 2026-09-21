@@ -114,13 +114,19 @@ namespace WLVPN.ViewModels
         public ILocation SelectedDestination => (ILocation)SelectedServer ?? SelectedLocationItem;
 
         /// <summary>
-        /// Refreshes the dedicated server list every time the tab is opened. The SDK
-        /// applies its own cooldown and returns false when a refresh was not needed.
+        /// Fetches the dedicated server list when there is nothing to show. The SDK populates it
+        /// on login and keeps it current on its own timer, and a refresh that does run rebuilds
+        /// the collection, which collapses the expanded rows and drops the selection, so
+        /// refreshing on every activation costs the user more than it buys.
         /// </summary>
         protected override async void OnActivate()
         {
             base.OnActivate();
-            await RefreshServers();
+
+            if (SDK.DedicatedIpServerLocations.Count == 0)
+            {
+                await RefreshServers();
+            }
         }
 
         public async Task Connect()

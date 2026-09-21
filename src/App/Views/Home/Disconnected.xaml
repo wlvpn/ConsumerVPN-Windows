@@ -195,7 +195,7 @@
             <!--  this is just to add the double click on the row  -->
             <DataGrid.RowStyle>
                 <Style BasedOn="{StaticResource MetroDataGridRow}" TargetType="DataGridRow">
-                    <Setter Property="cal:Message.Attach" Value="[Event MouseDoubleClick ] = [ConnectFromLocation(SelectedItem, $source, $eventArgs)]" />
+                    <Setter Property="cal:Message.Attach" Value="[Event MouseDoubleClick ] = [ConnectFromLocation($dataContext, $source, $eventArgs)]" />
                 </Style>
             </DataGrid.RowStyle>
 

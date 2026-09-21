@@ -116,7 +116,6 @@
     <Compile Include="Utils\WindowStyleExtension.cs" />
     <Compile Include="Enums\ApplicationCloseType.cs" />
     <Compile Include="Enums\CloseDialogOptions.cs" />
-    <Compile Include="Enums\MainScreenTabs.cs" />
     <Compile Include="Enums\MessageBoxOptions.cs" />
     <Compile Include="Enums\StartupType.cs" />
     <Compile Include="Extensions\DependencyObjectExtension.cs" />
@@ -181,6 +180,7 @@
     <Compile Include="ValueConverters\StringToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\ToggleSwitchOffsetConverter.cs" />
     <Compile Include="ValueConverters\UppercaseConverter.cs" />
+    <Compile Include="ViewModels\DedicatedIpViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\Information\HelpViewModel.cs" />
     <Compile Include="ViewModels\Information\InformationContainerViewModel.cs" />
@@ -208,6 +208,9 @@
     </Compile>
     <Compile Include="Views\DialogConductorView.xaml.cs">
       <DependentUpon>DialogConductorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DedicatedIpView.xaml.cs">
+      <DependentUpon>DedicatedIpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -283,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\BaseStyles\ProgressRing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Icons\DedicatedIp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -479,6 +486,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DialogConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DedicatedIpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -968,7 +979,7 @@
       <Version>1.3.9</Version>
     </PackageReference>
     <PackageReference Include="VpnSDK">
-      <Version>2.2.48</Version>
+      <Version>2.2.49</Version>
     </PackageReference>
     <PackageReference Include="VpnSDK.Private.OpenVpn">
       <Version>1.0.43</Version>

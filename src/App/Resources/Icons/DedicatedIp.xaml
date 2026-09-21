@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utilities="clr-namespace:WLVPN.Utils">
+
+    <Style x:Key="DedicatedIpIcon" TargetType="{x:Type utilities:ExtendedImage}">
+        <Setter Property="Source">
+            <Setter.Value>
+
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup>
+                                <DrawingGroup.ClipGeometry>
+                                    <RectangleGeometry Rect="0,0,27,25" />
+                                </DrawingGroup.ClipGeometry>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type utilities:ExtendedImage}}, Path=Brush}">
+                                        <GeometryDrawing.Geometry>
+                                            <PathGeometry Figures="M2,1 L25,1 L25,7 L2,7 Z M19.5,3 L22.5,3 L22.5,5 L19.5,5 Z M2,9.5 L25,9.5 L25,15.5 L2,15.5 Z M19.5,11.5 L22.5,11.5 L22.5,13.5 L19.5,13.5 Z M2,18 L25,18 L25,24 L2,24 Z M19.5,20 L22.5,20 L22.5,22 L19.5,22 Z" FillRule="EvenOdd" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

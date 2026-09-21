@@ -181,6 +181,11 @@ namespace WLVPN
             ContainerInstance.RegisterInstance<IMessageBoxFactory>(new MessageBoxFactory());
 
             ContainerInstance.Register<IWifiService, WifiService>(Lifestyle.Singleton);
+
+            // Not part of the IMainScreenTabItem collection on purpose: MainViewModel adds and
+            // removes this tab depending on the account's DedicatedIp entitlement.
+            ContainerInstance.RegisterSingleton<DedicatedIpViewModel>();
+
             ContainerInstance.Collection.Append<IMainScreenTabItem, HomeViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IMainScreenTabItem, SettingsContainerViewModel>(Lifestyle.Singleton);
             ContainerInstance.Collection.Append<IMainScreenTabItem, InformationContainerViewModel>(Lifestyle.Singleton);

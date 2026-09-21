@@ -754,4 +754,13 @@ The new version is {1} (You currently have version {2})</comment>
   <data name="Refresh" xml:space="preserve">
     <value>ताज़ा करना</value>
   </data>
+  <data name="DedicatedIp" xml:space="preserve">
+    <value>समर्पित IP</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>सर्वर</value>
+  </data>
+  <data name="ExpandCollapse" xml:space="preserve">
+    <value>विस्तृत करें या संकुचित करें</value>
+  </data>
 </root>

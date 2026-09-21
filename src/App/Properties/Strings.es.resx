@@ -660,4 +660,13 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refrescar</value>
   </data>
+  <data name="DedicatedIp" xml:space="preserve">
+    <value>IP dedicada</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Servidor</value>
+  </data>
+  <data name="ExpandCollapse" xml:space="preserve">
+    <value>Expandir o contraer</value>
+  </data>
 </root>

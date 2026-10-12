@@ -19,6 +19,7 @@ using WLVPN.Model;
 using System.Reactive.Linq;
 using WLVPN.Extensions;
 using System.Threading;
+using Serilog;
 
 namespace WLVPN.ViewModels
 {
@@ -592,10 +593,18 @@ namespace WLVPN.ViewModels
         }
         private async void InitiateUntrustedConnection()
         {
-            if (Properties.Settings.Default.AutoConnectOnUntrusted && CanConnect()
-                && !TrustedWiFiSSIDs.Any(network => WifiNetworks.Any(net => net.SSID == network && net.Connected)))
+            // async void raised from a thread-pool thread: an unhandled exception here terminates the process.
+            try
             {
-                await SDK.InitiateConnection();
+                if (Properties.Settings.Default.AutoConnectOnUntrusted && CanConnect()
+                    && !TrustedWiFiSSIDs.Any(network => WifiNetworks.Any(net => net.SSID == network && net.Connected)))
+                {
+                    await SDK.InitiateConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Exception while auto-connecting on untrusted wifi.");
             }
         }
         private void OnNetworkChanged(object sender, EventArgs e)

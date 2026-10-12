@@ -84,14 +84,23 @@ namespace WLVPN.Utils
 
         private void OnNetworkChanged(object sender, EventArgs e)
         {
-            var newSsid = GetCurrentSsid();
-            if (!string.IsNullOrWhiteSpace(newSsid) && _currentSsid != newSsid)
+            // Runs on a thread-pool thread: an unhandled exception here terminates the process.
+            try
             {
-                SetConnectionStatus(newSsid, true);
-                SetConnectionStatus(_currentSsid, false);                
-                NetworkChanged?.Invoke(this, new EventArgs());                
+                var newSsid = GetCurrentSsid();
+                if (!string.IsNullOrWhiteSpace(newSsid) && _currentSsid != newSsid)
+                {
+                    SetConnectionStatus(newSsid, true);
+                    SetConnectionStatus(_currentSsid, false);
+                    NetworkChanged?.Invoke(this, new EventArgs());
+                }
+                _currentSsid = newSsid;
             }
-            _currentSsid = newSsid;
+            catch (Exception ex)
+            {
+                // Windows 11 24H2+ returns ERROR_ACCESS_DENIED from WLAN APIs when location access is off.
+                Log.Error(ex, "Exception while reading current wifi network.");
+            }
         }
         private string GetCurrentSsid()
         {
